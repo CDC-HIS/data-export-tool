@@ -1,0 +1,5 @@
+.venv
+release
+exported_data
+processed_csv
+*.log

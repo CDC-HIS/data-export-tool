@@ -1,0 +1,4 @@
+.venv
+release
+exported_data
+*.log

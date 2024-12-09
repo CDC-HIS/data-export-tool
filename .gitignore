@@ -1,0 +1,6 @@
+.venv
+build
+dist
+output_csv
+processed_csv
+*.log
