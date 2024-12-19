@@ -229,3 +229,4 @@
 2024-12-18 16:20:41,594 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
 2024-12-18 16:20:41,594 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
 2024-12-18 16:20:41,594 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-19 12:40:58,729 - ERROR - Error: 1054 (42S22): Unknown column 'FollowUp.treatment_end_date' in 'where clause'

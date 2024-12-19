@@ -358,5 +358,5 @@ FROM FollowUp AS f_case
          LEFT JOIN TBTreatmentCompleted ON TBTreatmentCompleted.patientid = f_case.PatientId
          LEFT JOIN TBTreatmentDiscontinued ON TBTreatmentDiscontinued.patientid = f_case.PatientId
          LEFT JOIN cca_screened ON cca_screened.patientid = f_case.PatientId
-WHERE FollowUp.treatment_end_date >= REPORT_END_DATE
-  AND FollowUp.follow_up_status IN ('Alive', 'Restart medication');
+WHERE f_case.treatment_end_date >= REPORT_END_DATE
+  AND f_case.follow_up_status IN ('Alive', 'Restart medication');
