@@ -13,6 +13,6 @@
     "DB_HOST" : "localhost",
     "DB_USER" : "root",
     "DB_PASS" : "Abcd@1234",
-    "DB_NAME" : "analytics_db"
+    "DB_NAME" : "analytics_lera"
   }
 }
