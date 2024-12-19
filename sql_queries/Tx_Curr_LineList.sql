@@ -63,7 +63,7 @@ select CASE Sex
            WHEN 'MALE' THEN 'M'
            end                                                                  as Sex,
        Weight,
-       current_age,
+       current_age as Age,
        fn_gregorian_to_ethiopian_calendar(follow_up_date, 'Y-M-D')              as FollowUpDate,
        follow_up_date                                                           as FollowUpDate_GC,
        fn_gregorian_to_ethiopian_calendar(next_visit_date, 'Y-M-D')             as Next_visit_Date,
