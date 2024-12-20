@@ -359,4 +359,4 @@ FROM FollowUp AS f_case
          LEFT JOIN TBTreatmentDiscontinued ON TBTreatmentDiscontinued.patientid = f_case.PatientId
          LEFT JOIN cca_screened ON cca_screened.patientid = f_case.PatientId
 WHERE f_case.treatment_end_date >= REPORT_END_DATE
-  AND f_case.follow_up_status IN ('Alive', 'Restart medication');
+  AND f_case.follow_up_status IN ('Alive', 'Restart medication') and   FLOOR(DATEDIFF(REPORT_END_DATE, f_case.art_start_date) / 30.4375) >=0;

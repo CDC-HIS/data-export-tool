@@ -124,5 +124,5 @@ from FollowUp
          left join latestDSD on latestDSD.PatientId = tx_curr.PatientId
          left join mamba_dim_client client on tx_curr.PatientId = client.client_id
 where tx_curr.treatment_end_date >= REPORT_END_DATE
-  AND tx_curr.follow_up_status in ('Alive', 'Restart medication')
+  AND tx_curr.follow_up_status in ('Alive', 'Restart medication') and  FLOOR(DATEDIFF(REPORT_END_DATE, art_start_date) / 30.4375) >=0
 ;

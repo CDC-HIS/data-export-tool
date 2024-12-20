@@ -173,4 +173,4 @@ FROM FollowUp
          Left join tpt_type on tmp_tpt.client_id = tpt_type.client_id
 where tmp_tpt.art_end_date >= REPORT_END_DATE
   AND tmp_tpt.follow_up_status in ('Alive', 'Restart medication')
-  AND tmp_tpt.art_start_date <= REPORT_END_DATE;
+  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  FLOOR(DATEDIFF(REPORT_END_DATE, tmp_tpt.art_start_date) / 30.4375) >=0;

@@ -347,7 +347,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
 
                                  Left join all_art_follow_ups on f_case.client_id = all_art_follow_ups.client_id
 
-                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication'))
+                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication') and   FLOOR(DATEDIFF(REPORT_END_DATE, f_case.art_start_date) / 30.4375) >=0)
 select Sex,
        Weight,
        current_age          as Age,
