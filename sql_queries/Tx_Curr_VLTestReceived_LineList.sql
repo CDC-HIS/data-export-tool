@@ -112,7 +112,7 @@ select CASE Sex
        pregnancy_status       as                               IsPregnant,
        breastfeeding_status   as                               Breastfeeding,
        regimen                as                               ARVDispendsedDose,
-       regimen                as                               ARVRegimensLine,
+       LEFT(regimen,1)        as                               ARVRegimensLine,
        arv_dispensed_dose     as                               ARTDoseDays,
        next_visit_date,
        follow_up_status,

@@ -450,7 +450,7 @@ select CASE Sex
        FollowUpStatus,
        next_visit_date,
        ARVRegimen,
-       RegimenLine,
+       LEFT(RegimenLine,1) as RegimenLine,
        ARTDoseDays,
        Prev_CSS_Screen_Done_Date_Calculated,
        Prev_AppointmentDate_4_CCS,
