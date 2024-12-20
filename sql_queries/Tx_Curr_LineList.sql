@@ -83,10 +83,11 @@ select CASE Sex
        inh_date_completed                                                       as INH_Completed_Date_GC,
        CASE
            WHEN method_of_family_planning = 'Intrauterine device' OR
-                method_of_family_planning = 'Vasectomy'
-               OR method_of_family_planning = 'None' THEN 'LongTermFP'
-           WHEN method_of_family_planning = 'Diaphragm' OR
+                method_of_family_planning = 'Vasectomy' OR
+                method_of_family_planning = 'Tubal ligation procedure' OR
                 method_of_family_planning = 'Implantable contraceptive (unspecified type)' OR
+                method_of_family_planning = 'None' THEN 'LongTermFP'
+           WHEN method_of_family_planning = 'Diaphragm' OR
                 method_of_family_planning = 'Oral contraception' OR
                 method_of_family_planning = 'Injectable contraceptives' OR
                 method_of_family_planning = 'Condoms' THEN 'ShortTermFP' END    AS FP_Status,
