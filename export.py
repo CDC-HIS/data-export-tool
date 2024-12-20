@@ -138,7 +138,8 @@ def export_to_csv(queries, gregorian_start_date, gregorian_end_date):
         progress.grid(row=6, column=0, columnspan=2, pady=10)
         cursor.execute(facility_details_query)
         facility_details = cursor.fetchall()
-        facility_name = facility_details[0][2].replace(" ", "").replace("_", "")
+        raw_facility_name = facility_details[0][2]
+        facility_name = raw_facility_name.replace(" ", "").replace("_", "")
         woreda = facility_details[0][1].replace(" ", "").replace("_", "")
         region = facility_details[0][0].replace(" ", "").replace("_", "")
         cursor.execute(hmiscode_query)
@@ -150,7 +151,7 @@ def export_to_csv(queries, gregorian_start_date, gregorian_end_date):
             cursor.execute(formatted_query)
             results = cursor.fetchall()
             modified_results = [row + (
-                region, woreda, facility_name, hmiscode)
+                region, woreda, raw_facility_name, hmiscode)
                                 for row in results]
             
             csv_file_path = os.path.join('exported_data',

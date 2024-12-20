@@ -63,13 +63,14 @@ select CASE Sex
            WHEN 'MALE' THEN 'M'
            end                                                                  as Sex,
        Weight,
-       current_age as Age,
+       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) -
+       (DATE_FORMAT(REPORT_END_DATE, '%m%d') < DATE_FORMAT(date_of_birth, '%m%d'))  as Age,
        fn_gregorian_to_ethiopian_calendar(follow_up_date, 'Y-M-D')              as FollowUpDate,
        follow_up_date                                                           as FollowUpDate_GC,
        fn_gregorian_to_ethiopian_calendar(next_visit_date, 'Y-M-D')             as Next_visit_Date,
        next_visit_date                                                          as Next_visit_Date_GC,
-       regimen                                                                  as ARVRegimen,
-       regimen                                                                  as RegimensLine,
+       left(regimen,2)                                                                  as ARVRegimen,
+       left(regimen,1)                                                                  as RegimensLine,
        ARTDoseDays,
        tx_curr.follow_up_status                                                 as FollowupStatus,
        fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'Y-M-D') as ARTDoseEndDate,
@@ -117,7 +118,7 @@ select CASE Sex
        breast_feeding_status                                                    as BreastFeeding,
        fn_gregorian_to_ethiopian_calendar(LMP_Date, 'Y-M-D')                    as LMP_Date,
        LMP_Date                                                                 as LMP_Date_GC,
-       FLOOR(DATEDIFF(REPORT_END_DATE, art_start_date) / 30.4375)                  AS MonthsOnART,
+       TIMESTAMPDIFF(MONTH ,REPORT_END_DATE, art_start_date)                  AS MonthsOnART,
        latestDSD.DSD_Category,
        stages_of_disclosure                                                     as ChildDisclosueStatus
 from FollowUp
@@ -125,5 +126,5 @@ from FollowUp
          left join latestDSD on latestDSD.PatientId = tx_curr.PatientId
          left join mamba_dim_client client on tx_curr.PatientId = client.client_id
 where tx_curr.treatment_end_date >= REPORT_END_DATE
-  AND tx_curr.follow_up_status in ('Alive', 'Restart medication') and  FLOOR(DATEDIFF(REPORT_END_DATE, art_start_date) / 30.4375) >=0
+  AND tx_curr.follow_up_status in ('Alive', 'Restart medication') and  TIMESTAMPDIFF(MONTH ,REPORT_END_DATE, art_start_date)  >=0
 ;
