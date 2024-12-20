@@ -2,3 +2,4 @@ export_distributable
 exported_data
 export_distributable.zip
 .venv
+/exported_data.7z
