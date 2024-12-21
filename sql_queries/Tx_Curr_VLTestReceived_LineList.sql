@@ -100,7 +100,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                    LEFT JOIN mamba_dim_client client ON latest_follow_up.client_id = client.client_id
                                    LEFT JOIN vl_performed_date as vlperfdate
                                              ON vlperfdate.client_id = FollowUp.client_id)
-select CASE Sex
+select CASE client.Sex
            WHEN 'FEMALE' THEN 'F'
            WHEN 'MALE' THEN 'M'
            end                as                               Sex,

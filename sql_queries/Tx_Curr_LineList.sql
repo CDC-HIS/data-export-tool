@@ -58,7 +58,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
      tx_curr AS (select * from tx_curr_all where row_num = 1)
 
 
-select CASE Sex
+select CASE client.Sex
            WHEN 'FEMALE' THEN 'F'
            WHEN 'MALE' THEN 'M'
            end                                                                     as Sex,
@@ -110,8 +110,8 @@ select CASE Sex
                                        then 'Female:Pregnant'
                                    else 'Female:NotPregnant'
                                    End
-                           else sex end
-                   else sex end
+                           else client.Sex end
+                   else client.Sex end
            end
                                                                                    As SexForNutrition,
        nutritional_supplements_provided                                            as TherapeuticFoodProvided,
