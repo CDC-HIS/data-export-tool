@@ -119,7 +119,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
 
 select tmp_tpt.Sex,
        tmp_tpt.weight_in_kg                                                as Weight,
-       tmp_tpt.current_age                                                 as Age,
+       TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                 as Age,
        tpt_start.inhprophylaxis_started_date                               as TPT_Started_Date,
        tpt_completed.InhprophylaxisCompletedDate                           as TPT_Completed_Date,
        tpt_type.TptType                                                    as TPT_Type,
@@ -149,21 +149,21 @@ select tmp_tpt.Sex,
        tmp_tpt.WHOStage                                                    as WHOStage,
        AdultCD4Count,
        ChildCD4Count,
-       fn_gregorian_to_ethiopian_calendar(CPT_StartDate, 'Y-M-D')          as CPT_StartDate,
+       fn_gregorian_to_ethiopian_calendar(CPT_StartDate, 'D/M/Y')          as CPT_StartDate,
        CPT_StartDate_GC,
-       fn_gregorian_to_ethiopian_calendar(CPT_StopDate, 'Y-M-D')           as CPT_StopDate,
+       fn_gregorian_to_ethiopian_calendar(CPT_StopDate, 'D/M/Y')           as CPT_StopDate,
        CPT_StopDate_GC,
        TB_SpecimenType,
        ActiveTBDiagnosed,
-       fn_gregorian_to_ethiopian_calendar(ActiveTBDignosedDate, 'Y-M-D')   as ActiveTBDignosedDate,
+       fn_gregorian_to_ethiopian_calendar(ActiveTBDignosedDate, 'D/M/Y')   as ActiveTBDignosedDate,
        ActiveTBDignosedDate_GC,
-       fn_gregorian_to_ethiopian_calendar(TBTx_StartDate, 'Y-M-D')         as TBTx_StartDate,
+       fn_gregorian_to_ethiopian_calendar(TBTx_StartDate, 'D/M/Y')         as TBTx_StartDate,
        TBTx_StartDate_GC,
-       fn_gregorian_to_ethiopian_calendar(TBTx_CompletedDate, 'Y-M-D')     as TBTx_CompletedDate,
+       fn_gregorian_to_ethiopian_calendar(TBTx_CompletedDate, 'D/M/Y')     as TBTx_CompletedDate,
        TBTx_CompletedDate_GC,
-       fn_gregorian_to_ethiopian_calendar(Fluconazole_Start_Date, 'Y-M-D') as FluconazoleStartDate,
+       fn_gregorian_to_ethiopian_calendar(Fluconazole_Start_Date, 'D/M/Y') as FluconazoleStartDate,
        Fluconazole_Start_Date                                              as FluconazoleStartDate_GC,
-       fn_gregorian_to_ethiopian_calendar(Fluconazole_End_Date, 'Y-M-D')   as FluconazoleEndDate,
+       fn_gregorian_to_ethiopian_calendar(Fluconazole_End_Date, 'D/M/Y')   as FluconazoleEndDate,
        Fluconazole_End_Date                                                as FluconazoleEndDate_GC
 
 FROM FollowUp
@@ -171,6 +171,7 @@ FROM FollowUp
          Left join tpt_start on tmp_tpt.client_id = tpt_start.client_id
          Left join tpt_completed on tmp_tpt.client_id = tpt_completed.client_id
          Left join tpt_type on tmp_tpt.client_id = tpt_type.client_id
+         left join mamba_dim_client client on tmp_tpt.client_id = client.client_id
 where tmp_tpt.art_end_date >= REPORT_END_DATE
   AND tmp_tpt.follow_up_status in ('Alive', 'Restart medication')
-  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  FLOOR(DATEDIFF(REPORT_END_DATE, tmp_tpt.art_start_date) / 30.4375) >=0;
+  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(MONTH, tmp_tpt.art_start_date, REPORT_END_DATE) > 0;

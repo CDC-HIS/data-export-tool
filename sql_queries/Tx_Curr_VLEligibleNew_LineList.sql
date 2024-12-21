@@ -347,10 +347,10 @@ WITH FollowUp AS (SELECT follow_up.client_id,
 
                                  Left join all_art_follow_ups on f_case.client_id = all_art_follow_ups.client_id
 
-                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication') and   FLOOR(DATEDIFF(REPORT_END_DATE, f_case.art_start_date) / 30.4375) >=0)
-select Sex,
+                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication') and   TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE) >0)
+select t.Sex,
        Weight,
-       current_age          as Age,
+       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as Age,
        date_hiv_confirmed,
        art_start_date,
        FollowUpDate,
@@ -374,4 +374,6 @@ select Sex,
            WHEN IsPregnant = 'Yes' THEN 'Yes'
            WHEN BreastFeeding = 'Yes' THEN 'Yes'
            ELSE 'No' END    AS PMTCT_ART
-from vl_eligibility t;
+from vl_eligibility t
+    left join mamba_dim_client client on t.PatientId = client.client_id
+;

@@ -105,7 +105,7 @@ select CASE Sex
            WHEN 'MALE' THEN 'M'
            end                as                               Sex,
        weight                 as                               Weight,
-       current_age            as                               Age,
+       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE)  as Age,
        date_hiv_confirmed,
        art_start_date         as                               art_start_date,
        follow_up_date         as                               FollowUpDate,
@@ -124,8 +124,9 @@ select CASE Sex
        CONCAT(IFNULL(routine_viral_load_test_indication, ''), ' ',
               IFNULL(targeted_viral_load_test_indication, '')) ReasonForVLTest,
        PMTCT_ART,
-       patient_uuid           as                               PatientGUID
+       vl_test_received.patient_uuid           as                               PatientGUID
 from vl_test_received
+left join mamba_dim_client client on vl_test_received.client_id = client.client_id
 where viral_load_perform_date is not null
   And viral_load_perform_date >= DATE_ADD(REPORT_END_DATE, INTERVAL -365 DAY)
   and viral_load_perform_date <= REPORT_END_DATE;

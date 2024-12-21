@@ -63,24 +63,23 @@ select CASE Sex
            WHEN 'MALE' THEN 'M'
            end                                                                     as Sex,
        Weight,
-       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) -
-       (DATE_FORMAT(REPORT_END_DATE, '%m%d') < DATE_FORMAT(date_of_birth, '%m%d')) as Age,
-       fn_gregorian_to_ethiopian_calendar(follow_up_date, 'Y-M-D')                 as FollowUpDate,
+       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as Age,
+       fn_gregorian_to_ethiopian_calendar(follow_up_date, 'D/M/Y')                 as FollowUpDate,
        follow_up_date                                                              as FollowUpDate_GC,
-       fn_gregorian_to_ethiopian_calendar(next_visit_date, 'Y-M-D')                as Next_visit_Date,
+       fn_gregorian_to_ethiopian_calendar(next_visit_date, 'D/M/Y')                as Next_visit_Date,
        next_visit_date                                                             as Next_visit_Date_GC,
        left(regimen, 2)                                                            as ARVRegimen,
        left(regimen, 1)                                                            as RegimensLine,
        ARTDoseDays,
        tx_curr.follow_up_status                                                    as FollowupStatus,
-       fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'Y-M-D')    as ARTDoseEndDate,
+       fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'D/M/Y')    as ARTDoseEndDate,
        FollowUp.treatment_end_date                                                 as ARTDoseEndDate_DC,
        AdherenceLevel                                                              as AdheranceLevel,
-       fn_gregorian_to_ethiopian_calendar(art_start_date, 'Y-M-D')                 as ARTStartDate,
+       fn_gregorian_to_ethiopian_calendar(art_start_date, 'D/M/Y')                 as ARTStartDate,
        art_start_date                                                              as ARTStartDate_GC,
-       fn_gregorian_to_ethiopian_calendar(inh_start_date, 'Y-M-D')                 as INH_Start_Date,
+       fn_gregorian_to_ethiopian_calendar(inh_start_date, 'D/M/Y')                 as INH_Start_Date,
        inh_start_date                                                              as INH_Start_Date_GC,
-       fn_gregorian_to_ethiopian_calendar(inh_date_completed, 'Y-M-D')             as INH_Completed_Date,
+       fn_gregorian_to_ethiopian_calendar(inh_date_completed, 'D/M/Y')             as INH_Completed_Date,
        inh_date_completed                                                          as INH_Completed_Date_GC,
        CASE
            WHEN method_of_family_planning = 'Intrauterine device' OR
@@ -101,7 +100,7 @@ select CASE Sex
        CASE
            When nutritional_status_of_adult is not null then
                Case
-                   when current_age BETWEEN 15 AND 49 Then
+                   when TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) BETWEEN 15 AND 49 Then
                        Case
                            When 'FEMALE' Then
                                Case
@@ -119,7 +118,7 @@ select CASE Sex
        patient_uuid                                                                as PatientGUID,
        pregnancy_status                                                            as IsPregnant,
        breast_feeding_status                                                       as BreastFeeding,
-       fn_gregorian_to_ethiopian_calendar(LMP_Date, 'Y-M-D')                       as LMP_Date,
+       fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                       as LMP_Date,
        LMP_Date                                                                    as LMP_Date_GC,
        TIMESTAMPDIFF(MONTH, art_start_date, REPORT_END_DATE)                       AS MonthsOnART,
        latestDSD.DSD_Category,
@@ -130,5 +129,5 @@ from FollowUp
          left join mamba_dim_client client on tx_curr.PatientId = client.client_id
 where tx_curr.treatment_end_date >= REPORT_END_DATE
   AND tx_curr.follow_up_status in ('Alive', 'Restart medication')
-  and TIMESTAMPDIFF(MONTH, art_start_date, REPORT_END_DATE) >= 0
+  and TIMESTAMPDIFF(MONTH, art_start_date, REPORT_END_DATE) > 0
 ;

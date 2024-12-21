@@ -5,7 +5,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          art_antiretroviral_start_date AS art_start_date,
                          treatment_end_date            AS art_dose_end,
                          next_visit_date,
-                         age
+                         TIMESTAMPDIFF(YEAR, birthdate, REPORT_END_DATE) as age
                   FROM mamba_flat_encounter_follow_up follow_up
                            JOIN mamba_flat_encounter_follow_up_1 follow_up_1
                                 ON follow_up.encounter_id = follow_up_1.encounter_id
