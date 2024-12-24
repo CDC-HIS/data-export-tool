@@ -347,7 +347,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
 
                                  Left join all_art_follow_ups on f_case.client_id = all_art_follow_ups.client_id
 
-                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication') and   TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE) >0)
+                        where all_art_follow_ups.follow_up_status in ('Alive', 'Restart Medication') and   TIMESTAMPDIFF(DAY, f_case.art_start_date, REPORT_END_DATE) >=0)
 select t.Sex,
        Weight,
        TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as Age,

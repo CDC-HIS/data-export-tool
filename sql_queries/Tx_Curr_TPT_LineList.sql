@@ -174,4 +174,4 @@ FROM FollowUp
          left join mamba_dim_client client on tmp_tpt.client_id = client.client_id
 where tmp_tpt.art_end_date >= REPORT_END_DATE
   AND tmp_tpt.follow_up_status in ('Alive', 'Restart medication')
-  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(MONTH, tmp_tpt.art_start_date, REPORT_END_DATE) > 0;
+  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, tmp_tpt.art_start_date, REPORT_END_DATE) >=0;

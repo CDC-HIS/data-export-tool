@@ -347,7 +347,7 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                  from tmp_tx_curr
                  where row_num = 1
                    and follow_up_status in ('Alive', 'Restart medication')
-                   and art_end_date >= REPORT_END_DATE and  FLOOR(DATEDIFF(REPORT_END_DATE, tmp_tx_curr.art_start_date) / 30.4375) >=0),
+                   and art_end_date >= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, tmp_tx_curr.art_start_date, REPORT_END_DATE) >=0),
      cxca_final as (select client.sex                                       as Sex,
                            FollowUP.weight_text_                                 as Weight,
                            timestampdiff(YEAR, client.date_of_birth, REPORT_END_DATE) as Age,

@@ -250,4 +250,4 @@ select Sex as Sex,
 from hvl
 where hvl.follow_up_status in ('Alive', 'Restart medication')
   and hvl.art_dose_End >= REPORT_END_DATE
-  AND art_start_date <= REPORT_END_DATE and  FLOOR(DATEDIFF(REPORT_END_DATE, art_start_date) / 30.4375) >=0;
+  AND art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >=0;
