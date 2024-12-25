@@ -61,26 +61,26 @@ WITH FollowUp AS (select follow_up.encounter_id,
 select CASE client.Sex
            WHEN 'FEMALE' THEN 'F'
            WHEN 'MALE' THEN 'M'
-           end                                                                     as Sex,
+           end                                                                                as Sex,
        Weight,
-       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as Age,
-       fn_gregorian_to_ethiopian_calendar(follow_up_date, 'D/M/Y')                 as FollowUpDate,
-       follow_up_date                                                              as FollowUpDate_GC,
-       fn_gregorian_to_ethiopian_calendar(next_visit_date, 'D/M/Y')                as Next_visit_Date,
-       next_visit_date                                                             as Next_visit_Date_GC,
-       left(regimen, 2)                                                            as ARVRegimen,
-       left(regimen, 1)                                                            as RegimensLine,
+       TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE)                                    as Age,
+       fn_gregorian_to_ethiopian_calendar(follow_up_date, 'D/M/Y')                            as FollowUpDate,
+       follow_up_date                                                                         as FollowUpDate_GC,
+       fn_gregorian_to_ethiopian_calendar(next_visit_date, 'D/M/Y')                           as Next_visit_Date,
+       next_visit_date                                                                        as Next_visit_Date_GC,
+       left(regimen, 2)                                                                       as ARVRegimen,
+       left(regimen, 1)                                                                       as RegimensLine,
        ARTDoseDays,
-       tx_curr.follow_up_status                                                    as FollowupStatus,
-       fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'D/M/Y')    as ARTDoseEndDate,
-       FollowUp.treatment_end_date                                                 as ARTDoseEndDate_DC,
-       AdherenceLevel                                                              as AdheranceLevel,
-       fn_gregorian_to_ethiopian_calendar(art_start_date, 'D/M/Y')                 as ARTStartDate,
-       art_start_date                                                              as ARTStartDate_GC,
-       fn_gregorian_to_ethiopian_calendar(inh_start_date, 'D/M/Y')                 as INH_Start_Date,
-       inh_start_date                                                              as INH_Start_Date_GC,
-       fn_gregorian_to_ethiopian_calendar(inh_date_completed, 'D/M/Y')             as INH_Completed_Date,
-       inh_date_completed                                                          as INH_Completed_Date_GC,
+       tx_curr.follow_up_status                                                               as FollowupStatus,
+       fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'D/M/Y')               as ARTDoseEndDate,
+       FollowUp.treatment_end_date                                                            as ARTDoseEndDate_DC,
+       AdherenceLevel                                                                         as AdheranceLevel,
+       fn_gregorian_to_ethiopian_calendar(art_start_date, 'D/M/Y')                            as ARTStartDate,
+       art_start_date                                                                         as ARTStartDate_GC,
+       fn_gregorian_to_ethiopian_calendar(inh_start_date, 'D/M/Y')                            as INH_Start_Date,
+       inh_start_date                                                                         as INH_Start_Date_GC,
+       fn_gregorian_to_ethiopian_calendar(inh_date_completed, 'D/M/Y')                        as INH_Completed_Date,
+       inh_date_completed                                                                     as INH_Completed_Date_GC,
        CASE
            WHEN method_of_family_planning = 'Intrauterine device' OR
                 method_of_family_planning = 'Vasectomy' OR
@@ -90,13 +90,13 @@ select CASE client.Sex
            WHEN method_of_family_planning = 'Diaphragm' OR
                 method_of_family_planning = 'Oral contraception' OR
                 method_of_family_planning = 'Injectable contraceptives' OR
-                method_of_family_planning = 'Condoms' THEN 'ShortTermFP' END       AS FP_Status,
+                method_of_family_planning = 'Condoms' THEN 'ShortTermFP' END                  AS FP_Status,
        CASE TB_SreeningStatus
            WHEN 'Positive' THEN 'TB_Positive'
-           ELSE TB_SreeningStatus END                                              as TB_SreeningStatus
+           ELSE TB_SreeningStatus END                                                         as TB_SreeningStatus
         ,
        ActiveTBDiagnosed,
-       nutritional_screening_result                                                as NutritionalScrenningStatus,
+       nutritional_screening_result                                                           as NutritionalScrenningStatus,
        CASE
            When nutritional_status_of_adult is not null then
                Case
@@ -113,16 +113,19 @@ select CASE client.Sex
                            else client.Sex end
                    else client.Sex end
            end
-                                                                                   As SexForNutrition,
-       nutritional_supplements_provided                                            as TherapeuticFoodProvided,
-       patient_uuid                                                                as PatientGUID,
-       pregnancy_status                                                            as IsPregnant,
-       breast_feeding_status                                                       as BreastFeeding,
-       fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                       as LMP_Date,
-       LMP_Date                                                                    as LMP_Date_GC,
-       PERIOD_DIFF(date_format(REPORT_END_DATE,'%Y%m'),date_format(art_start_date,'%Y%m')) as MonthsOnART,
+                                                                                              As SexForNutrition,
+       CASE
+           WHEN nutritional_supplements_provided != '' and nutritional_supplements_provided is not null THEN 'Yes'
+           END
+                                                                                              as TherapeuticFoodProvided,
+       patient_uuid                                                                           as PatientGUID,
+       pregnancy_status                                                                       as IsPregnant,
+       breast_feeding_status                                                                  as BreastFeeding,
+       fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                                  as LMP_Date,
+       LMP_Date                                                                               as LMP_Date_GC,
+       PERIOD_DIFF(date_format(REPORT_END_DATE, '%Y%m'), date_format(art_start_date, '%Y%m')) as MonthsOnART,
        latestDSD.DSD_Category,
-       stages_of_disclosure                                                        as ChildDisclosueStatus
+       stages_of_disclosure                                                                   as ChildDisclosueStatus
 from FollowUp
          inner join tx_curr on FollowUp.encounter_id = tx_curr.encounter_id
          left join latestDSD on latestDSD.PatientId = tx_curr.PatientId

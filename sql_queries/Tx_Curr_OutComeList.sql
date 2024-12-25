@@ -74,7 +74,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                                  latest.art_start_date > REPORT_START_DATE THEN 'N'
                                             ELSE 'E'
                                             END                                                        AS new,
-                                        fn_get_ti_status(latest.client_id, REPORT_END_DATE, REPORT_START_DATE) AS TI,
+                                        fn_get_ti_status(latest.client_id, REPORT_START_DATE,REPORT_END_DATE) AS TI,
                                         CASE
                                             WHEN previous.encounter_id IS NULL THEN 'Not counted'
                                             ELSE 'counted'
@@ -140,7 +140,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                                  latest.art_start_date > REPORT_START_DATE THEN 'N'
                                             ELSE 'E'
                                             END                                                        AS new,
-                                        fn_get_ti_status(latest.client_id, REPORT_END_DATE, REPORT_START_DATE) AS TI,
+                                        fn_get_ti_status(latest.client_id, REPORT_START_DATE,REPORT_END_DATE) AS TI,
                                         CASE
                                             WHEN previous.encounter_id IS NULL THEN 'Not counted'
                                             ELSE 'counted'
@@ -307,7 +307,7 @@ to_be_deducted_pedi AS (SELECT SUM(IF(follow_up_status = 0, total, 0)) AS TOsPed
                                           FROM FollowUp AS c
                                                    INNER JOIN previous_follow_up_d
                                                               ON c.encounter_id = previous_follow_up_d.encounter_id
-                                          WHERE c.follow_up_status IN ('Alive', 'Restart medication')) AS previous
+                                          WHERE c.follow_up_status IN ('Alive', 'Restart medication')and age <15) AS previous
                                              LEFT JOIN (SELECT d.encounter_id,
                                                                d.art_dose_end,
                                                                d.client_id,
