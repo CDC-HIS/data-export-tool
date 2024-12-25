@@ -142,8 +142,6 @@ def export_to_csv(queries, gregorian_start_date, gregorian_end_date):
         raw_woreda = facility_details[0][1]
         raw_region = facility_details[0][0]
         facility_name = raw_facility_name.replace(" ", "").replace("_", "")
-        woreda = raw_woreda.replace(" ", "").replace("_", "")
-        region = raw_region.replace(" ", "").replace("_", "")
         cursor.execute(hmiscode_query)
         hmiscode = cursor.fetchall()
         hmiscode = hmiscode[0][0].replace(" ", "").replace("_", "")
@@ -152,10 +150,10 @@ def export_to_csv(queries, gregorian_start_date, gregorian_end_date):
                 "REPORT_START_DATE", f"'{gregorian_start_date}'")
             cursor.execute(formatted_query)
             results = cursor.fetchall()
+            
             modified_results = [row + (
                 raw_region, raw_woreda, raw_facility_name, hmiscode)
                                 for row in results]
-            
             csv_file_path = os.path.join('exported_data',
                                          f"{query_name}_{facility_name}{hmiscode}_{combo_month.get()}_{entry_year.get()}.csv")
             if modified_results:

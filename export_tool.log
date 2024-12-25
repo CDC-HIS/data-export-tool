@@ -826,3 +826,762 @@
 2024-12-21 11:49:33,916 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
 2024-12-21 11:49:33,916 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2015.csv
 2024-12-21 11:49:33,916 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:57:03,684 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:03,688 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2016.zip
+2024-12-24 10:57:03,688 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2016_checksum.txt
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:03,688 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 10:57:11,156 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:11,159 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2016.zip
+2024-12-24 10:57:11,159 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2016_checksum.txt
+2024-12-24 10:57:11,159 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,159 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,159 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,160 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,160 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,160 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,160 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:11,160 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 10:57:18,533 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:18,535 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2015.zip
+2024-12-24 10:57:18,536 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2015_checksum.txt
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:18,536 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 10:57:25,604 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:25,606 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2015.zip
+2024-12-24 10:57:25,606 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2015_checksum.txt
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:25,607 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 10:57:45,551 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:45,552 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2016.zip
+2024-12-24 10:57:45,552 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2016_checksum.txt
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:45,553 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 10:57:48,519 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:48,520 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2016.zip
+2024-12-24 10:57:48,520 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2016_checksum.txt
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:48,520 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 10:57:51,318 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:51,320 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2015.zip
+2024-12-24 10:57:51,320 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2015_checksum.txt
+2024-12-24 10:57:51,320 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,320 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,320 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,321 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,321 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,321 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,321 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:51,321 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 10:57:54,391 - INFO - Data exported to exported_data folder.
+2024-12-24 10:57:54,392 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2015.zip
+2024-12-24 10:57:54,392 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2015_checksum.txt
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:57:54,393 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 10:58:26,481 - INFO - Data exported to exported_data folder.
+2024-12-24 10:58:26,484 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2016.zip
+2024-12-24 10:58:26,484 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2016_checksum.txt
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,484 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,485 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:26,485 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 10:58:33,777 - INFO - Data exported to exported_data folder.
+2024-12-24 10:58:33,779 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2016.zip
+2024-12-24 10:58:33,779 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2016_checksum.txt
+2024-12-24 10:58:33,779 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,779 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:33,780 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 10:58:40,250 - INFO - Data exported to exported_data folder.
+2024-12-24 10:58:40,252 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2015.zip
+2024-12-24 10:58:40,252 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2015_checksum.txt
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:40,252 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 10:58:49,946 - INFO - Data exported to exported_data folder.
+2024-12-24 10:58:49,949 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2015.zip
+2024-12-24 10:58:49,949 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2015_checksum.txt
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:58:49,950 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 10:59:08,587 - INFO - Data exported to exported_data folder.
+2024-12-24 10:59:08,589 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2016.zip
+2024-12-24 10:59:08,589 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2016_checksum.txt
+2024-12-24 10:59:08,589 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,589 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:08,590 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 10:59:11,699 - INFO - Data exported to exported_data folder.
+2024-12-24 10:59:11,701 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2016.zip
+2024-12-24 10:59:11,701 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2016_checksum.txt
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:11,702 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 10:59:14,675 - INFO - Data exported to exported_data folder.
+2024-12-24 10:59:14,677 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2015.zip
+2024-12-24 10:59:14,677 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2015_checksum.txt
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:14,677 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 10:59:17,692 - INFO - Data exported to exported_data folder.
+2024-12-24 10:59:17,693 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2015.zip
+2024-12-24 10:59:17,693 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2015_checksum.txt
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 10:59:17,694 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:38:04,383 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:04,396 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2016.zip
+2024-12-24 16:38:04,396 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2016_checksum.txt
+2024-12-24 16:38:04,396 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:04,397 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-24 16:38:18,511 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:18,513 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2016.zip
+2024-12-24 16:38:18,514 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2016_checksum.txt
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:18,514 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-24 16:38:26,602 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:26,605 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2015.zip
+2024-12-24 16:38:26,605 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2015_checksum.txt
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:26,606 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-24 16:38:34,516 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:34,518 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2015.zip
+2024-12-24 16:38:34,518 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2015_checksum.txt
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:34,519 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-24 16:38:49,575 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:49,577 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2016.zip
+2024-12-24 16:38:49,577 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2016_checksum.txt
+2024-12-24 16:38:49,577 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,577 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,577 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,578 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,578 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,578 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,578 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:49,578 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-24 16:38:52,759 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:52,761 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2016.zip
+2024-12-24 16:38:52,761 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2016_checksum.txt
+2024-12-24 16:38:52,761 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,761 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:52,762 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-24 16:38:55,775 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:55,776 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2015.zip
+2024-12-24 16:38:55,776 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2015_checksum.txt
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:55,777 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-24 16:38:58,815 - INFO - Data exported to exported_data folder.
+2024-12-24 16:38:58,817 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2015.zip
+2024-12-24 16:38:58,817 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2015_checksum.txt
+2024-12-24 16:38:58,817 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,817 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,817 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,817 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,817 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,818 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,818 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:38:58,818 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-24 16:39:17,471 - INFO - Data exported to exported_data folder.
+2024-12-24 16:39:17,474 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2016.zip
+2024-12-24 16:39:17,474 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2016_checksum.txt
+2024-12-24 16:39:17,474 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:17,475 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-24 16:39:24,487 - INFO - Data exported to exported_data folder.
+2024-12-24 16:39:24,490 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2016.zip
+2024-12-24 16:39:24,490 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2016_checksum.txt
+2024-12-24 16:39:24,490 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,490 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,490 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,491 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,491 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,491 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,491 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:24,491 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-24 16:39:31,750 - INFO - Data exported to exported_data folder.
+2024-12-24 16:39:31,753 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2015.zip
+2024-12-24 16:39:31,753 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2015_checksum.txt
+2024-12-24 16:39:31,753 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,753 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,753 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,754 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,754 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,754 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,754 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:31,754 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-24 16:39:39,719 - INFO - Data exported to exported_data folder.
+2024-12-24 16:39:39,723 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2015.zip
+2024-12-24 16:39:39,723 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2015_checksum.txt
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,723 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,724 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:39,724 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-24 16:39:56,807 - INFO - Data exported to exported_data folder.
+2024-12-24 16:39:56,819 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2016.zip
+2024-12-24 16:39:56,819 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2016_checksum.txt
+2024-12-24 16:39:56,819 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,819 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:39:56,820 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-24 16:40:00,183 - INFO - Data exported to exported_data folder.
+2024-12-24 16:40:00,186 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2016.zip
+2024-12-24 16:40:00,186 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2016_checksum.txt
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:00,186 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-24 16:40:03,575 - INFO - Data exported to exported_data folder.
+2024-12-24 16:40:03,576 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2015.zip
+2024-12-24 16:40:03,576 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2015_checksum.txt
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:03,577 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-24 16:40:06,720 - INFO - Data exported to exported_data folder.
+2024-12-24 16:40:06,723 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2015.zip
+2024-12-24 16:40:06,723 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2015_checksum.txt
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:40:06,724 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-24 16:59:21,369 - INFO - Data exported to exported_data folder.
+2024-12-24 16:59:21,381 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2017.zip
+2024-12-24 16:59:21,381 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2017_checksum.txt
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 16:59:21,382 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,566 - INFO - Data exported to exported_data folder.
+2024-12-24 17:02:06,578 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2017.zip
+2024-12-24 17:02:06,578 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2017_checksum.txt
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:02:06,579 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,896 - INFO - Data exported to exported_data folder.
+2024-12-24 17:08:19,909 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2017.zip
+2024-12-24 17:08:19,909 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2017_checksum.txt
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:08:19,909 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,808 - INFO - Data exported to exported_data folder.
+2024-12-24 17:09:54,812 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2017.zip
+2024-12-24 17:09:54,812 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2017_checksum.txt
+2024-12-24 17:09:54,812 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,812 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,812 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,812 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,813 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,813 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,813 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-24 17:09:54,813 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,370 - INFO - Data exported to exported_data folder.
+2024-12-25 08:54:11,382 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2017.zip
+2024-12-25 08:54:11,382 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2017_checksum.txt
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:11,382 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2017.csv
+2024-12-25 08:54:31,649 - INFO - Data exported to exported_data folder.
+2024-12-25 08:54:31,652 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2016.zip
+2024-12-25 08:54:31,652 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2016_checksum.txt
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:31,653 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 08:54:34,426 - INFO - Data exported to exported_data folder.
+2024-12-25 08:54:34,428 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2016.zip
+2024-12-25 08:54:34,428 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2016_checksum.txt
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,428 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,429 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:34,429 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 08:54:37,754 - INFO - Data exported to exported_data folder.
+2024-12-25 08:54:37,755 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2015.zip
+2024-12-25 08:54:37,756 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2015_checksum.txt
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:37,756 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 08:54:40,322 - INFO - Data exported to exported_data folder.
+2024-12-25 08:54:40,324 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2015.zip
+2024-12-25 08:54:40,324 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2015_checksum.txt
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,325 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,326 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:54:40,326 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 08:55:10,458 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:10,460 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2016.zip
+2024-12-25 08:55:10,460 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2016_checksum.txt
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:10,461 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 08:55:17,321 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:17,324 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2016.zip
+2024-12-25 08:55:17,324 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2016_checksum.txt
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:17,325 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 08:55:24,498 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:24,500 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2015.zip
+2024-12-25 08:55:24,500 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2015_checksum.txt
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:24,500 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 08:55:30,778 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:30,780 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2015.zip
+2024-12-25 08:55:30,780 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2015_checksum.txt
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:30,781 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 08:55:43,810 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:43,811 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2016.zip
+2024-12-25 08:55:43,812 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2016_checksum.txt
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:43,812 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 08:55:47,162 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:47,164 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2016.zip
+2024-12-25 08:55:47,164 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2016_checksum.txt
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:47,165 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 08:55:49,954 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:49,956 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2015.zip
+2024-12-25 08:55:49,956 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2015_checksum.txt
+2024-12-25 08:55:49,956 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,956 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,956 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,957 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,957 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,957 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,957 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:49,957 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 08:55:52,978 - INFO - Data exported to exported_data folder.
+2024-12-25 08:55:52,979 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2015.zip
+2024-12-25 08:55:52,979 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2015_checksum.txt
+2024-12-25 08:55:52,980 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,980 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,980 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,981 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,981 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,981 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,981 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:55:52,981 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 08:56:10,937 - INFO - Data exported to exported_data folder.
+2024-12-25 08:56:10,940 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2016.zip
+2024-12-25 08:56:10,940 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2016_checksum.txt
+2024-12-25 08:56:10,940 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,940 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:10,941 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 08:56:17,690 - INFO - Data exported to exported_data folder.
+2024-12-25 08:56:17,693 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2016.zip
+2024-12-25 08:56:17,693 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2016_checksum.txt
+2024-12-25 08:56:17,693 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,693 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,693 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,693 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,694 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,694 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,694 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:17,694 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 08:56:24,010 - INFO - Data exported to exported_data folder.
+2024-12-25 08:56:24,012 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2015.zip
+2024-12-25 08:56:24,012 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2015_checksum.txt
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,012 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:24,013 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 08:56:31,306 - INFO - Data exported to exported_data folder.
+2024-12-25 08:56:31,308 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2015.zip
+2024-12-25 08:56:31,308 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2015_checksum.txt
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 08:56:31,309 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:22:33,502 - INFO - Data exported to exported_data folder.
+2024-12-25 10:22:33,516 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2016.zip
+2024-12-25 10:22:33,516 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2016_checksum.txt
+2024-12-25 10:22:33,516 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,516 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,516 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,516 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,516 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,517 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,517 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:33,517 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2016.csv
+2024-12-25 10:22:40,565 - INFO - Data exported to exported_data folder.
+2024-12-25 10:22:40,567 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2016.zip
+2024-12-25 10:22:40,567 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2016_checksum.txt
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:40,568 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2016.csv
+2024-12-25 10:22:47,196 - INFO - Data exported to exported_data folder.
+2024-12-25 10:22:47,199 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Tir_2015.zip
+2024-12-25 10:22:47,199 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Tir_2015_checksum.txt
+2024-12-25 10:22:47,199 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:47,200 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Tir_2015.csv
+2024-12-25 10:22:54,005 - INFO - Data exported to exported_data folder.
+2024-12-25 10:22:54,007 - INFO - Zip file created at: exported_data/AreketHealthCenter701090021_Meskerem_2015.zip
+2024-12-25 10:22:54,007 - INFO - Checksum saved to: exported_data/AreketHealthCenter701090021_Meskerem_2015_checksum.txt
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:22:54,007 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_AreketHealthCenter701090021_Meskerem_2015.csv
+2024-12-25 10:23:06,101 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:06,102 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2016.zip
+2024-12-25 10:23:06,102 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2016_checksum.txt
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:06,103 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2016.csv
+2024-12-25 10:23:09,532 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:09,534 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2016.zip
+2024-12-25 10:23:09,534 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2016_checksum.txt
+2024-12-25 10:23:09,534 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,534 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,534 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,535 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,535 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,535 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,535 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:09,535 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2016.csv
+2024-12-25 10:23:13,348 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:13,350 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Tir_2015.zip
+2024-12-25 10:23:13,350 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Tir_2015_checksum.txt
+2024-12-25 10:23:13,350 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,350 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:13,351 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Tir_2015.csv
+2024-12-25 10:23:16,588 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:16,590 - INFO - Zip file created at: exported_data/EmdiberHealthCenter701100023_Meskerem_2015.zip
+2024-12-25 10:23:16,590 - INFO - Checksum saved to: exported_data/EmdiberHealthCenter701100023_Meskerem_2015_checksum.txt
+2024-12-25 10:23:16,590 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,590 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:16,591 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_EmdiberHealthCenter701100023_Meskerem_2015.csv
+2024-12-25 10:23:41,196 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:41,199 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2016.zip
+2024-12-25 10:23:41,199 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2016_checksum.txt
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,199 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,200 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:41,200 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2016.csv
+2024-12-25 10:23:48,196 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:48,200 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2016.zip
+2024-12-25 10:23:48,200 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2016_checksum.txt
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:48,200 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2016.csv
+2024-12-25 10:23:57,267 - INFO - Data exported to exported_data folder.
+2024-12-25 10:23:57,270 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Tir_2015.zip
+2024-12-25 10:23:57,270 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Tir_2015_checksum.txt
+2024-12-25 10:23:57,270 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,270 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:23:57,271 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Tir_2015.csv
+2024-12-25 10:24:03,803 - INFO - Data exported to exported_data folder.
+2024-12-25 10:24:03,805 - INFO - Zip file created at: exported_data/GunchreHealthCenter701110023_Meskerem_2015.zip
+2024-12-25 10:24:03,805 - INFO - Checksum saved to: exported_data/GunchreHealthCenter701110023_Meskerem_2015_checksum.txt
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:03,806 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_GunchreHealthCenter701110023_Meskerem_2015.csv
+2024-12-25 10:24:17,036 - INFO - Data exported to exported_data folder.
+2024-12-25 10:24:17,037 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2016.zip
+2024-12-25 10:24:17,037 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2016_checksum.txt
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:17,038 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2016.csv
+2024-12-25 10:24:19,763 - INFO - Data exported to exported_data folder.
+2024-12-25 10:24:19,765 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2016.zip
+2024-12-25 10:24:19,765 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2016_checksum.txt
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,765 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,766 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:19,766 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2016.csv
+2024-12-25 10:24:23,012 - INFO - Data exported to exported_data folder.
+2024-12-25 10:24:23,014 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Tir_2015.zip
+2024-12-25 10:24:23,014 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Tir_2015_checksum.txt
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:23,015 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Tir_2015.csv
+2024-12-25 10:24:25,819 - INFO - Data exported to exported_data folder.
+2024-12-25 10:24:25,820 - INFO - Zip file created at: exported_data/LeraHealthCenter720040023_Meskerem_2015.zip
+2024-12-25 10:24:25,820 - INFO - Checksum saved to: exported_data/LeraHealthCenter720040023_Meskerem_2015_checksum.txt
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_VLEligibleNew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_CCANew_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_TPT_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_VLTestReceived_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_AHD_LineList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_OutComeList_LeraHealthCenter720040023_Meskerem_2015.csv
+2024-12-25 10:24:25,821 - INFO - Deleted file: exported_data/Tx_Curr_HVL_LineList_LeraHealthCenter720040023_Meskerem_2015.csv

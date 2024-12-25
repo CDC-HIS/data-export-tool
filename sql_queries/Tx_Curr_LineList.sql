@@ -120,7 +120,7 @@ select CASE client.Sex
        breast_feeding_status                                                       as BreastFeeding,
        fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                       as LMP_Date,
        LMP_Date                                                                    as LMP_Date_GC,
-       TIMESTAMPDIFF(MONTH, art_start_date, REPORT_END_DATE)                       AS MonthsOnART,
+       PERIOD_DIFF(date_format(REPORT_END_DATE,'%Y%m'),date_format(art_start_date,'%Y%m')) as MonthsOnART,
        latestDSD.DSD_Category,
        stages_of_disclosure                                                        as ChildDisclosueStatus
 from FollowUp

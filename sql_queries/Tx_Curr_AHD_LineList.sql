@@ -241,7 +241,7 @@ SELECT DISTINCT CASE client.sex
                 f_case.height                                                                    as Height,
                 f_case.date_hiv_confirmed                                                        as HIV_Confirmed_Date,
                 f_case.art_start_date                                                            as ARTStartDate,
-                TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE)                     as MonthsOnART,
+                PERIOD_DIFF(date_format(REPORT_END_DATE,'%Y%m'),date_format(f_case.art_start_date,'%Y%m'))   as MonthsOnART,
                 f_case.follow_up_date                                                            as FollowUpDate,
                 f_case.current_who_hiv_stage                                                     as WHOStage,
                 f_case.cd4_count                                                                 as CD4Count,
