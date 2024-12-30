@@ -32,7 +32,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          date_started_on_tuberculosis_prophy AS inhprophylaxis_started_date,
                          date_completed_tuberculosis_prophyl AS InhprophylaxisCompletedDate,
                          why_eligible_reason_,
-                         tb_diagnostic_test_result              tb_specimen_type,
+                         diagnostic_test              tb_specimen_type,
                          fluconazole_start_date              AS Fluconazole_Start_Date,
                          fluconazole_stop_date               as Fluconazole_End_Date,
                          transferred_in_check_this_for_all_t as Transfer_In,
@@ -127,6 +127,7 @@ select tmp_tpt.Sex,
        CASE
            WHEN tpt_type.TptType = '6H' THEN 0
            WHEN tpt_type.TptType = '3HP' THEN 2
+           WHEN tpt_type.TptType = 'Continuous' THEN 1
            ELSE tpt_type.TptType END                                       as TPT_Type,
        CASE
            WHEN tpt_type.TptTypeAlt = '3HP' THEN 0

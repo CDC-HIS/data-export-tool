@@ -55,7 +55,12 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          AND assessment_date <= REPORT_END_DATE),
 
      latestDSD AS (select * from latestDSD_tmp where row_num = 1),
-     tx_curr AS (select * from tx_curr_all where row_num = 1)
+     tx_curr AS (select *
+                 from tx_curr_all
+                 where row_num = 1
+                   and treatment_end_date >= REPORT_END_DATE
+                   AND follow_up_status in ('Alive', 'Restart medication')
+                   and TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >= 0)
 
 
 select CASE client.Sex
@@ -130,7 +135,4 @@ from FollowUp
          inner join tx_curr on FollowUp.encounter_id = tx_curr.encounter_id
          left join latestDSD on latestDSD.PatientId = tx_curr.PatientId
          left join mamba_dim_client client on tx_curr.PatientId = client.client_id
-where tx_curr.treatment_end_date >= REPORT_END_DATE
-  AND tx_curr.follow_up_status in ('Alive', 'Restart medication')
-  and TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >= 0
 ;
