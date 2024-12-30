@@ -74,6 +74,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                  FROM temp_previous
                                  WHERE row_num = 1
                                    and follow_up_status IN ('Alive', 'Restart medication')
+                                   and age < 15
                                    AND art_start_date <= date_add(REPORT_START_DATE, INTERVAL -1 DAY)
                                    AND follow_up_date <= date_add(REPORT_START_DATE, INTERVAL -1 DAY)
                                    AND art_dose_end >= date_add(REPORT_START_DATE, INTERVAL -1 DAY)),

@@ -19,6 +19,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          treatment_end_date                  as art_end_date,
                          current_who_hiv_stage,
                          cd4_count,
+                         cd4_,
                          cotrimoxazole_prophylaxis_start_dat,
                          cotrimoxazole_prophylaxis_stop_date,
                          patient_diagnosed_with_active_tuber as active_tb_dx,
@@ -34,14 +35,15 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          tb_diagnostic_test_result              tb_specimen_type,
                          fluconazole_start_date              AS Fluconazole_Start_Date,
                          fluconazole_stop_date               as Fluconazole_End_Date,
-                         transfer_in
+                         transferred_in_check_this_for_all_t as Transfer_In,
+                         eligible_for_tpt
                   FROM mamba_flat_encounter_follow_up follow_up
                            join mamba_flat_encounter_follow_up_1 follow_up_1
                                 on follow_up.encounter_id = follow_up_1.encounter_id
                            LEFT join mamba_flat_encounter_follow_up_2 follow_up_2
-                                on follow_up.encounter_id = follow_up_2.encounter_id
+                                     on follow_up.encounter_id = follow_up_2.encounter_id
                            LEFT join mamba_flat_encounter_follow_up_3 follow_up_3
-                                on follow_up.encounter_id = follow_up_3.encounter_id),
+                                     on follow_up.encounter_id = follow_up_3.encounter_id),
      tmp_tpt_type as (SELECT encounter_id,
                              client_id,
                              TB_ProphylaxisType                                                                                                     AS TptType,
@@ -99,7 +101,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         f_case.art_end_date,
                         f_case.current_who_hiv_stage        AS WHOStage,
                         cd4_count                              AdultCD4Count,
-                        cd4_count                              ChildCD4Count,
+                        cd4_                              ChildCD4Count,
                         cotrimoxazole_prophylaxis_start_dat As CPT_StartDate,
                         cotrimoxazole_prophylaxis_start_dat As CPT_StartDate_GC,
                         cotrimoxazole_prophylaxis_stop_date As CPT_StopDate,
@@ -119,14 +121,21 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
 
 select tmp_tpt.Sex,
        tmp_tpt.weight_in_kg                                                as Weight,
-       TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                 as Age,
+       TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)             as Age,
        tpt_start.inhprophylaxis_started_date                               as TPT_Started_Date,
        tpt_completed.InhprophylaxisCompletedDate                           as TPT_Completed_Date,
-       tpt_type.TptType                                                    as TPT_Type,
-       tpt_type.TptTypeAlt                                                    TPT_TypeAlt,
+       CASE
+           WHEN tpt_type.TptType = '6H' THEN 0
+           WHEN tpt_type.TptType = '3HP' THEN 2
+           ELSE tpt_type.TptType END                                       as TPT_Type,
+       CASE
+           WHEN tpt_type.TptTypeAlt = '3HP' THEN 0
+           WHEN tpt_type.TptTypeAlt = '3HR' THEN 1
+           ELSE tpt_type.TptTypeAlt END                                    as TPT_TypeAlt,
        CASE
            WHEN tpt_type.TptType = '6H' THEN 'INH'
            WHEN tpt_type.TptType = '3HP' THEN '3HP'
+           WHEN tpt_type.TPTFollowup IS NOT NULL THEN 'INH'
            ELSE '' END                                                     AS TPT_TypeChar,
        tmp_tpt.hiv_confirmed_date                                          as HIV_Confirmed_Date,
        tmp_tpt.art_start_date                                              as ART_Start_Date,
@@ -174,4 +183,5 @@ FROM FollowUp
          left join mamba_dim_client client on tmp_tpt.client_id = client.client_id
 where tmp_tpt.art_end_date >= REPORT_END_DATE
   AND tmp_tpt.follow_up_status in ('Alive', 'Restart medication')
-  AND tmp_tpt.art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, tmp_tpt.art_start_date, REPORT_END_DATE) >=0;
+  AND tmp_tpt.art_start_date <= REPORT_END_DATE
+  and TIMESTAMPDIFF(DAY, tmp_tpt.art_start_date, REPORT_END_DATE) >= 0;
