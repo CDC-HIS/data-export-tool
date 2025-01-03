@@ -7,12 +7,14 @@
     "Tx_Curr_VLEligibleNew_LineList": "sql_queries/Tx_Curr_VLEligibleNew_LineList.sql",
     "Tx_Curr_TPT_LineList": "sql_queries/Tx_Curr_TPT_LineList.sql",
     "Tx_Curr_OutComeList": "sql_queries/Tx_Curr_OutComeList.sql",
-    "Tx_Curr_CCANew_LineList": "sql_queries/Tx_Curr_CCANew_LineList.sql"
+    "Tx_Curr_CCANew_LineList": "sql_queries/Tx_Curr_CCANew_LineList.sql",
+    "Tx_Curr_CCA_LineList": "sql_queries/Tx_Curr_CCA_LineList.sql",
+    "Tx_Curr_VLEligible_LineList": "sql_queries/Tx_Curr_VLEligible_LineList.sql"
   },
   "db_properties": {
     "DB_HOST" : "localhost",
     "DB_USER" : "root",
     "DB_PASS" : "Abcd@1234",
-    "DB_NAME" : "analytics_lera"
+    "DB_NAME" : "analytics_areket"
   }
 }

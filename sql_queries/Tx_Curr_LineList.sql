@@ -40,6 +40,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                             encounter_id,
                             treatment_end_date,
                             follow_up_status,
+                            art_start_date,
                             ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                      FROM FollowUp
                      WHERE follow_up_status IS NOT NULL
@@ -80,8 +81,8 @@ select CASE client.Sex
        fn_gregorian_to_ethiopian_calendar(FollowUp.treatment_end_date, 'D/M/Y')               as ARTDoseEndDate,
        FollowUp.treatment_end_date                                                            as ARTDoseEndDate_DC,
        AdherenceLevel                                                                         as AdheranceLevel,
-       fn_gregorian_to_ethiopian_calendar(art_start_date, 'D/M/Y')                            as ARTStartDate,
-       art_start_date                                                                         as ARTStartDate_GC,
+       fn_gregorian_to_ethiopian_calendar(tx_curr.art_start_date, 'D/M/Y')                            as ARTStartDate,
+       tx_curr.art_start_date                                                                         as ARTStartDate_GC,
        fn_gregorian_to_ethiopian_calendar(inh_start_date, 'D/M/Y')                            as INH_Start_Date,
        inh_start_date                                                                         as INH_Start_Date_GC,
        fn_gregorian_to_ethiopian_calendar(inh_date_completed, 'D/M/Y')                        as INH_Completed_Date,
@@ -128,7 +129,7 @@ select CASE client.Sex
        breast_feeding_status                                                                  as BreastFeeding,
        fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                                  as LMP_Date,
        LMP_Date                                                                               as LMP_Date_GC,
-       PERIOD_DIFF(date_format(REPORT_END_DATE, '%Y%m'), date_format(art_start_date, '%Y%m')) as MonthsOnART,
+       PERIOD_DIFF(date_format(REPORT_END_DATE, '%Y%m'), date_format(tx_curr.art_start_date, '%Y%m')) as MonthsOnART,
        latestDSD.DSD_Category,
        stages_of_disclosure                                                                   as ChildDisclosueStatus
 from FollowUp

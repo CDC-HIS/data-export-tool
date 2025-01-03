@@ -60,7 +60,7 @@ months = ["Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", 
 month_mapping = {name: index + 1 for index, name in enumerate(months)}
 
 root = tk.Tk()
-root.title("SQL Extraction Tool")
+root.title("Data Extraction Tool")
 root.geometry("400x200")
 root.eval('tk::PlaceWindow . center')
 
