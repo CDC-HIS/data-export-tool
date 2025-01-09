@@ -89,10 +89,10 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                      follow_up_date,
                                      ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                               from FollowUp
-                              where follow_up_date <= REPORT_END_DATE),
+                              where follow_up_date <= REPORT_END_DATE and follow_up_status is not null),
      latest_follow_up as (select *
                           from tmp_latest_follow_up
-                          where row_num = 1 and follow_up_status is not null),
+                          where row_num = 1),
 
      latest_follow_up_all as (SELECT FollowUp.client_id,
                                      FollowUp.weight,
@@ -149,7 +149,6 @@ select CASE
            else 'No' end                                          as PMTCT_ART
 FROM latest_follow_up_all
          join mamba_dim_client AS client on latest_follow_up_all.client_id = client.client_id
-
          Left join cca on latest_follow_up_all.client_id = cca.client_id
-where art_start_date <= REPORT_END_DATE
+where (art_start_date <= REPORT_END_DATE or art_start_date is null )
   AND client.Sex = 'Female';
