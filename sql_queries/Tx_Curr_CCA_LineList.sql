@@ -92,7 +92,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                               where follow_up_date <= REPORT_END_DATE),
      latest_follow_up as (select *
                           from tmp_latest_follow_up
-                          where row_num = 1),
+                          where row_num = 1 and follow_up_status is not null),
 
      latest_follow_up_all as (SELECT FollowUp.client_id,
                                      FollowUp.weight,
