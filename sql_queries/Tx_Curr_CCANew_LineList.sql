@@ -1,4 +1,4 @@
-WITH     FollowUP AS (SELECT follow_up.encounter_id,
+WITH FollowUP AS (SELECT follow_up.encounter_id,
                          follow_up.client_id,
                          follow_up_date_followup_                          as follow_up_date,
                          follow_up_status,
@@ -16,7 +16,7 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                          via_done_,
                          date_visual_inspection_of_the_cervi               AS date_via_result,
                          treatment_start_date                              AS ccs_treat_received_date,
-                         COALESCE(not_done, normal, low_grade, high_grade) AS colposcopy_exam_finding,
+                         colposcopy_of_cervix_findings AS colposcopy_exam_finding,
                          colposcopy_exam_date,
                          purpose_for_visit_cervical_screening              as screening_type,
                          cervical_cancer_screening_method_strategy         as screening_method,
@@ -47,10 +47,9 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                            join mamba_flat_encounter_follow_up_2 follow_up_2
                                 on follow_up.encounter_id = follow_up_2.encounter_id
                            left join mamba_flat_encounter_follow_up_3 follow_up_3
-                                on follow_up.encounter_id = follow_up_3.encounter_id
+                                     on follow_up.encounter_id = follow_up_3.encounter_id
                            left join mamba_flat_encounter_follow_up_4 follow_up_4
-                                on follow_up.encounter_id = follow_up_4.encounter_id
-                           ),
+                                     on follow_up.encounter_id = follow_up_4.encounter_id),
 
      tmp_prev_cxca AS (select encounter_id,
                               client_id,
@@ -63,14 +62,16 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
 
      prev_cxca as (select FollowUP.client_id,
                           CASE
-                              WHEN (TIMESTAMPDIFF(DAY, FollowUP.HPV_DNA_RESULT_RECEIVED_DATE, REPORT_END_DATE) > 1095 AND
-                                    FollowUP.ccs_hpv_result = 'Negative result')
+                              WHEN (
+                                  TIMESTAMPDIFF(DAY, FollowUP.HPV_DNA_RESULT_RECEIVED_DATE, REPORT_END_DATE) > 1095 AND
+                                  FollowUP.ccs_hpv_result = 'Negative result')
                                   THEN 'Need Re-Screening'
                               WHEN (TIMESTAMPDIFF(DAY, FollowUP.date_via_result, REPORT_END_DATE) > 730 AND
                                     FollowUP.ccs_via_result = 'VIA negative')
                                   THEN 'Need Re-Screening'
-                              WHEN (TIMESTAMPDIFF(DAY, FollowUP.date_cytology_result_received, REPORT_END_DATE) > 1095 AND
-                                    FollowUP.cytology_result = 'Negative result')
+                              WHEN (
+                                  TIMESTAMPDIFF(DAY, FollowUP.date_cytology_result_received, REPORT_END_DATE) > 1095 AND
+                                  FollowUP.cytology_result = 'Negative result')
                                   THEN 'Need Re-Screening'
                               WHEN (FollowUP.ccs_treat_received_date is null AND
                                     (FollowUP.colposcopy_exam_finding = 'High Grade' OR
@@ -215,7 +216,8 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
 
      tmp_curr_cxca_1 as (select * from tmp_curr_cxca where row_num = 1),
 
-     curr_cxca as (select CASE
+     curr_cxca as (select FollowUP.client_id,
+                          CASE
                               WHEN FollowUP.colposcopy_exam_date IS NOT NULL and
                                    FollowUP.colposcopy_exam_date is not null
                                   THEN FollowUP.colposcopy_exam_date
@@ -256,8 +258,10 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                           FollowUP.date_patient_referred_out           As Curr_Date_Referred_to_OtherHF,
                           FollowUP.date_client_arrived_in_the_referred As Curr_Date_Client_Arrived_in_RefferedHF,
                           FollowUP.date_client_served_in_the_referred_ AS Curr_Date_Client_Served_in_RefferedHF,
-                          CCaCounsellingGiven
-                                                                       as Counselled,
+                          case
+                              when CCaCounsellingGiven = 'Yes' and
+                                   (follow_up_date between REPORT_START_DATE and REPORT_END_DATE) THEN 'Yes'
+                              else 'No' end                            as Counselled,
                           Accepted                                     as Accepted,
                           CASE
                               WHEN FollowUP.screening_method = 'Human Papillomavirus test' AND
@@ -316,7 +320,8 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                               when (FollowUP.CCS_Precancerous_Treat = 'Cryosurgery of lesion of cervix') and
                                    ((FollowUP.CCS_Treat_Received_Date between REPORT_START_DATE and REPORT_END_DATE And
                                      FollowUP.CCS_Treat_Received_Date is not null) OR
-                                    FollowUP.follow_up_date between REPORT_START_DATE and REPORT_END_DATE) THEN 'Cryotherapy'
+                                    FollowUP.follow_up_date between REPORT_START_DATE and REPORT_END_DATE)
+                                  THEN 'Cryotherapy'
                               when (FollowUP.CCS_Precancerous_Treat =
                                     'Loop electrosurgical excision procedure of cervix') and
                                    ((FollowUP.CCS_Treat_Received_Date between REPORT_START_DATE and REPORT_END_DATE And
@@ -347,25 +352,26 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                  from tmp_tx_curr
                  where row_num = 1
                    and follow_up_status in ('Alive', 'Restart medication')
-                   and art_end_date >= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, tmp_tx_curr.art_start_date, REPORT_END_DATE) >=0),
-     cxca_final as (select client.sex                                       as Sex,
-                           FollowUP.weight_text_                                 as Weight,
+                   and art_end_date >= REPORT_END_DATE
+                   and TIMESTAMPDIFF(DAY, tmp_tx_curr.art_start_date, REPORT_END_DATE) >= 0),
+     cxca_final as (select client.sex                                                 as Sex,
+                           FollowUP.weight_text_                                      as Weight,
                            timestampdiff(YEAR, client.date_of_birth, REPORT_END_DATE) as Age,
                            FollowUP.follow_up_date,
-                           FollowUP.art_start_date                               AS ArtStartDate,
-                           tx_curr.follow_up_status                              AS FollowUpStatus,
+                           FollowUP.art_start_date                                    AS ArtStartDate,
+                           tx_curr.follow_up_status                                   AS FollowUpStatus,
                            FollowUP.next_visit_date,
-                           FollowUP.regimen                                      as ARVRegimen,
-                           FollowUP.regimen                                         RegimenLine,
-                           FollowUP.dose_days                                    As ARTDoseDays,
+                           FollowUP.regimen                                           as ARVRegimen,
+                           FollowUP.regimen                                              RegimenLine,
+                           FollowUP.dose_days                                         As ARTDoseDays,
                            prev_cxca.Prev_CSS_Screen_Done_Date_Calculated,
-                           prev_cxca.CCS_Next_Date                               AS Prev_AppointmentDate_4_CCS,
+                           prev_cxca.CCS_Next_Date                                    AS Prev_AppointmentDate_4_CCS,
                            CASE
                                WHEN prev_cxca.PrevCxCaStatus IS NULL AND prev_cxca.screening_status IS NULL
                                    THEN 'Never Screened'
                                WHEN prev_cxca.PrevCxCaStatus IS NULL AND (prev_cxca.CCS_Next_Date is null
                                    Or prev_cxca.CCS_Next_Date > REPORT_END_DATE) THEN 'Not Eligible'
-                               ELSE prev_cxca.PrevCxCaStatus END                 AS EligibilityReason,
+                               ELSE prev_cxca.PrevCxCaStatus END                      AS EligibilityReason,
                            prev_cxca.Prev_Screen_Type,
                            prev_cxca.Prev_Screen_Method,
                            prev_cxca.Prev_HPV_SubType,
@@ -393,7 +399,7 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                            prev_cxca.Prev_CCS_Screen_Result,
                            CASE
                                WHEN FollowUP.follow_up_date between REPORT_START_DATE and REPORT_END_DATE THEN 'Yes'
-                               ELSE 'No' END                                     AS Seen,
+                               ELSE 'No' END                                          AS Seen,
                            curr_cxca.Curr_CSS_Screen_Done_Date_Calculated,
                            curr_cxca.Counselled,
                            curr_cxca.Accepted,
@@ -422,16 +428,16 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                            curr_cxca.Curr_Date_Client_Arrived_in_RefferedHF,
                            curr_cxca.Curr_Date_Client_Served_in_RefferedHF,
                            curr_cxca.Curr_CCS_Screen_Result,
-                           curr_cxca.CCS_Next_Date                               AS Next_AppointmentDate_4_CCS,
-                           client.patient_uuid                                         as PatientGUID,
-                           client.mrn                                          as MRN,
+                           curr_cxca.CCS_Next_Date                                    AS Next_AppointmentDate_4_CCS,
+                           client.patient_uuid                                        as PatientGUID,
+                           client.mrn                                                 as MRN,
                            tx_curr.client_id
 
                     from tx_curr
                              join FollowUP on tx_curr.encounter_id = FollowUP.encounter_id
-                             left join mamba_dim_client client on tx_curr.client_id=client.client_id
+                             left join mamba_dim_client client on tx_curr.client_id = client.client_id
                              Left join prev_cxca on tx_curr.client_id = prev_cxca.client_id
-                             left join curr_cxca on tx_curr.client_id = prev_cxca.client_id
+                             left join curr_cxca on tx_curr.client_id = curr_cxca.client_id
 
                     where timestampdiff(YEAR, client.date_of_birth, REPORT_END_DATE) BETWEEN 15
                         AND 100
@@ -440,9 +446,9 @@ WITH     FollowUP AS (SELECT follow_up.encounter_id,
                         < REPORT_END_DATE
                       AND FollowUP.art_start_date is not null)
 select CASE Sex
-        WHEN 'FEMALE' THEN 'F'
-        WHEN 'MALE'   THEN 'M'
-        end as Sex,
+           WHEN 'FEMALE' THEN 'F'
+           WHEN 'MALE' THEN 'M'
+           end                   as Sex,
        Weight,
        Age,
        cxca_final.follow_up_date as FollowUpDate,
@@ -450,7 +456,7 @@ select CASE Sex
        FollowUpStatus,
        next_visit_date,
        ARVRegimen,
-       LEFT(RegimenLine,1) as RegimenLine,
+       LEFT(RegimenLine, 1)      as RegimenLine,
        ARTDoseDays,
        Prev_CSS_Screen_Done_Date_Calculated,
        Prev_AppointmentDate_4_CCS,
@@ -512,4 +518,4 @@ select CASE Sex
        Next_AppointmentDate_4_CCS,
        PatientGUID
 from cxca_final
-where EligibilityReason != 'Not Eligible';
+where ((EligibilityReason != 'Not Eligible') Or (Counselled = 'Yes'));

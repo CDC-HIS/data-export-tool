@@ -17,7 +17,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          via_done_,
                          date_visual_inspection_of_the_cervi               AS via_date,
                          treatment_start_date                              AS ccs_treat_received_date,
-                         COALESCE(not_done, normal, low_grade, high_grade) AS colposcopy_exam_finding,
+                         colposcopy_of_cervix_findings AS colposcopy_exam_finding,
                          colposcopy_exam_date,
                          purpose_for_visit_cervical_screening              as screening_type,
                          cervical_cancer_screening_method_strategy         as screening_method,
@@ -60,13 +60,13 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         client_id,
                         follow_up_date,
                         CASE WHEN CCaCounsellingGiven = 'Yes' THEN 'Yes' WHEN 'No' THEN 'No' END                   as CCS_OfferedYes,
-                        CASE WHEN CCaCounsellingGiven = 'Yes' THEN NULL WHEN 'No' THEN 'Yes' END                   as CCS_OfferedNo,
+                        CASE WHEN CCaCounsellingGiven = 'Yes' THEN 'No' WHEN 'No' THEN 'No' END                   as CCS_OfferedNo,
                         CASE WHEN Accepted = 'Yes' THEN 'Yes' WHEN 'No' THEN 'No' END                              as CCS_AcceptedYes,
-                        CASE WHEN Accepted = 'Yes' THEN NULL WHEN 'No' THEN 'Yes' END                              as CCS_AcceptedNo,
+                        CASE WHEN Accepted = 'Yes' THEN 'No' WHEN 'No' THEN 'No' END                              as CCS_AcceptedNo,
                         CASE WHEN screening_status = 'Cervical cancer screening performed' THEN 'Yes'
                              WHEN 'Cervical cancer screening not performed' THEN 'No' END                      as CCS_ScreenDoneYes,
-                        CASE WHEN screening_status = 'Cervical cancer screening performed' THEN NULL
-                        WHEN 'Cervical cancer screening not performed' THEN 'Yes' END                      as CCS_ScreenDoneNo,
+                        CASE WHEN screening_status = 'Cervical cancer screening performed' THEN 'No'
+                        WHEN 'Cervical cancer screening not performed' THEN 'No' END                      as CCS_ScreenDoneNo,
                         CASE
                             WHEN screening_status = 'Cervical cancer screening performed' THEN follow_up_date
                             ELSE NULL end                                                                          as CCS_ScreenDone_Date,

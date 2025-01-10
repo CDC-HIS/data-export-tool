@@ -136,7 +136,7 @@ select tmp_tpt.Sex,
        CASE
            WHEN tpt_type.TptType = '6H' THEN 'INH'
            WHEN tpt_type.TptType = '3HP' THEN '3HP'
-           WHEN tpt_type.TPTFollowup IS NOT NULL THEN 'INH'
+       --    WHEN tpt_type.TPTFollowup IS NOT NULL THEN 'INH'
            ELSE '' END                                                     AS TPT_TypeChar,
        tmp_tpt.hiv_confirmed_date                                          as HIV_Confirmed_Date,
        tmp_tpt.art_start_date                                              as ART_Start_Date,
