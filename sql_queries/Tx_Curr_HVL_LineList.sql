@@ -171,7 +171,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
      latest_follow_up as (select * from tmp_latest_follow_up where row_num = 1),
 
      hvl as (SELECT client.patient_uuid                     as PatientGUID,
-                    TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE)                      AS age,
+                    TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                      AS age,
                     CASE Sex
                         WHEN 'FEMALE' THEN 'F'
                         WHEN 'MALE' THEN 'M'

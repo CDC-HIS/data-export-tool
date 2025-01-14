@@ -1,32 +1,29 @@
 WITH FollowUP AS (SELECT follow_up.encounter_id,
                          follow_up.client_id,
-                         follow_up_date_followup_                          as follow_up_date,
+                         follow_up_date_followup_                        as follow_up_date,
                          follow_up_status,
-                         treatment_end_date                                as art_end_date,
+                         treatment_end_date                              as art_end_date,
                          hpv_dna_result_received_date,
                          date_cytology_result_received,
-                         next_follow_up_screening_date                     AS ccs_next_date,
-                         cervical_cancer_screening_status                  AS screening_status,
-                         COALESCE(positive, negative_result)               AS ccs_hpv_result,
-                         COALESCE(ascus_atypical_squamous_cells_of_undetermined_significance_o,
-                                  negative_result,
-                                  _ascus
-                         )                                                 AS cytology_result,
-                         via_screening_result                              AS ccs_via_result,
+                         next_follow_up_screening_date                   AS ccs_next_date,
+                         cervical_cancer_screening_status                AS screening_status,
+                         hpv_dna_screening_result                        AS ccs_hpv_result,
+                         cytology_result                                 AS cytology_result,
+                         via_screening_result                            AS ccs_via_result,
                          via_done_,
-                         date_visual_inspection_of_the_cervi               AS date_via_result,
-                         treatment_start_date                              AS ccs_treat_received_date,
-                         colposcopy_of_cervix_findings AS colposcopy_exam_finding,
+                         date_visual_inspection_of_the_cervi             AS date_via_result,
+                         treatment_start_date                            AS ccs_treat_received_date,
+                         colposcopy_of_cervix_findings                   AS colposcopy_exam_finding,
                          colposcopy_exam_date,
-                         purpose_for_visit_cervical_screening              as screening_type,
-                         cervical_cancer_screening_method_strategy         as screening_method,
+                         purpose_for_visit_cervical_screening            as screening_type,
+                         cervical_cancer_screening_method_strategy       as screening_method,
                          hpv_subtype,
                          date_hpv_test_was_done,
                          cytology_sample_collection_date,
                          biopsy_sample_collected_date,
                          biopsy_result_received_date,
                          biopsy_result,
-                         treatment_of_precancerous_lesions_of_the_cervix   as CCS_Precancerous_Treat,
+                         treatment_of_precancerous_lesions_of_the_cervix as CCS_Precancerous_Treat,
                          confirmed_cervical_cancer_cases_bas,
                          referral_or_linkage_status,
                          reason_for_referral_cacx,
@@ -35,12 +32,12 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                          date_patient_referred_out,
                          prep_offered,
                          weight_text_,
-                         art_antiretroviral_start_date                     as art_start_date,
+                         art_antiretroviral_start_date                   as art_start_date,
                          next_visit_date,
                          regimen,
-                         antiretroviral_art_dispensed_dose_i               as dose_days,
-                         pre_test_counselling_for_cervical_c                  CCaCounsellingGiven,
-                         ready_for_cervical_cancer_screening                  Accepted
+                         antiretroviral_art_dispensed_dose_i             as dose_days,
+                         pre_test_counselling_for_cervical_c                CCaCounsellingGiven,
+                         ready_for_cervical_cancer_screening                Accepted
                   FROM mamba_flat_encounter_follow_up follow_up
                            join mamba_flat_encounter_follow_up_1 follow_up_1
                                 on follow_up.encounter_id = follow_up_1.encounter_id
@@ -137,12 +134,12 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                           ccs_next_date,
                           screening_status,
                           CASE
-                              WHEN FollowUP.screening_type = 'Initial visit' AND (FollowUP.CCS_VIA_Result is null) AND
+                              WHEN FollowUP.screening_method = 'Human Papillomavirus test' AND (FollowUP.CCS_VIA_Result is null) AND
                                    (FollowUP.CYTOLOGY_RESULT is null) AND
                                    (FollowUP.COLPOSCOPY_EXAM_FINDING is null) And
                                    (FollowUP.COLPOSCOPY_EXAM_FINDING is null)
                                   THEN 'HPV_Positive-Requires VIA Triage'
-                              WHEN FollowUP.screening_type = 'Initial visit' AND
+                              WHEN FollowUP.screening_method = 'Human Papillomavirus test' AND
                                    (FollowUP.CCS_VIA_Result = 'VIA positive: eligible for cryo/thermo-coagula' OR
                                     FollowUP.CCS_VIA_Result = 'VIA positive: non-eligible for cryo/thermo-coagula' OR
                                     (((FollowUP.CCS_VIA_Result is null OR FollowUP.CCS_VIA_Result = 'Unknown') AND
@@ -150,30 +147,30 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                                       (FollowUP.COLPOSCOPY_EXAM_FINDING = 'Low Grade' OR
                                        FollowUP.COLPOSCOPY_EXAM_FINDING = 'High Grade'))))
                                   THEN 'HPV_Positive'
-                              WHEN FollowUP.screening_type = 'Re-screening for cervical cancer after 1 year' AND
+                              WHEN FollowUP.screening_method = 'Visual Inspection of the Cervix with Acetic Acid (VIA)' AND
                                    (FollowUP.CCS_VIA_Result = 'VIA positive: eligible for cryo/thermo-coagula' OR
                                     FollowUP.CCS_VIA_Result = 'VIA positive: non-eligible for cryo/thermo-coagula')
                                   THEN 'VIA_Positive'
-                              WHEN FollowUP.screening_type = 'Post-treatment follow-up at 1 year' AND
+                              WHEN FollowUP.screening_method = 'Post-treatment follow-up at 1 year' AND
                                    (FollowUP.Cytology_Result = '> Ascus' AND
                                     (FollowUP.COLPOSCOPY_EXAM_FINDING is null OR
                                      FollowUP.COLPOSCOPY_EXAM_FINDING = 'Low Grade' OR
                                      FollowUP.COLPOSCOPY_EXAM_FINDING = 'High Grade'))
                                   THEN 'CYT_Positive'
-                              WHEN FollowUP.screening_type = 'Initial visit' AND (FollowUP.CCS_HPV_Result = 'Positive'
+                              WHEN FollowUP.screening_method = 'Human Papillomavirus test' AND (FollowUP.CCS_HPV_Result = 'Positive'
                                   AND ((FollowUP.CCS_VIA_Result = 'VIA negative') OR
                                        ((FollowUP.CCS_VIA_Result is null OR FollowUP.CCS_VIA_Result = 'Unknown') AND
                                         (FollowUP.COLPOSCOPY_EXAM_FINDING = 'Normal' OR
                                          (FollowUP.CYTOLOGY_RESULT = 'Negative result' OR FollowUP.CYTOLOGY_RESULT =
                                                                                           'ASCUS (Atypical Squamous Cells of Undetermined Significance) on Pap Smear')))))
                                   THEN 'HPV_Negative'
-                              WHEN FollowUP.screening_type = 'Initial visit' AND
+                              WHEN FollowUP.screening_method = 'Human Papillomavirus test' AND
                                    (FollowUP.CCS_HPV_Result = 'Negative result')
                                   THEN 'HPV_Negative'
-                              WHEN FollowUP.screening_type = 'Re-screening for cervical cancer after 1 year' AND
+                              WHEN FollowUP.screening_method = 'Visual Inspection of the Cervix with Acetic Acid (VIA)' AND
                                    (FollowUP.CCS_VIA_Result = 'VIA negative')
                                   THEN 'VIA_Negative'
-                              WHEN FollowUP.screening_type = 'Post-treatment follow-up at 1 year' AND
+                              WHEN FollowUP.screening_method = 'Cytology' AND
                                    (FollowUP.Cytology_Result = 'Negative result' OR FollowUP.Cytology_Result =
                                                                                     'ASCUS (Atypical Squamous Cells of Undetermined Significance) on Pap Smear') OR
                                    (FollowUP.Cytology_Result = '> Ascus' AND
@@ -211,6 +208,7 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                               ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                        from FollowUP
                        where follow_up_date >= REPORT_START_DATE
+                         and follow_up_date <= REPORT_END_DATE
                          and screening_status = 'Cervical cancer screening performed'),
 
 
@@ -353,8 +351,8 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                  where row_num = 1
                    and follow_up_status in ('Alive', 'Restart medication')
                    and art_end_date >= REPORT_END_DATE
-                   -- and TIMESTAMPDIFF(DAY, tmp_tx_curr.art_start_date, REPORT_END_DATE) >= 0
-                 ),
+         -- and TIMESTAMPDIFF(DAY, tmp_tx_curr.art_start_date, REPORT_END_DATE) >= 0
+     ),
      cxca_final as (select client.sex                                                 as Sex,
                            FollowUP.weight_text_                                      as Weight,
                            timestampdiff(YEAR, client.date_of_birth, REPORT_END_DATE) as Age,
@@ -362,7 +360,7 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                            FollowUP.art_start_date                                    AS ArtStartDate,
                            tx_curr.follow_up_status                                   AS FollowUpStatus,
                            FollowUP.next_visit_date,
-                           FollowUP.regimen                                           as ARVRegimen,
+                           LEFT(FollowUP.regimen, 2)                                  as ARVRegimen,
                            FollowUP.regimen                                              RegimenLine,
                            FollowUP.dose_days                                         As ARTDoseDays,
                            prev_cxca.Prev_CSS_Screen_Done_Date_Calculated,
