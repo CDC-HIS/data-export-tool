@@ -47,13 +47,15 @@ WITH FollowUp AS (select follow_up.encounter_id,
                        AND art_start_date IS NOT NULL
                        AND follow_up_date <= REPORT_END_DATE),
      latestDSD_tmp AS (SELECT PatientId,
-                              assessment_date                                                                               AS latestDsdDate,
+                              follow_up_date                                                                               AS latestDsdDate,
                               encounter_id,
                               dsd_category,
-                              ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY assessment_date DESC , encounter_id DESC ) AS row_num
+                              ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC , encounter_id DESC ) AS row_num
                        FROM FollowUp
                        WHERE assessment_date IS NOT NULL
-                         AND assessment_date <= REPORT_END_DATE),
+                         AND follow_up_date <= REPORT_END_DATE
+                         AND assessment_date <= REPORT_END_DATE
+                       ),
 
      latestDSD AS (select * from latestDSD_tmp where row_num = 1),
      tx_curr AS (select *
@@ -130,10 +132,10 @@ select CASE client.Sex
        fn_gregorian_to_ethiopian_calendar(LMP_Date, 'D/M/Y')                                  as LMP_Date,
        LMP_Date                                                                               as LMP_Date_GC,
        PERIOD_DIFF(date_format(REPORT_END_DATE, '%Y%m'), date_format(tx_curr.art_start_date, '%Y%m')) as MonthsOnART,
-       latestDSD.DSD_Category,
+       FollowUp.DSD_Category,
        stages_of_disclosure                                                                   as ChildDisclosueStatus
 from FollowUp
          inner join tx_curr on FollowUp.encounter_id = tx_curr.encounter_id
-         left join latestDSD on latestDSD.PatientId = tx_curr.PatientId
+       --  left join latestDSD on latestDSD.PatientId = tx_curr.PatientId
          left join mamba_dim_client client on tx_curr.PatientId = client.client_id
 ;
