@@ -77,7 +77,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         c.CCS_Next_Date,
                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                  FROM FollowUp AS c
-                 where CCaCounsellingGiven is not null
+                 where screening_status is not null
                    and follow_up_date <= REPORT_END_DATE),
      cca as (select * from tmp_cca where row_num = 1),
      tmp_latest_follow_up as (select client_id,
