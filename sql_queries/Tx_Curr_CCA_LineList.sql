@@ -1,47 +1,47 @@
 WITH FollowUp AS (SELECT follow_up.encounter_id,
                          follow_up.client_id,
-                         follow_up_date_followup_                          as follow_up_date,
+                         follow_up_date_followup_                        as follow_up_date,
                          follow_up_status,
-                         treatment_end_date                                as art_end_date,
+                         treatment_end_date                              as art_end_date,
                          hpv_dna_result_received_date,
                          date_cytology_result_received,
-                         weight_text_                                      as weight,
-                         next_follow_up_screening_date                     AS ccs_next_date,
-                         cervical_cancer_screening_status                  AS screening_status,
-                         hpv_dna_screening_result               AS ccs_hpv_result,
-                         cytology_result                                                AS cytology_result,
-                         via_screening_result                              AS ccs_via_result,
+                         weight_text_                                    as weight,
+                         next_follow_up_screening_date                   AS ccs_next_date,
+                         cervical_cancer_screening_status                AS screening_status,
+                         hpv_dna_screening_result                        AS ccs_hpv_result,
+                         cytology_result                                 AS cytology_result,
+                         via_screening_result                            AS ccs_via_result,
                          via_done_,
-                         date_visual_inspection_of_the_cervi               AS via_date,
-                         treatment_start_date                              AS ccs_treat_received_date,
-                         colposcopy_of_cervix_findings AS colposcopy_exam_finding,
+                         date_visual_inspection_of_the_cervi             AS via_date,
+                         treatment_start_date                            AS ccs_treat_received_date,
+                         colposcopy_of_cervix_findings                   AS colposcopy_exam_finding,
                          colposcopy_exam_date,
-                         purpose_for_visit_cervical_screening              as screening_type,
-                         cervical_cancer_screening_method_strategy         as screening_method,
+                         purpose_for_visit_cervical_screening            as screening_type,
+                         cervical_cancer_screening_method_strategy       as screening_method,
                          hpv_subtype,
                          date_hpv_test_was_done,
                          cytology_sample_collection_date,
                          biopsy_sample_collected_date,
                          biopsy_result_received_date,
                          biopsy_result,
-                         treatment_of_precancerous_lesions_of_the_cervix   as CCS_Precancerous_Treat,
-                         confirmed_cervical_cancer_cases_bas               as CCS_Suspicious_Treat,
+                         treatment_of_precancerous_lesions_of_the_cervix as CCS_Precancerous_Treat,
+                         confirmed_cervical_cancer_cases_bas             as CCS_Suspicious_Treat,
                          referral_or_linkage_status,
-                         reason_for_referral_cacx                          as reason_for_eligibility_transfer_in,
+                         reason_for_referral_cacx                        as reason_for_eligibility_transfer_in,
                          date_client_served_in_the_referred_,
                          date_client_arrived_in_the_referred,
                          date_patient_referred_out,
                          prep_offered,
                          weight_text_,
-                         art_antiretroviral_start_date                     as art_start_date,
+                         art_antiretroviral_start_date                   as art_start_date,
                          next_visit_date,
                          regimen,
-                         antiretroviral_art_dispensed_dose_i               as dose_days,
-                         pre_test_counselling_for_cervical_c                  CCaCounsellingGiven,
-                         ready_for_cervical_cancer_screening                  Accepted,
+                         antiretroviral_art_dispensed_dose_i             as dose_days,
+                         pre_test_counselling_for_cervical_c                CCaCounsellingGiven,
+                         ready_for_cervical_cancer_screening                Accepted,
                          date_counseling_given,
-                         date_of_event                                     as date_hiv_confirmed,
-                         transferred_in_check_this_for_all_t               as transfer_in,
+                         date_of_event                                   as date_hiv_confirmed,
+                         transferred_in_check_this_for_all_t             as transfer_in,
                          currently_breastfeeding_child,
                          pregnancy_status
                   FROM mamba_flat_encounter_follow_up follow_up
@@ -56,14 +56,16 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
      tmp_cca as (SELECT encounter_id,
                         client_id,
                         follow_up_date,
-                        CASE WHEN CCaCounsellingGiven = 'Yes' THEN 'Yes' WHEN 'No' THEN 'No' END                   as CCS_OfferedYes,
-                        CASE WHEN CCaCounsellingGiven = 'Yes' THEN 'No' WHEN 'No' THEN 'No' END                   as CCS_OfferedNo,
-                        CASE WHEN Accepted = 'Yes' THEN 'Yes' WHEN 'No' THEN 'No' END                              as CCS_AcceptedYes,
-                        CASE WHEN Accepted = 'Yes' THEN 'No' WHEN 'No' THEN 'No' END                              as CCS_AcceptedNo,
-                        CASE WHEN screening_status = 'Cervical cancer screening performed' THEN 'Yes'
-                             WHEN 'Cervical cancer screening not performed' THEN 'No' END                      as CCS_ScreenDoneYes,
-                        CASE WHEN screening_status = 'Cervical cancer screening performed' THEN 'No'
-                        WHEN 'Cervical cancer screening not performed' THEN 'No' END                      as CCS_ScreenDoneNo,
+                        CASE WHEN CCaCounsellingGiven = 'Yes' THEN 'Yes' else 'No' END                             as CCS_OfferedYes,
+                        CASE WHEN CCaCounsellingGiven = 'No' THEN 'Yes' else 'No' END                              as CCS_OfferedNo,
+                        CASE WHEN Accepted = 'Yes' THEN 'Yes' else 'No' END                                        as CCS_AcceptedYes,
+                        CASE WHEN Accepted = 'Yes' THEN 'No' else 'No' END                                         as CCS_AcceptedNo,
+                        CASE
+                            WHEN screening_status = 'Cervical cancer screening performed' THEN 'Yes'
+                            else 'No' END                                                                          as CCS_ScreenDoneYes,
+                        CASE
+                            WHEN screening_status = 'Cervical cancer screening performed' THEN 'No'
+                            else 'No' END                                                                          as CCS_ScreenDoneNo,
                         CASE
                             WHEN screening_status = 'Cervical cancer screening performed' THEN follow_up_date
                             ELSE NULL end                                                                          as CCS_ScreenDone_Date,
@@ -77,7 +79,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         c.CCS_Next_Date,
                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                  FROM FollowUp AS c
-                 where screening_status is not null
+                 where CCaCounsellingGiven = 'Yes'
                    and follow_up_date <= REPORT_END_DATE),
      cca as (select * from tmp_cca where row_num = 1),
      tmp_latest_follow_up as (select client_id,
@@ -86,7 +88,8 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                      follow_up_date,
                                      ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                               from FollowUp
-                              where follow_up_date <= REPORT_END_DATE and follow_up_status is not null),
+                              where follow_up_date <= REPORT_END_DATE
+                                and follow_up_status is not null),
      latest_follow_up as (select *
                           from tmp_latest_follow_up
                           where row_num = 1),
@@ -147,5 +150,5 @@ select CASE
 FROM latest_follow_up_all
          join mamba_dim_client AS client on latest_follow_up_all.client_id = client.client_id
          Left join cca on latest_follow_up_all.client_id = cca.client_id
-where (art_start_date <= REPORT_END_DATE or art_start_date is null )
+where (art_start_date <= REPORT_END_DATE or art_start_date is null)
   AND client.Sex = 'Female';

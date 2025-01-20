@@ -96,76 +96,76 @@ WITH FollowUp AS (select follow_up.encounter_id,
                        where row_num = 1),
 
      tmp_tpt_type AS (SELECT patientid,
-                             TB_ProphylaxisType                                                                             AS TB_ProphylaxisType,
-                             ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY TB_ProphylaxisType DESC, encounter_id DESC) AS row_num
+                             TB_ProphylaxisType                                                                         AS TB_ProphylaxisType,
+                             ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                       FROM FollowUp
                       WHERE TB_ProphylaxisType IS NOT NULL),
      tpt_type as (select * from tmp_tpt_type where row_num = 1),
 
      tmp_tpt_dose_ALT AS (SELECT patientid,
-                                 TPT_DoseDaysNumberALT                                                                             AS TPT_DoseDaysNumberALT,
-                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY TPT_DoseDaysNumberALT DESC, encounter_id DESC) AS row_num
+                                 TPT_DoseDaysNumberALT                                                                      AS TPT_DoseDaysNumberALT,
+                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                           FROM FollowUp
                           WHERE TPT_DoseDaysNumberALT IS NOT NULL),
      tpt_dose_ALT as (select * from tmp_tpt_dose_ALT where row_num = 1),
 
      tmp_tpt_dose_INH AS (SELECT patientid,
-                                 TPT_DoseDaysNumberINH                                                                             AS TPT_DoseDaysNumberINH,
-                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY TPT_DoseDaysNumberINH DESC, encounter_id DESC) AS row_num
+                                 TPT_DoseDaysNumberINH                                                                      AS TPT_DoseDaysNumberINH,
+                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                           FROM FollowUp
                           WHERE TPT_DoseDaysNumberINH IS NOT NULL),
      tpt_dose_INH as (select * from tmp_tpt_dose_INH where row_num = 1),
 
      tmp_tpt_side_effect AS (SELECT patientid,
                                     TPT_SideEffect                                                                             AS TPT_SideEffect,
-                                    ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY TPT_SideEffect DESC, encounter_id DESC) AS row_num
+                                    ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                              FROM FollowUp
                              WHERE TPT_SideEffect IS NOT NULL),
      tpt_side_effect as (select * from tmp_tpt_side_effect where row_num = 1),
 
      tmp_tb_diagnostic_test AS (SELECT patientid,
                                        DiagnosticTest                                                                             AS TB_Diagnostic_Test,
-                                       ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY DiagnosticTest DESC, encounter_id DESC) AS row_num
+                                       ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                 FROM FollowUp
                                 WHERE DiagnosticTest IS NOT NULL),
      tb_diagnostic_test as (select * from tmp_tb_diagnostic_test where row_num = 1),
 
      tmp_tb_diagnostic_result AS (SELECT patientid,
-                                         DiagnosticTestResult                                                                             AS TB_Diagnostic_Result,
-                                         ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY DiagnosticTestResult DESC, encounter_id DESC) AS row_num
+                                         DiagnosticTestResult                                                                       AS TB_Diagnostic_Result,
+                                         ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
                                   WHERE DiagnosticTestResult IS NOT NULL),
      tb_diagnostic_result as (select * from tmp_tb_diagnostic_result where row_num = 1),
 
      tmp_tb_LF_LAM_result AS (SELECT patientid,
-                                     LF_LAM_result                                                                             AS LF_LAM_result,
-                                     ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY LF_LAM_result DESC, encounter_id DESC) AS row_num
+                                     LF_LAM_result                                                                              AS LF_LAM_result,
+                                     ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                               FROM FollowUp
                               WHERE LF_LAM_result IS NOT NULL),
      tb_LF_LAM_result as (select * from tmp_tb_LF_LAM_result where row_num = 1),
      tmp_tb_Gene_Xpert_result AS (SELECT patientid,
-                                         Gene_Xpert_result                                                                             AS Gene_Xpert_result,
-                                         ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY Gene_Xpert_result DESC, encounter_id DESC) AS row_num
+                                         Gene_Xpert_result                                                                          AS Gene_Xpert_result,
+                                         ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
                                   WHERE Gene_Xpert_result IS NOT NULL),
      tb_Gene_Xpert_result as (select * from tmp_tb_Gene_Xpert_result where row_num = 1),
 
      tmp_tpt_screened AS (SELECT patientid,
-                                 tb_screened                                                                             AS TB_Screened,
-                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY tb_screened DESC, encounter_id DESC) AS row_num
+                                 tb_screened                                                                                AS TB_Screened,
+                                 ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                           FROM FollowUp
                           WHERE tb_screened IS NOT NULL),
      tpt_screened as (select * from tmp_tpt_screened where row_num = 1),
      tmp_tpt_screening AS (SELECT patientid,
                                   encounter_id,
-                                  tb_screening                                                                             AS TB_Screening_Result,
-                                  ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY tb_screening DESC, encounter_id DESC) AS row_num
+                                  tb_screening                                                                               AS TB_Screening_Result,
+                                  ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                            FROM FollowUp
                            WHERE tb_screening IS NOT NULL),
      tpt_screening as (select * from tmp_tpt_screening where row_num = 1),
      tmp_tpt_adherence AS (SELECT patientid,
-                                  TPT_Adherance                                                                             AS TPT_Adherence,
-                                  ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY TPT_Adherance DESC, encounter_id DESC) AS row_num
+                                  TPT_Adherance                                                                              AS TPT_Adherence,
+                                  ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                            FROM FollowUp
                            WHERE TPT_Adherance IS NOT NULL),
      tpt_adherence as (select * from tmp_tpt_adherence where row_num = 1),
@@ -203,36 +203,44 @@ WITH FollowUp AS (select follow_up.encounter_id,
      vl_sent_date AS (select * from tmp_vl_sent_date where row_num = 1),
 -- VL Performed date
 
-     vl_performed_date_tmp AS (SELECT FollowUp.encounter_id,
-                                      FollowUp.PatientId,
-                                      FollowUp.viral_load_perform_date,
-                                      FollowUp.viral_load_test_status,
-                                      FollowUp.viral_load_count                                                                                             AS viral_load_count,
-                                      CASE
-                                          WHEN vl_sent_date.viral_load_sent_date IS NOT NULL
-                                              THEN vl_sent_date.viral_load_sent_date
-                                          WHEN FollowUp.viral_load_perform_date IS NOT NULL
-                                              THEN FollowUp.viral_load_perform_date
-                                          ELSE NULL END                                                                                                     AS viral_load_ref_date,
-                                      ROW_NUMBER() OVER (PARTITION BY FollowUp.PatientId ORDER BY viral_load_perform_date DESC, FollowUp.encounter_id DESC) AS row_num
-                               FROM FollowUp
-                                        LEFT JOIN vl_sent_date ON FollowUp.PatientId = vl_sent_date.PatientId
-                               WHERE follow_up_status IS NOT NULL
-                                 AND art_start_date IS NOT NULL
-                                 AND viral_load_perform_date <= REPORT_END_DATE),
-     vl_performed_date AS (select * from vl_performed_date_tmp where row_num = 1),
+     tmp_vl_performed_date_1 AS (SELECT FollowUp.encounter_id,
+                                        FollowUp.PatientId,
+                                        FollowUp.viral_load_perform_date,
+                                        ROW_NUMBER() OVER (PARTITION BY FollowUp.PatientId ORDER BY viral_load_perform_date DESC, FollowUp.encounter_id DESC) AS row_num
+                                 From FollowUp
+                                 WHERE follow_up_status IS NOT NULL
+                                   AND art_start_date IS NOT NULL
+                                   AND follow_up_date <= REPORT_END_DATE
+                                   AND viral_load_perform_date is not null),
+     tmp_vl_performed_date_2 as (select * from tmp_vl_performed_date_1 where row_num = 1),
+
+     vl_performed_date AS (SELECT FollowUp.encounter_id,
+                                  FollowUp.PatientId,
+                                  FollowUp.viral_load_perform_date,
+                                  FollowUp.viral_load_test_status,
+                                  FollowUp.viral_load_count AS viral_load_count,
+                                  CASE
+                                      WHEN vl_sent_date.viral_load_sent_date IS NOT NULL
+                                          THEN vl_sent_date.viral_load_sent_date
+                                      WHEN FollowUp.viral_load_perform_date IS NOT NULL
+                                          THEN FollowUp.viral_load_perform_date
+                                      ELSE NULL END         AS viral_load_ref_date
+                           FROM FollowUp
+                                    INNER JOIN tmp_vl_performed_date_2
+                                               ON FollowUp.encounter_id = tmp_vl_performed_date_2.encounter_id
+                                    LEFT JOIN vl_sent_date ON FollowUp.PatientId = vl_sent_date.PatientId),
 
      -- In case current status is required
      tmp_latest_follow_up AS (SELECT PatientId,
-                                             follow_up_date                                                                             AS FollowupDate,
-                                             encounter_id,
-                                             ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
-                                      FROM FollowUp
-                                      WHERE follow_up_status IS NOT NULL
-                                        AND art_start_date IS NOT NULL),
+                                     follow_up_date                                                                             AS FollowupDate,
+                                     encounter_id,
+                                     ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
+                              FROM FollowUp
+                              WHERE follow_up_status IS NOT NULL
+                                AND art_start_date IS NOT NULL),
      latest_follow_up AS (select *
-                                  from tmp_latest_follow_up
-                                  where row_num = 1),
+                          from tmp_latest_follow_up
+                          where row_num = 1),
      -- end current status
      tmp_tx_curr AS (SELECT PatientId,
                             follow_up_date                                                                             AS FollowupDate,
@@ -255,70 +263,70 @@ WITH FollowUp AS (select follow_up.encounter_id,
 SELECT DISTINCT CASE client.sex
                     WHEN 'FEMALE' THEN 'F'
                     WHEN 'MALE' THEN 'M'
-                    end                                                                   as Sex,
-                f_case.Weight                                                             as Weight,
-                TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                   as Age,
-                client.patient_uuid                                                       as PatientGUID,
-                f_case.height                                                             as Height,
-                f_case.date_hiv_confirmed                                                 as HIV_Confirmed_Date,
-                f_case.art_start_date                                   as ARTStartDate,
+                    end                                                    as Sex,
+                f_case.Weight                                              as Weight,
+                TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) as Age,
+                client.patient_uuid                                        as PatientGUID,
+                f_case.height                                              as Height,
+                f_case.date_hiv_confirmed                                  as HIV_Confirmed_Date,
+                f_case.art_start_date                                      as ARTStartDate,
                 PERIOD_DIFF(date_format(REPORT_END_DATE, '%Y%m'),
-                            date_format(f_case.art_start_date, '%Y%m')) as MonthsOnART,
-                f_case.follow_up_date                                     as FollowUpDate,
-                f_case.current_who_hiv_stage                            as WHOStage,
-                f_case.cd4_count                                                          as CD4Count,
-                f_case.art_dose_days                                                      as ARTDoseDays,
-                f_case.regimen                                                            as ARVRegimen,
-                f_case.follow_up_status                                                   as FollowupStatus,
-                tpt_adherence.tpt_adherence                                               as AdheranceLevel,
-                f_case.pregnancy_status                                                   as IsPregnant,
-                f_case.method_of_family_planning                                          as FpMethodUsed,
-                f_case.crag                                                               as CrAg,
+                            date_format(f_case.art_start_date, '%Y%m'))    as MonthsOnART,
+                f_case.follow_up_date                                      as FollowUpDate,
+                f_case.current_who_hiv_stage                               as WHOStage,
+                f_case.cd4_count                                           as CD4Count,
+                f_case.art_dose_days                                       as ARTDoseDays,
+                f_case.regimen                                             as ARVRegimen,
+                f_case.follow_up_status                                    as FollowupStatus,
+                tpt_adherence.tpt_adherence                                as AdheranceLevel,
+                f_case.pregnancy_status                                    as IsPregnant,
+                f_case.method_of_family_planning                           as FpMethodUsed,
+                f_case.crag                                                as CrAg,
                 COALESCE(
                         f_case.ns_adult,
                         f_case.NSAdolescent,
                         f_case.NSLessthanFive
-                )                                                                         as NutritionalStatus,
-                f_case.current_functional_status                                          as FunctionalStatus,
-                f_case.No_OI                                                              as No_OI,
-                f_case.Zoster                                                             as Zoster,
-                f_case.Bacterial_Pneumonia                                                as Bacterial_Pneumonia,
-                f_case.Extra_Pulmonary_TB                                                 as Extra_Pulmonary_TB,
-                f_case.Oesophageal_Candidiasis                                            as Oesophageal_Candidiasis,
-                f_case.Vaginal_Candidiasis                                                as Vaginal_Candidiasis,
-                f_case.Mouth_Ulcer                                                        as Mouth_Ulcer,
-                f_case.Chronic_Diarrhea                                                   as Chronic_Diarrhea,
-                f_case.Acute_Diarrhea                                                     as Acute_Diarrhea,
-                f_case.CNS_Toxoplasmosis                                                  as CNS_Toxoplasmosis,
-                f_case.Cryptococcal_Meningitis                                            as Cryptococcal_Meningitis,
-                f_case.Kaposi_Sarcoma                                                     as Kaposi_Sarcoma,
-                f_case.Cervical_Cancer                                                    as Cervical_Cancer,
-                f_case.Pulmonary_TB                                                       as Pulmonary_TB,
-                f_case.Oral_Candidiasis                                                   as Oral_Candidiasis,
-                f_case.Pneumocystis_Pneumonia                                             as Pneumocystis_Pneumonia,
-                f_case.NonHodgkins_Lymphoma                                               as NonHodgkins_Lymphoma,
-                f_case.Genital_Ulcer                                                      as Genital_Ulcer,
-                f_case.OI_Other                                                           as OI_Other,
-                f_case.Med1                                                               as Med1,
-                f_case.Med2                                                               as Med2,
-                f_case.cotrimoxazole_prophylaxis_start_dat                                as CotrimoxazoleStartDate,
-                f_case.cotrimoxazole_prophylaxis_stop_date                                   cortimoxazole_stop_date,
-                f_case.Fluconazole_Start_Date                                             as Fluconazole_Start_Date,
-                f_case.Fluconazole_End_Date                                               as Fluconazole_End_Date,
-                tpt_type.TB_ProphylaxisType                                               as TPT_Type,
-                tpt_start.inhprophylaxis_started_date                                     as inhprophylaxis_started_date,
-                tpt_completed.InhprophylaxisCompletedDate                                 as InhprophylaxisCompletedDate,
-                tpt_dose_ALT.TPT_DoseDaysNumberALT                                        as TPT_DoseDaysNumberALT,
-                tpt_dose_INH.TPT_DoseDaysNumberINH                                        as TPT_DoseDaysNumberINH,
+                )                                                          as NutritionalStatus,
+                f_case.current_functional_status                           as FunctionalStatus,
+                f_case.No_OI                                               as No_OI,
+                f_case.Zoster                                              as Zoster,
+                f_case.Bacterial_Pneumonia                                 as Bacterial_Pneumonia,
+                f_case.Extra_Pulmonary_TB                                  as Extra_Pulmonary_TB,
+                f_case.Oesophageal_Candidiasis                             as Oesophageal_Candidiasis,
+                f_case.Vaginal_Candidiasis                                 as Vaginal_Candidiasis,
+                f_case.Mouth_Ulcer                                         as Mouth_Ulcer,
+                f_case.Chronic_Diarrhea                                    as Chronic_Diarrhea,
+                f_case.Acute_Diarrhea                                      as Acute_Diarrhea,
+                f_case.CNS_Toxoplasmosis                                   as CNS_Toxoplasmosis,
+                f_case.Cryptococcal_Meningitis                             as Cryptococcal_Meningitis,
+                f_case.Kaposi_Sarcoma                                      as Kaposi_Sarcoma,
+                f_case.Cervical_Cancer                                     as Cervical_Cancer,
+                f_case.Pulmonary_TB                                        as Pulmonary_TB,
+                f_case.Oral_Candidiasis                                    as Oral_Candidiasis,
+                f_case.Pneumocystis_Pneumonia                              as Pneumocystis_Pneumonia,
+                f_case.NonHodgkins_Lymphoma                                as NonHodgkins_Lymphoma,
+                f_case.Genital_Ulcer                                       as Genital_Ulcer,
+                f_case.OI_Other                                            as OI_Other,
+                f_case.Med1                                                as Med1,
+                f_case.Med2                                                as Med2,
+                f_case.cotrimoxazole_prophylaxis_start_dat                 as CotrimoxazoleStartDate,
+                f_case.cotrimoxazole_prophylaxis_stop_date                    cortimoxazole_stop_date,
+                f_case.Fluconazole_Start_Date                              as Fluconazole_Start_Date,
+                f_case.Fluconazole_End_Date                                as Fluconazole_End_Date,
+                tpt_type.TB_ProphylaxisType                                as TPT_Type,
+                tpt_start.inhprophylaxis_started_date                      as inhprophylaxis_started_date,
+                tpt_completed.InhprophylaxisCompletedDate                  as InhprophylaxisCompletedDate,
+                tpt_dose_ALT.TPT_DoseDaysNumberALT                         as TPT_DoseDaysNumberALT,
+                tpt_dose_INH.TPT_DoseDaysNumberINH                         as TPT_DoseDaysNumberINH,
                 COALESCE(tpt_dose_INH.TPT_DoseDaysNumberINH,
-                         tpt_dose_ALT.TPT_DoseDaysNumberALT)                              AS TPT_Dispensed_Dose,
-                tpt_side_effect.TPT_SideEffect                                            as TPT_SideEffect,
-                tpt_adherence.TPT_Adherence                                               as TPT_Adherence,
-                tpt_screened.TB_Screened                                                  as tb_screened,
-                tpt_screening.TB_Screening_Result                                         as tb_screening_result,
-                tb_diagnostic_result.TB_Diagnostic_Result                                 as TB_Diagnostic_Result,
-                tb_LF_LAM_result.LF_LAM_result                                            as LF_LAM_result,
-                tb_Gene_Xpert_result.Gene_Xpert_result                                    as Gene_Xpert_result,
+                         tpt_dose_ALT.TPT_DoseDaysNumberALT)               AS TPT_Dispensed_Dose,
+                tpt_side_effect.TPT_SideEffect                             as TPT_SideEffect,
+                tpt_adherence.TPT_Adherence                                as TPT_Adherence,
+                tpt_screened.TB_Screened                                   as tb_screened,
+                tpt_screening.TB_Screening_Result                          as tb_screening_result,
+                tb_diagnostic_result.TB_Diagnostic_Result                  as TB_Diagnostic_Result,
+                tb_LF_LAM_result.LF_LAM_result                             as LF_LAM_result,
+                tb_Gene_Xpert_result.Gene_Xpert_result                     as Gene_Xpert_result,
                 CASE
                     WHEN tb_diagnostic_test.TB_Diagnostic_Test = 'Smear microscopy only' AND
                          tb_diagnostic_result.TB_Diagnostic_Result = 'Positive'
@@ -326,7 +334,7 @@ SELECT DISTINCT CASE client.sex
                     WHEN tb_diagnostic_test.TB_Diagnostic_Test = 'Smear microscopy only' AND
                          tb_diagnostic_result.TB_Diagnostic_Result = 'Negative'
                         THEN 'Negative'
-                    ELSE '' END                                                           AS Smear_Microscopy_Result,
+                    ELSE '' END                                            AS Smear_Microscopy_Result,
                 CASE
                     WHEN tb_diagnostic_test.TB_Diagnostic_Test = 'Additional test other than Gene-Xpert' AND
                          tb_diagnostic_result.TB_Diagnostic_Result = 'Positive'
@@ -334,21 +342,22 @@ SELECT DISTINCT CASE client.sex
                     WHEN tb_diagnostic_test.TB_Diagnostic_Test = 'Additional test other than Gene-Xpert' AND
                          tb_diagnostic_result.TB_Diagnostic_Result = 'Negative'
                         THEN 'Negative'
-                    ELSE '' END                                                           AS Additional_TB_Diagnostic_Test_Result,
-                f_case.patient_diagnosed_with_active_tuber                                as Active_TB,
-                ActiveTBTreatmentStarted.ActiveTBTreatmentStartDate                       as ActiveTBTreatmentStartDate,
-                TBTreatmentCompleted.ActiveTBTreatmentCompletedDate                       as ActiveTBTreatmentCompletedDate,
-                TBTreatmentDiscontinued.ActiveTBTreatmentDiscontinuedDate                 as ActiveTBTreatmentDiscontinuedDate,
-                vlperfdate.viral_load_perform_date                                        as Viral_Load_Perform_Date,
-                vlperfdate.viral_load_test_status                                         as Viral_Load_Status,
-                vlperfdate.viral_load_count                                               as Viral_Load_count,
-                vlsentdate.viral_load_sent_date                                           as VL_Sent_Date,
-                vlperfdate.viral_load_ref_date                                            as Viral_Load_Ref_Date,
-                cca_screened.CCA_Screened                                                 as CCA_Screened,
-                f_case.dsd_category                                                       as DSD_Category,
+                    ELSE '' END                                            AS Additional_TB_Diagnostic_Test_Result,
+                f_case.patient_diagnosed_with_active_tuber                 as Active_TB,
+                ActiveTBTreatmentStarted.ActiveTBTreatmentStartDate        as ActiveTBTreatmentStartDate,
+                TBTreatmentCompleted.ActiveTBTreatmentCompletedDate        as ActiveTBTreatmentCompletedDate,
+                TBTreatmentDiscontinued.ActiveTBTreatmentDiscontinuedDate  as ActiveTBTreatmentDiscontinuedDate,
+                vlperfdate.viral_load_perform_date                         as Viral_Load_Perform_Date,
+                vlperfdate.viral_load_test_status                          as Viral_Load_Status,
+                vlperfdate.viral_load_count                                as Viral_Load_count,
+                vlsentdate.viral_load_sent_date                            as VL_Sent_Date,
+                vlperfdate.viral_load_ref_date                             as Viral_Load_Ref_Date,
+                cca_screened.CCA_Screened                                  as CCA_Screened,
+                f_case.dsd_category                                        as DSD_Category,
                 CASE
                     WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) < 5 THEN 'Yes'
-                    WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND f_case.cd4_count IS NOT NULL AND
+                    WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
+                         f_case.cd4_count IS NOT NULL AND
                          f_case.cd4_count < 200 THEN 'Yes'
                     WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
                          f_case.current_who_hiv_stage IS NOT NULL AND
@@ -358,11 +367,11 @@ SELECT DISTINCT CASE client.sex
                     WHEN (TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
                           f_case.current_who_hiv_stage IS NOT NULL AND
                           f_case.current_who_hiv_stage = 'WHO stage 4 adult') THEN 'Yes'
-                    ELSE 'No' END                                                         as AHD,
-                f_case.follow_up_status                                 as current_status
+                    ELSE 'No' END                                          as AHD,
+                f_case.follow_up_status                                    as current_status
 FROM FollowUp AS f_case
          INNER JOIN latest_follow_up ON f_case.encounter_id = latest_follow_up.encounter_id
-         INNER JOIN tx_curr on latest_follow_up.PatientId=tx_curr.PatientId
+         INNER JOIN tx_curr on latest_follow_up.PatientId = tx_curr.PatientId
          LEFT JOIN mamba_dim_client client on tx_curr.PatientId = client_id
          LEFT JOIN vl_performed_date AS vlperfdate ON vlperfdate.PatientId = f_case.PatientId
          LEFT JOIN vl_sent_date AS vlsentdate ON vlsentdate.PatientId = f_case.PatientId
