@@ -97,7 +97,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
      tmp_vl_performed_date_cf AS (SELECT encounter_id,
                                          client_id,
                                          viral_load_performed_date                                                                                                          AS viral_load_perform_date,
-                                         ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                         ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY viral_load_performed_date DESC , encounter_id DESC ) AS row_num
                                   FROM FollowUp
                                   where follow_up_status Is Not Null
                                     And targeted_viral_load_test_indication Is Not Null
@@ -105,7 +105,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
 
      tmp_vl_sent_date_cf AS (SELECT FollowUp.client_id,
                                     viral_load_sent_date                                                                                                          AS VL_Sent_Date,
-                                    ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_sent_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                    ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY viral_load_sent_date DESC , encounter_id DESC ) AS row_num
                              FROM FollowUp
                                       Inner Join tmp_vl_performed_date_cf
                                                  ON tmp_vl_performed_date_cf.client_id = FollowUp.client_id
