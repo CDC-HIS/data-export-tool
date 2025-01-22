@@ -43,7 +43,23 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          date_of_event                                   as date_hiv_confirmed,
                          transferred_in_check_this_for_all_t             as transfer_in,
                          currently_breastfeeding_child,
-                         pregnancy_status
+                         pregnancy_status,
+                         CASE
+                              WHEN COLPOSCOPY_EXAM_DATE IS NOT NULL and
+                                   COLPOSCOPY_EXAM_DATE is not null
+                                  THEN COLPOSCOPY_EXAM_DATE
+                              WHEN date_cytology_result_received IS NOT NULL and
+                                   date_cytology_result_received is not null
+                                  THEN date_cytology_result_received
+                              WHEN date_visual_inspection_of_the_cervi IS NOT NULL and date_visual_inspection_of_the_cervi is not null
+                                  THEN date_visual_inspection_of_the_cervi
+                              WHEN (HPV_DNA_RESULT_RECEIVED_DATE IS NOT NULL and
+                                    HPV_DNA_RESULT_RECEIVED_DATE is not null) AND
+                                   hpv_dna_screening_result = 'Negative result'
+                                  THEN HPV_DNA_RESULT_RECEIVED_DATE
+                              WHEN follow_up_2.follow_up_date_followup_ is not null and
+                                   cervical_cancer_screening_status = 'Cervical cancer screening performed'
+                                  THEN follow_up_date_followup_ END  AS CSS_Screen_Done_Date_Calculated
                   FROM mamba_flat_encounter_follow_up follow_up
                            join mamba_flat_encounter_follow_up_1 follow_up_1
                                 on follow_up.encounter_id = follow_up_1.encounter_id
@@ -66,9 +82,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         CASE
                             WHEN screening_status = 'Cervical cancer screening performed' THEN 'No'
                             else 'No' END                                                                          as CCS_ScreenDoneNo,
-                        CASE
-                            WHEN screening_status = 'Cervical cancer screening performed' THEN follow_up_date
-                            ELSE NULL end                                                                          as CCS_ScreenDone_Date,
+                       CSS_Screen_Done_Date_Calculated                                                                       as CCS_ScreenDone_Date,
                         screening_type                                                                             as CCS_Screen_Type,
                         screening_method                                                                           as CCS_Screen_Method,
                         CCS_HPV_Result,
@@ -80,7 +94,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                  FROM FollowUp AS c
                  where CCaCounsellingGiven = 'Yes'
-                   and follow_up_date <= REPORT_END_DATE),
+                   and CSS_Screen_Done_Date_Calculated <= REPORT_END_DATE),
      cca as (select * from tmp_cca where row_num = 1),
      tmp_latest_follow_up as (select client_id,
                                      encounter_id,

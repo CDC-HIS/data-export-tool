@@ -53,7 +53,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                              ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.followup_date DESC , FollowUp.encounter_id DESC ) AS row_num
                       FROM FollowUp
                       where followup_date <= REPORT_END_DATE
-                        and (tpt_start_date is not null or tpt_completed_date)),
+                        and TB_ProphylaxisType is not null),
 
      tmp_tpt_start as (select encounter_id,
                               client_id,
