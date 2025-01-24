@@ -48,17 +48,14 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                               WHEN COLPOSCOPY_EXAM_DATE IS NOT NULL and
                                    COLPOSCOPY_EXAM_DATE is not null
                                   THEN COLPOSCOPY_EXAM_DATE
-                              WHEN date_cytology_result_received IS NOT NULL and
-                                   date_cytology_result_received is not null
+                              WHEN date_cytology_result_received IS NOT NULL
                                   THEN date_cytology_result_received
-                              WHEN date_visual_inspection_of_the_cervi IS NOT NULL and date_visual_inspection_of_the_cervi is not null
+                              WHEN date_visual_inspection_of_the_cervi IS NOT NULL
                                   THEN date_visual_inspection_of_the_cervi
-                              WHEN (HPV_DNA_RESULT_RECEIVED_DATE IS NOT NULL and
-                                    HPV_DNA_RESULT_RECEIVED_DATE is not null) AND
-                                   hpv_dna_screening_result = 'Negative result'
+                              WHEN HPV_DNA_RESULT_RECEIVED_DATE IS NOT NULL
                                   THEN HPV_DNA_RESULT_RECEIVED_DATE
-                              WHEN follow_up_2.follow_up_date_followup_ is not null and
-                                   cervical_cancer_screening_status = 'Cervical cancer screening performed'
+                              WHEN follow_up_date_followup_ is not null
+                                   and cervical_cancer_screening_status = 'Cervical cancer screening performed'
                                   THEN follow_up_date_followup_ END  AS CSS_Screen_Done_Date_Calculated
                   FROM mamba_flat_encounter_follow_up follow_up
                            join mamba_flat_encounter_follow_up_1 follow_up_1

@@ -59,9 +59,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                         viral_load_performed_date,
                                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                  FROM FollowUp
-                                 where viral_load_performed_date is not null
-                                   AND follow_up_date <= REPORT_END_DATE),
-     tmp_vl_performed_date_1_dedup AS (select * from tmp_vl_performed_date_1 where row_num = 1),
+                                 where
+                                    follow_up_date <= REPORT_END_DATE),
+     tmp_vl_performed_date_1_dedup AS (select * from tmp_vl_performed_date_1 where row_num = 1) ,
 
      tmp_vl_sent_date AS (SELECT FollowUp.client_id,
                                  viral_load_sent_date                                                                                                          AS VL_Sent_Date,
@@ -69,6 +69,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                           FROM FollowUp
                                    Inner Join tmp_vl_performed_date_1_dedup
                                               ON tmp_vl_performed_date_1_dedup.client_id = FollowUp.client_id
+                        AND (tmp_vl_performed_date_1_dedup.viral_load_performed_date=FollowUp.viral_load_performed_date)
                           WHERE FollowUp.follow_up_date <= REPORT_END_DATE
                             and viral_load_sent_date is not null),
      vl_sent_date AS (select *
@@ -91,24 +92,25 @@ WITH FollowUp AS (select follow_up.encounter_id,
                            FROM FollowUp
                                     INNER JOIN tmp_vl_performed_date_1_dedup
                                                ON FollowUp.encounter_id = tmp_vl_performed_date_1_dedup.encounter_id
-                                    LEFT JOIN vl_sent_date ON FollowUp.client_id = vl_sent_date.client_id),
-
-
+                                    LEFT JOIN vl_sent_date ON FollowUp.client_id = vl_sent_date.client_id)
+     ,
      tmp_vl_performed_date_cf AS (SELECT encounter_id,
                                          client_id,
                                          viral_load_performed_date                                                                                                          AS viral_load_perform_date,
-                                         ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                         ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                   FROM FollowUp
                                   where follow_up_status Is Not Null
                                     And targeted_viral_load_test_indication Is Not Null
                                     AND follow_up_date <= REPORT_END_DATE),
+    tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
 
      tmp_vl_sent_date_cf AS (SELECT FollowUp.client_id,
                                     viral_load_sent_date                                                                                                          AS VL_Sent_Date,
-                                    ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY viral_load_sent_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                    ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_sent_date DESC , FollowUp.encounter_id DESC ) AS row_num
                              FROM FollowUp
-                                      Inner Join tmp_vl_performed_date_cf
-                                                 ON tmp_vl_performed_date_cf.client_id = FollowUp.client_id
+                                      Inner Join tmp_vl_performed_date_cf_2
+                                                 ON tmp_vl_performed_date_cf_2.client_id = FollowUp.client_id
+                              AND (tmp_vl_performed_date_cf_2.viral_load_perform_date=FollowUp.viral_load_performed_date)
                              WHERE FollowUp.follow_up_date <= REPORT_END_DATE
                                and viral_load_sent_date is not null),
      vl_sent_date_cf AS (select *
@@ -116,7 +118,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          where row_num = 1),
 
 
-     tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
+
      tmp_vl_performed_date_cf_3 AS (SELECT FollowUp.encounter_id,
                                            FollowUp.client_id,
                                            FollowUp.viral_load_performed_date,
@@ -169,7 +171,6 @@ WITH FollowUp AS (select follow_up.encounter_id,
                               where follow_up_status Is Not Null
                                 AND follow_up_date <= REPORT_END_DATE),
      latest_follow_up as (select * from tmp_latest_follow_up where row_num = 1),
-
      hvl as (SELECT client.patient_uuid                     as PatientGUID,
                     TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                      AS age,
                     CASE Sex
