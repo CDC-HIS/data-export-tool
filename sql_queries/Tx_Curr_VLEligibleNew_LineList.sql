@@ -160,26 +160,26 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                     AND follow_up_date >= REPORT_START_DATE
                                     AND follow_up_date <= REPORT_END_DATE),
      latest_alive_restart as (select * from tmp_latest_alive_restart where row_num = 1),
-     vl_eligibility as (SELECT f_case.art_start_date                                                    as art_start_date,
-                               f_case.breastfeeding_status                                              as BreastFeeding,
-                               f_case.date_hiv_confirmed                                                as date_hiv_confirmed,
-                               sub_switch_date.FollowupDate                                             as date_regimen_change,
-                               all_art_follow_ups.follow_up_status                                      as follow_up_status,
-                               f_case.follow_up_date                                                    as FollowUpDate,
-                               patient_name                                                             as FullName,
-                               f_case.pregnancy_status                                                  as IsPregnant,
-                               mobile_no                                                                as MobilePhoneNumber,
-                               mrn                                                                      as MRN,
-                               patient_uuid                                                             as PatientGUID,
-                               f_case.client_id                                                         as PatientId,
+     vl_eligibility as (SELECT f_case.art_start_date                                                       as art_start_date,
+                               f_case.breastfeeding_status                                                 as BreastFeeding,
+                               f_case.date_hiv_confirmed                                                   as date_hiv_confirmed,
+                               sub_switch_date.FollowupDate                                                as date_regimen_change,
+                               all_art_follow_ups.follow_up_status                                         as follow_up_status,
+                               f_case.follow_up_date                                                       as FollowUpDate,
+                               patient_name                                                                as FullName,
+                               f_case.pregnancy_status                                                     as IsPregnant,
+                               mobile_no                                                                   as MobilePhoneNumber,
+                               mrn                                                                         as MRN,
+                               patient_uuid                                                                as PatientGUID,
+                               f_case.client_id                                                            as PatientId,
                                CASE Sex
                                    WHEN 'FEMALE' THEN 'F'
                                    WHEN 'MALE' THEN 'M'
-                                   end                                                                  as Sex,
-                               vlperfdate.viral_load_count                                              as viral_load_count,
-                               vlperfdate.viral_load_perform_date                                       as viral_load_perform_date,
-                               vlsentdate.VL_Sent_Date                                                  as viral_load_sent_date,
-                               vlperfdate.viral_load_status                                             as viral_load_status,
+                                   end                                                                     as Sex,
+                               vlperfdate.viral_load_count                                                 as viral_load_count,
+                               vlperfdate.viral_load_perform_date                                          as viral_load_perform_date,
+                               vlsentdate.VL_Sent_Date                                                     as viral_load_sent_date,
+                               vlperfdate.viral_load_status                                                as viral_load_status,
                                current_age,
                                f_case.weight,
                                arv_dispensed_dose,
@@ -191,11 +191,11 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                        THEN vlsentdate.VL_Sent_Date
                                    WHEN vlperfdate.viral_load_perform_date IS NOT NULL
                                        THEN vlperfdate.viral_load_perform_date
-                                   ELSE NULL END                                                        AS viral_load_ref_date,
-                               sub_switch_date.FollowupDate                                             as switchDate,
+                                   ELSE NULL END                                                           AS viral_load_ref_date,
+                               sub_switch_date.FollowupDate                                                as switchDate,
                                vlperfdate.viral_load_status_inferred,
 
-                               vlperfdate.routine_viral_load_test_indication                            as viral_load_indication,
+                               vlperfdate.routine_viral_load_test_indication                               as viral_load_indication,
 
                                CASE
 
@@ -269,7 +269,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                        (vlperfdate.viral_load_ref_date IS NOT NULL)
                                        THEN DATE_ADD(vlperfdate.viral_load_ref_date, INTERVAL 365 DAY)
 
-                                   ELSE '12-31-9999' End                                                AS eligiblityDate,
+                                   ELSE '12-31-9999' End                                                   AS eligiblityDate,
 
                                CASE
 
@@ -330,7 +330,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                        (vlperfdate.viral_load_ref_date IS NOT NULL)
                                        THEN 'Annual Viral Load Test'
 
-                                   ELSE 'Unassigned' End                                                AS vl_status_final,
+                                   ELSE 'Unassigned' End                                                   AS vl_status_final,
                                CASE
                                    WHEN ((TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE) <= 12)
                                        AND (f_case.pregnancy_status is null OR f_case.pregnancy_status = 'No') AND
@@ -484,7 +484,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                           '1900-01-01 00:00:00.000') AND
                                          (TIMESTAMPDIFF(DAY, vlperfdate.viral_load_ref_date, REPORT_END_DATE) >= 90))
                                        THEN 'Other 2'
-                                   ELSE 'Other 3' End                                                   AS vl_key,
+                                   ELSE 'Other 3' End                                                      AS vl_key,
                                CASE
                                    WHEN (TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE) <= 12)
                                        THEN (TIMESTAMPDIFF(MONTH, f_case.art_start_date, REPORT_END_DATE))
@@ -496,7 +496,7 @@ WITH FollowUp AS (SELECT follow_up.client_id,
                                                             DAY)
                                    ELSE DATE_ADD(f_case.art_start_date, INTERVAL
                                                  365 * TIMESTAMPDIFF(YEAR, f_case.art_start_date, REPORT_END_DATE)
-                                                 DAY) END                                               AS datesecond,
+                                                 DAY) END                                                  AS datesecond,
                                f_case.breastfeeding_status,
                                f_case.lmp_date
 
@@ -525,11 +525,11 @@ select t.Sex,
        art_start_date,
        FollowUpDate,
        IsPregnant,
-       regimen                                          as ARVDispendsedDose,
-       t.arv_dispensed_dose                             as ARTDoseDays,
+       regimen                                               as ARVDispendsedDose,
+       t.arv_dispensed_dose                                  as ARTDoseDays,
        next_visit_date,
        follow_up_status,
-       treatment_end_date                               as art_dose_End,
+       treatment_end_date                                    as art_dose_End,
        viral_load_perform_date,
        viral_load_status,
        viral_load_count,
@@ -538,12 +538,12 @@ select t.Sex,
        date_regimen_change,
        eligiblityDate,
        PatientGUID,
-       t.BreastFeeding                                  as IsBreastfeeding,
+       t.BreastFeeding                                       as IsBreastfeeding,
        vl_status_final,
        CASE
            WHEN IsPregnant = 'Yes' THEN 'Yes'
            WHEN BreastFeeding = 'Yes' THEN 'Yes'
-           ELSE 'No' END                                AS PMTCT_ART
+           ELSE 'No' END                                     AS PMTCT_ART
 #        case
 #
 #            when t.vl_status_final = 'N/A' THEN 'Not Applicable'

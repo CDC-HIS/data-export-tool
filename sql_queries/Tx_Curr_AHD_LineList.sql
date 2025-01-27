@@ -34,7 +34,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          cd4_count,
                          antiretroviral_art_dispensed_dose_i AS art_dose_days,
                          regimen,
-                         adherence,
+                         anitiretroviral_adherence_level as adherence,
                          pregnancy_status,
                          method_of_family_planning,
                          crag,
@@ -46,7 +46,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          weight_for_age_status               AS NSLessthanFive,
                          nutritional_status_of_older_child_a AS NSAdolescent,
                          nutritional_status_of_adult         AS ns_adult,
-                         no_opportunistic_illness            AS No_OI,
+                         are_there_any_ois_                   AS No_OI,
                          herpes_zoster                       AS Zoster,
                          bacterial_pneumonia                 AS Bacterial_Pneumonia,
                          extra_pulmonary_tuberculosis_tb     AS Extra_Pulmonary_TB,
@@ -127,27 +127,31 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                        DiagnosticTest                                                                             AS TB_Diagnostic_Test,
                                        ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                 FROM FollowUp
-                                WHERE DiagnosticTest IS NOT NULL),
+                                WHERE DiagnosticTest IS NOT NULL
+                                AND follow_up_date <= REPORT_END_DATE),
      tb_diagnostic_test as (select * from tmp_tb_diagnostic_test where row_num = 1),
 
      tmp_tb_diagnostic_result AS (SELECT patientid,
                                          DiagnosticTestResult                                                                       AS TB_Diagnostic_Result,
                                          ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
-                                  WHERE DiagnosticTestResult IS NOT NULL),
+                                  WHERE DiagnosticTestResult IS NOT NULL
+                                  AND follow_up_date <= REPORT_END_DATE),
      tb_diagnostic_result as (select * from tmp_tb_diagnostic_result where row_num = 1),
 
      tmp_tb_LF_LAM_result AS (SELECT patientid,
                                      LF_LAM_result                                                                              AS LF_LAM_result,
                                      ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                               FROM FollowUp
-                              WHERE LF_LAM_result IS NOT NULL),
+                              WHERE LF_LAM_result IS NOT NULL
+                              AND follow_up_date <= REPORT_END_DATE),
      tb_LF_LAM_result as (select * from tmp_tb_LF_LAM_result where row_num = 1),
      tmp_tb_Gene_Xpert_result AS (SELECT patientid,
                                          Gene_Xpert_result                                                                          AS Gene_Xpert_result,
                                          ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
-                                  WHERE Gene_Xpert_result IS NOT NULL),
+                                  WHERE Gene_Xpert_result IS NOT NULL
+                                  AND follow_up_date <= REPORT_END_DATE),
      tb_Gene_Xpert_result as (select * from tmp_tb_Gene_Xpert_result where row_num = 1),
 
      tmp_tpt_screened AS (SELECT patientid,
@@ -161,7 +165,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                   tb_screening                                                                               AS TB_Screening_Result,
                                   ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                            FROM FollowUp
-                           WHERE tb_screening IS NOT NULL),
+                           WHERE tb_screening IS NOT NULL
+                           AND follow_up_date <= REPORT_END_DATE
+                           ),
      tpt_screening as (select * from tmp_tpt_screening where row_num = 1),
      tmp_tpt_adherence AS (SELECT patientid,
                                   TPT_Adherance                                                                              AS TPT_Adherence,
@@ -278,7 +284,7 @@ SELECT DISTINCT CASE client.sex
                 f_case.art_dose_days                                       as ARTDoseDays,
                 f_case.regimen                                             as ARVRegimen,
                 f_case.follow_up_status                                    as FollowupStatus,
-                tpt_adherence.tpt_adherence                                as AdheranceLevel,
+                f_case.adherence                                           as AdheranceLevel,
                 f_case.pregnancy_status                                    as IsPregnant,
                 f_case.method_of_family_planning                           as FpMethodUsed,
                 f_case.crag                                                as CrAg,
@@ -355,16 +361,16 @@ SELECT DISTINCT CASE client.sex
                 cca_screened.CCA_Screened                                  as CCA_Screened,
                 f_case.dsd_category                                        as DSD_Category,
                 CASE
-                    WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) < 5 THEN 'Yes'
-                    WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) < 5 THEN 'Yes'
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
                          f_case.cd4_count IS NOT NULL AND
                          f_case.cd4_count < 200 THEN 'Yes'
-                    WHEN TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
                          f_case.current_who_hiv_stage IS NOT NULL AND
                          (f_case.current_who_hiv_stage = 'WHO stage 3 adult' Or
                           f_case.current_who_hiv_stage = 'WHO stage 3 peds' Or
                           f_case.current_who_hiv_stage = 'WHO stage 4 peds') THEN 'Yes'
-                    WHEN (TIMESTAMPDIFF(YEAR, client.current_age, REPORT_END_DATE) >= 5 AND
+                    WHEN (TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
                           f_case.current_who_hiv_stage IS NOT NULL AND
                           f_case.current_who_hiv_stage = 'WHO stage 4 adult') THEN 'Yes'
                     ELSE 'No' END                                          as AHD,

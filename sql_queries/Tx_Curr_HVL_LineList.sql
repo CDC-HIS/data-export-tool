@@ -138,29 +138,29 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                                         ON FollowUp.encounter_id = tmp_vl_performed_date_cf_2.encounter_id
                                              LEFT JOIN vl_sent_date_cf ON FollowUp.client_id = vl_sent_date_cf.client_id),
      tmp_vl_perf_date_eac_1 AS (SELECT FollowUp.client_id,
-                                       follow_up_date                                                                                                          AS Date_EAC_Provided,
-                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.follow_up_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                       eac_1                                                                                                          AS Date_EAC_Provided,
+                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.eac_1 DESC , FollowUp.encounter_id DESC ) AS row_num
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_1 is not null
                                   AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
-                                  AND FollowUp.follow_up_date <= REPORT_END_DATE),
+                                  AND eac_1 <= REPORT_END_DATE),
      tmp_vl_perf_date_eac_2 AS (SELECT FollowUp.client_id,
-                                       follow_up_date                                                                                                          AS Date_EAC_Provided,
-                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.follow_up_date DESC , FollowUp.encounter_id DESC ) AS row_num
+                                       eac_2                                                                                                          AS Date_EAC_Provided,
+                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.eac_2 DESC , FollowUp.encounter_id DESC ) AS row_num
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_2 is not null
                                   AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
-                                  AND FollowUp.follow_up_date <= REPORT_END_DATE),
+                                  AND eac_2 <= REPORT_END_DATE),
      tmp_vl_perf_date_eac_3 AS (SELECT FollowUp.client_id,
-                                       follow_up_date                                                                                                          AS Date_EAC_Provided,
-                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.follow_up_date DESC , FollowUp.encounter_id DESC ) as row_num
+                                       eac_3                                                                                                          AS Date_EAC_Provided,
+                                       ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.eac_3 DESC , FollowUp.encounter_id DESC ) as row_num
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_3 is not null
                                   AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
-                                  AND FollowUp.follow_up_date <= REPORT_END_DATE),
+                                  AND eac_3 <= REPORT_END_DATE),
      vl_perf_date_eac_1 AS (select * from tmp_vl_perf_date_eac_1 where row_num = 1),
      vl_perf_date_eac_2 AS (select * from tmp_vl_perf_date_eac_2 where row_num = 1),
      vl_perf_date_eac_3 AS (select * from tmp_vl_perf_date_eac_3 where row_num = 1),
