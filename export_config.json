@@ -13,8 +13,8 @@
   },
   "db_properties": {
     "DB_HOST" : "localhost",
-    "DB_USER" : "root",
-    "DB_PASS" : "Abcd@1234",
-    "DB_NAME" : "analytics_areket"
+    "DB_USER" : "openmrs",
+    "DB_PASS" : "Pd123#@!",
+    "DB_NAME" : "analytics_db"
   }
 }
