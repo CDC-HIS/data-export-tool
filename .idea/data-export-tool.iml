@@ -7,7 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/export_distributable" />
       <excludeFolder url="file://$MODULE_DIR$/exported_data" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.13 (data-export-tool)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

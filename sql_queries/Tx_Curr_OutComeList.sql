@@ -1,9 +1,9 @@
 WITH FollowUp AS (SELECT follow_up.encounter_id,
                          follow_up.client_id,
-                         follow_up_date_followup_                         AS follow_up_date,
+                         follow_up_date_followup_                            AS follow_up_date,
                          follow_up_status,
-                         art_antiretroviral_start_date                    AS art_start_date,
-                         treatment_end_date                               AS art_dose_end,
+                         art_antiretroviral_start_date                       AS art_start_date,
+                         treatment_end_date                                  AS art_dose_end,
                          next_visit_date,
                          TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as age
                   FROM mamba_flat_encounter_follow_up follow_up
@@ -11,7 +11,11 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                 ON follow_up.encounter_id = follow_up_1.encounter_id
                            JOIN mamba_flat_encounter_follow_up_2 follow_up_2
                                 ON follow_up.encounter_id = follow_up_2.encounter_id
-                           JOIN mamba_dim_client client on follow_up.client_id = client.client_id),
+                           JOIN mamba_dim_client client on follow_up.client_id = client.client_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_3 follow_up_3
+                                     ON follow_up.encounter_id = follow_up_3.encounter_id
+                           left join mamba_flat_encounter_follow_up_4 follow_up_4
+                                     on follow_up.encounter_id = follow_up_4.encounter_id),
 
      temp_latest AS (SELECT encounter_id,
                             client_id,
@@ -90,7 +94,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                   TI,
                                   new,
                                   n.follow_up_status
-                           from (select latest.encounter_id                                            as fid,
+                           from (select latest.encounter_id               as fid,
                                         latest.art_start_date,
                                         case latest.follow_up_status
                                             WHEN 'Transferred out' THEN 0
@@ -100,67 +104,73 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                             WHEN 'Dead' THEN 4
                                             WHEN 'Alive' THEN 5
                                             WHEN 'Restart medication'
-                                                THEN 6 END                                             as follow_up_status,
+                                                THEN 6 END                as follow_up_status,
                                         latest.client_id,
                                         latest.art_dose_end,
                                         latest.FollowupDate,
                                         previous.encounter_id,
                                         CASE
-                                            WHEN  latest.art_start_date > date_add(REPORT_START_DATE, INTERVAL -1 DAY) AND latest.art_start_date <= REPORT_END_DATE
-                                                 THEN 'N'
+                                            WHEN
+                                                latest.art_start_date > date_add(REPORT_START_DATE, INTERVAL -1 DAY) AND
+                                                latest.art_start_date <= REPORT_END_DATE
+                                                THEN 'N'
                                             ELSE 'E'
-                                            END                                                        AS new,
-                                        fn_get_ti_status(latest.client_id, date_add(REPORT_START_DATE, INTERVAL -1 DAY), REPORT_END_DATE) AS TI,
+                                            END                           AS new,
+                                        fn_get_ti_status(latest.client_id, date_add(REPORT_START_DATE, INTERVAL -1 DAY),
+                                                         REPORT_END_DATE) AS TI,
                                         CASE
                                             WHEN previous.encounter_id IS NULL THEN 'Not counted'
                                             ELSE 'counted'
-                                            END                                                        AS expr
+                                            END                           AS expr
                                  from FollowUp AS d
                                           INNER JOIN latest_follow_up latest ON d.encounter_id = latest.encounter_id
                                           LEFT JOIN previous_follow_up AS previous ON latest.client_id = previous.client_id
                                  WHERE previous.encounter_id IS NULL) as n
                            group by TI, new, n.follow_up_status) as to_be_added),
-     to_be_added_pedi as (select SUM(IF(TI = 'NTI' AND New = 'E' AND follow_up_status = 5, total, 0)) AS Traced_BackPedi,
-                                 SUM(IF(TI = 'NTI' AND New = 'E' AND follow_up_status = 6, total, 0)) AS RestartsPedi,
-                                 SUM(IF(TI = 'TI' AND New = 'E' AND follow_up_status = 5, total, 0))  AS TIPedi,
-                                 SUM(IF(TI = 'NTI' AND New = 'N' AND follow_up_status = 5, total, 0)) AS NewPedi
+     to_be_added_pedi
+         as (select SUM(IF(TI = 'NTI' AND New = 'E' AND follow_up_status = 5, total, 0)) AS Traced_BackPedi,
+                    SUM(IF(TI = 'NTI' AND New = 'E' AND follow_up_status = 6, total, 0)) AS RestartsPedi,
+                    SUM(IF(TI = 'TI' AND New = 'E' AND follow_up_status = 5, total, 0))  AS TIPedi,
+                    SUM(IF(TI = 'NTI' AND New = 'N' AND follow_up_status = 5, total, 0)) AS NewPedi
 
 
-                          from (select Count(*) as total,
-                                       TI,
-                                       new,
-                                       n.follow_up_status
-                                from (select latest.encounter_id                                            as fid,
-                                             latest.art_start_date,
-                                             case latest.follow_up_status
-                                                 WHEN 'Transferred out' THEN 0
-                                                 WHEN 'Stop all' THEN 1
-                                                 WHEN 'Loss to follow-up (LTFU)' THEN 2
-                                                 WHEN 'Ran away' THEN 3
-                                                 WHEN 'Dead' THEN 4
-                                                 WHEN 'Alive' THEN 5
-                                                 WHEN 'Restart medication'
-                                                     THEN 6 END                                             as follow_up_status,
-                                             latest.client_id,
-                                             latest.art_dose_end,
-                                             latest.FollowupDate,
-                                             previous.encounter_id,
-                                             CASE
-                                                 WHEN latest.art_start_date > date_add(REPORT_START_DATE, INTERVAL -1 DAY)  AND latest.art_start_date <= REPORT_END_DATE
-                                                       THEN 'N'
-                                                 ELSE 'E'
-                                                 END                                                        AS new,
-                                             fn_get_ti_status(latest.client_id, date_add(REPORT_START_DATE, INTERVAL -1 DAY), REPORT_END_DATE) AS TI,
-                                             CASE
-                                                 WHEN previous.encounter_id IS NULL THEN 'Not counted'
-                                                 ELSE 'counted'
-                                                 END                                                        AS expr
-                                      FROM FollowUp AS d
-                                               INNER JOIN latest_follow_up_pedi latest ON d.encounter_id = latest.encounter_id
-                                               LEFT JOIN previous_follow_up previous
-                                                         ON latest.client_id = previous.client_id
-                                      WHERE previous.encounter_id IS NULL) as n
-                                group by TI, new, n.follow_up_status) as to_be_added),
+             from (select Count(*) as total,
+                          TI,
+                          new,
+                          n.follow_up_status
+                   from (select latest.encounter_id               as fid,
+                                latest.art_start_date,
+                                case latest.follow_up_status
+                                    WHEN 'Transferred out' THEN 0
+                                    WHEN 'Stop all' THEN 1
+                                    WHEN 'Loss to follow-up (LTFU)' THEN 2
+                                    WHEN 'Ran away' THEN 3
+                                    WHEN 'Dead' THEN 4
+                                    WHEN 'Alive' THEN 5
+                                    WHEN 'Restart medication'
+                                        THEN 6 END                as follow_up_status,
+                                latest.client_id,
+                                latest.art_dose_end,
+                                latest.FollowupDate,
+                                previous.encounter_id,
+                                CASE
+                                    WHEN latest.art_start_date > date_add(REPORT_START_DATE, INTERVAL -1 DAY) AND
+                                         latest.art_start_date <= REPORT_END_DATE
+                                        THEN 'N'
+                                    ELSE 'E'
+                                    END                           AS new,
+                                fn_get_ti_status(latest.client_id, date_add(REPORT_START_DATE, INTERVAL -1 DAY),
+                                                 REPORT_END_DATE) AS TI,
+                                CASE
+                                    WHEN previous.encounter_id IS NULL THEN 'Not counted'
+                                    ELSE 'counted'
+                                    END                           AS expr
+                         FROM FollowUp AS d
+                                  INNER JOIN latest_follow_up_pedi latest ON d.encounter_id = latest.encounter_id
+                                  LEFT JOIN previous_follow_up previous
+                                            ON latest.client_id = previous.client_id
+                         WHERE previous.encounter_id IS NULL) as n
+                   group by TI, new, n.follow_up_status) as to_be_added),
      to_be_deducted as (SELECT SUM(IF(follow_up_status = 0, total, 0)) AS TOs,
                                SUM(IF(follow_up_status = 2, total, 0)) AS Losts,
                                SUM(IF(follow_up_status = 3, total, 0)) AS Drops,

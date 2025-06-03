@@ -71,9 +71,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          other_medications_med_1                Med1,
                          other_medications_med2                 Med2
                   FROM mamba_flat_encounter_follow_up follow_up
-                           JOIN mamba_flat_encounter_follow_up_1 follow_up_1
+                           LEFT JOIN mamba_flat_encounter_follow_up_1 follow_up_1
                                 ON follow_up.encounter_id = follow_up_1.encounter_id
-                           JOIN mamba_flat_encounter_follow_up_2 follow_up_2
+                           LEFT JOIN mamba_flat_encounter_follow_up_2 follow_up_2
                                 ON follow_up.encounter_id = follow_up_2.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_3 follow_up_3
                                      ON follow_up.encounter_id = follow_up_3.encounter_id

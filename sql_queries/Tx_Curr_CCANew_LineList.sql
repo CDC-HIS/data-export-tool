@@ -39,9 +39,9 @@ WITH FollowUP AS (SELECT follow_up.encounter_id,
                          pre_test_counselling_for_cervical_c                CCaCounsellingGiven,
                          ready_for_cervical_cancer_screening                Accepted
                   FROM mamba_flat_encounter_follow_up follow_up
-                           join mamba_flat_encounter_follow_up_1 follow_up_1
+                           LEFT join mamba_flat_encounter_follow_up_1 follow_up_1
                                 on follow_up.encounter_id = follow_up_1.encounter_id
-                           join mamba_flat_encounter_follow_up_2 follow_up_2
+                           LEFT join mamba_flat_encounter_follow_up_2 follow_up_2
                                 on follow_up.encounter_id = follow_up_2.encounter_id
                            left join mamba_flat_encounter_follow_up_3 follow_up_3
                                      on follow_up.encounter_id = follow_up_3.encounter_id

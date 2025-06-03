@@ -27,12 +27,14 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          inh_date_completed,
                          eats_nutritious_foods
                   FROM mamba_flat_encounter_follow_up follow_up
-                           JOIN mamba_flat_encounter_follow_up_1 follow_up_1
+                           LEFT JOIN mamba_flat_encounter_follow_up_1 follow_up_1
                                 ON follow_up.encounter_id = follow_up_1.encounter_id
-                           JOIN mamba_flat_encounter_follow_up_2 follow_up_2
+                           LEFT JOIN mamba_flat_encounter_follow_up_2 follow_up_2
                                 ON follow_up.encounter_id = follow_up_2.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_3 follow_up_3
                                      ON follow_up.encounter_id = follow_up_3.encounter_id
+                           left join mamba_flat_encounter_follow_up_4 follow_up_4
+                                     on follow_up.encounter_id = follow_up_4.encounter_id
                            LEFT join mamba_flat_encounter_intake_b intake_b
                                      on follow_up.client_id = intake_b.client_id),
      -- TX curr
