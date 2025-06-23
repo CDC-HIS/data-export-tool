@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_OutComeList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_TPT_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_VLEligible_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_VLTestReceived_LineList.sql" dialect="MySQL" />
   </component>
 </project>

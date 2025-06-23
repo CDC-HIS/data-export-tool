@@ -34,7 +34,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          cd4_count,
                          antiretroviral_art_dispensed_dose_i AS art_dose_days,
                          regimen,
-                         anitiretroviral_adherence_level as adherence,
+                         anitiretroviral_adherence_level     as adherence,
                          pregnancy_status,
                          method_of_family_planning,
                          crag,
@@ -46,7 +46,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          weight_for_age_status               AS NSLessthanFive,
                          nutritional_status_of_older_child_a AS NSAdolescent,
                          nutritional_status_of_adult         AS ns_adult,
-                         are_there_any_ois_                   AS No_OI,
+                         are_there_any_ois_                  AS No_OI,
                          herpes_zoster                       AS Zoster,
                          bacterial_pneumonia                 AS Bacterial_Pneumonia,
                          extra_pulmonary_tuberculosis_tb     AS Extra_Pulmonary_TB,
@@ -72,13 +72,23 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          other_medications_med2                 Med2
                   FROM mamba_flat_encounter_follow_up follow_up
                            LEFT JOIN mamba_flat_encounter_follow_up_1 follow_up_1
-                                ON follow_up.encounter_id = follow_up_1.encounter_id
+                                     ON follow_up.encounter_id = follow_up_1.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_2 follow_up_2
-                                ON follow_up.encounter_id = follow_up_2.encounter_id
+                                     ON follow_up.encounter_id = follow_up_2.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_3 follow_up_3
                                      ON follow_up.encounter_id = follow_up_3.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_4 follow_up_4
-                                     ON follow_up.encounter_id = follow_up_4.encounter_id),
+                                     ON follow_up.encounter_id = follow_up_4.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_5 follow_up_5
+                                     ON follow_up.encounter_id = follow_up_5.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_6 follow_up_6
+                                     ON follow_up.encounter_id = follow_up_6.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_7 follow_up_7
+                                     ON follow_up.encounter_id = follow_up_7.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_8 follow_up_8
+                                     ON follow_up.encounter_id = follow_up_8.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_9 follow_up_9
+                                     ON follow_up.encounter_id = follow_up_9.encounter_id),
      tmp_tpt_start AS (SELECT patientid,
                               inhprophylaxis_started_date                                                                             AS inhprophylaxis_started_date,
                               ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY inhprophylaxis_started_date DESC, encounter_id DESC) AS row_num
@@ -128,7 +138,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                        ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                 FROM FollowUp
                                 WHERE DiagnosticTest IS NOT NULL
-                                AND follow_up_date <= REPORT_END_DATE),
+                                  AND follow_up_date <= REPORT_END_DATE),
      tb_diagnostic_test as (select * from tmp_tb_diagnostic_test where row_num = 1),
 
      tmp_tb_diagnostic_result AS (SELECT patientid,
@@ -136,7 +146,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                          ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
                                   WHERE DiagnosticTestResult IS NOT NULL
-                                  AND follow_up_date <= REPORT_END_DATE),
+                                    AND follow_up_date <= REPORT_END_DATE),
      tb_diagnostic_result as (select * from tmp_tb_diagnostic_result where row_num = 1),
 
      tmp_tb_LF_LAM_result AS (SELECT patientid,
@@ -144,14 +154,14 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                      ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                               FROM FollowUp
                               WHERE LF_LAM_result IS NOT NULL
-                              AND follow_up_date <= REPORT_END_DATE),
+                                AND follow_up_date <= REPORT_END_DATE),
      tb_LF_LAM_result as (select * from tmp_tb_LF_LAM_result where row_num = 1),
      tmp_tb_Gene_Xpert_result AS (SELECT patientid,
                                          Gene_Xpert_result                                                                          AS Gene_Xpert_result,
                                          ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                                   FROM FollowUp
                                   WHERE Gene_Xpert_result IS NOT NULL
-                                  AND follow_up_date <= REPORT_END_DATE),
+                                    AND follow_up_date <= REPORT_END_DATE),
      tb_Gene_Xpert_result as (select * from tmp_tb_Gene_Xpert_result where row_num = 1),
 
      tmp_tpt_screened AS (SELECT patientid,
@@ -166,8 +176,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                   ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                            FROM FollowUp
                            WHERE tb_screening IS NOT NULL
-                           AND follow_up_date <= REPORT_END_DATE
-                           ),
+                             AND follow_up_date <= REPORT_END_DATE),
      tpt_screening as (select * from tmp_tpt_screening where row_num = 1),
      tmp_tpt_adherence AS (SELECT patientid,
                                   TPT_Adherance                                                                              AS TPT_Adherence,
