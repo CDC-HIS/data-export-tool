@@ -24,7 +24,9 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                            LEFT JOIN mamba_flat_encounter_follow_up_8 follow_up_8
                                      ON follow_up.encounter_id = follow_up_8.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_9 follow_up_9
-                                     ON follow_up.encounter_id = follow_up_9.encounter_id),
+                                     ON follow_up.encounter_id = follow_up_9.encounter_id
+                           JOIN mamba_dim_client client on follow_up.client_id = client.client_id
+                           ),
 
      temp_latest AS (SELECT encounter_id,
                             client_id,

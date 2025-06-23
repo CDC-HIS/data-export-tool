@@ -1,0 +1,8 @@
+2025-06-23 14:32:11,438 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_2.art_antiretroviral_start_date' in 'field list'
+2025-06-23 14:33:37,807 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_2.art_antiretroviral_start_date' in 'field list'
+2025-06-23 14:34:20,245 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_2.art_antiretroviral_start_date' in 'field list'
+2025-06-23 14:34:52,222 - ERROR - Error: 1052 (23000): Column 'art_antiretroviral_start_date' in field list is ambiguous
+2025-06-23 14:35:12,855 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up.weight_text_' in 'field list'
+2025-06-23 14:35:30,665 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_3.date_of_last_menstrual_period_lmp_' in 'field list'
+2025-06-23 14:35:53,817 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up.regimen' in 'field list'
+2025-06-23 14:36:13,361 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_1.pregnancy_status' in 'field list'
