@@ -180,7 +180,14 @@ def zip_files_with_checksum(folder_path, zip_name):
 
     logging.info(f"Zip file created at: {zip_path}")
     logging.info(f"Checksum saved to: {checksum_file_path}")
-    messagebox.showinfo("Zip & Checksum", f"Data zipped to:\n{zip_path}\nChecksum saved to:\n{checksum_file_path}")
+    message_content = (
+        "Operation Complete!\n\n"
+        f"Zip file created successfully:\n"
+        f"  {zip_path}\n\n"  # Added indentation and newlines
+        f"Checksum file generated:\n"
+        f"  {checksum_file_path}"  # Added indentation
+    )
+    messagebox.showinfo("Zip & Checksum", message_content)
 
 
 def read_sql_file_content(file_path_relative_to_resources):
