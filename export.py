@@ -64,11 +64,6 @@ def load_config(config_file_name="export_config.json"):
             with open(bundled_config_path, 'r') as config_file:
                 config = json.load(config_file)
                 logging.info("Bundled default config file loaded successfully.")
-                messagebox.showwarning(
-                    "Config Not Found (External)",
-                    f"Configuration file '{config_file_name}' was not found alongside the executable.\n"
-                    "Using bundled default settings. Please create/edit an external file for custom configuration."
-                )
                 return config
         except FileNotFoundError:
             logging.error(f"Error: Bundled default config file also not found at {bundled_config_path}")
