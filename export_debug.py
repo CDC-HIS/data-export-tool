@@ -1,205 +1,401 @@
+#!/usr/bin/env python3
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import ttk
 import csv
 import os
 import sys
 import json
-from ethiopian_date import EthiopianDateConverter
+from ethiopian_date import EthiopianDateConverter  # Assuming this library is installed
 import hashlib
 import zipfile
 import glob
 import logging
 import mysql.connector
+from datetime import datetime
 
 # Configure logging
 logging.basicConfig(
     filename='export_tool.log',
-    level=logging.ERROR,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
 
 def resource_path(relative_path):
-    """ Get the absolute path to the resource (works for development and PyInstaller) """
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
+
+    if hasattr(sys, 'frozen'):  # Check if the script is running inside a frozen (bundled) application
+        if hasattr(sys, '_MEIPASS'):  # This is typically set by PyInstaller
+            base_path = sys._MEIPASS
+            logging.info(f"Detected PyInstaller environment. Base path for resources: {base_path}")
+        else:
+            base_path = os.path.dirname(os.path.abspath(sys.argv[0]))
+            logging.info(f"Detected Nuitka --onefile environment. Base path for resources: {base_path}")
     else:
-        return os.path.join(os.path.abspath("."), relative_path)
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        logging.info(f"Detected development environment. Base path for resources: {base_path}")
+
+    full_path = os.path.join(base_path, relative_path)
+    logging.debug(f"Resolved resource path for '{relative_path}': {full_path}")
+    return full_path
 
 
-def load_config(config_path):
-    """Load JSON configuration file."""
+def load_config(config_file_name="export_config.json"):
+    """
+    Load JSON configuration file, prioritizing an external file.
+    If not found externally, it will look for a bundled default.
+    """
+    # 1. Try to load from the external path (next to the executable)
+    external_config_path = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), config_file_name)
+    logging.info(f"Attempting to load config from external path: {external_config_path}")
     try:
-        with open(config_path, 'r') as config_file:
-            return json.load(config_file)
+        with open(external_config_path, 'r') as config_file:
+            config = json.load(config_file)
+            logging.info("External config file loaded successfully.")
+            return config
     except FileNotFoundError:
-        logging.error(f"Error: Config file not found at {config_path}")
-        return {"queries_path": {}, "db_properties": {}}
+        logging.warning(f"External config file not found at {external_config_path}. Looking for bundled default.")
+
+        # 2. If not found externally, try to load a bundled default config
+        # Use resource_path ONLY for a bundled default config
+        bundled_config_path = resource_path(config_file_name)
+        logging.info(f"Attempting to load config from bundled path: {bundled_config_path}")
+        try:
+            with open(bundled_config_path, 'r') as config_file:
+                config = json.load(config_file)
+                logging.info("Bundled default config file loaded successfully.")
+                messagebox.showwarning(
+                    "Config Not Found (External)",
+                    f"Configuration file '{config_file_name}' was not found alongside the executable.\n"
+                    "Using bundled default settings. Please create/edit an external file for custom configuration."
+                )
+                return config
+        except FileNotFoundError:
+            logging.error(f"Error: Bundled default config file also not found at {bundled_config_path}")
+            messagebox.showerror(
+                "Config Not Found",
+                f"Neither external nor bundled '{config_file_name}' found. Cannot proceed."
+            )
+            return {"queries_path": {}, "db_properties": {}}
+        except json.JSONDecodeError as e:
+            logging.error(f"Error parsing bundled JSON file at {bundled_config_path}: {e}")
+            messagebox.showerror("Config Error", f"Error parsing bundled '{config_file_name}': {e}\n"
+                                                 "Bundled file is corrupt. Please report this issue.")
+            return {"queries_path": {}, "db_properties": {}}
     except json.JSONDecodeError as e:
-        logging.error(f"Error parsing JSON file: {e}")
+        logging.error(f"Error parsing external JSON file at {external_config_path}: {e}")
+        messagebox.showerror("Config Error", f"Error parsing external '{config_file_name}': {e}\n"
+                                             "Please check the file for syntax errors or delete it to use bundled default.")
         return {"queries_path": {}, "db_properties": {}}
 
 
-def zip_files_with_checksum(folder_path, zip_name):
-    """Creates a zip file of all files in folder_path and generates a SHA-256 checksum."""
-    zip_path = os.path.join(folder_path, f"{zip_name}.zip")
-    checksum_file = os.path.join(folder_path, f"{zip_name}_checksum.txt")
-    
-    # Step 1: Create zip file
-    with zipfile.ZipFile(zip_path, 'w') as zipf:
-        for root, _, files in os.walk(folder_path):
-            for file in files:
-                if file.endswith(".csv"):
-                    file_path = os.path.join(root, file)
-                    zipf.write(file_path, arcname=os.path.relpath(file_path, folder_path))
-    
-    # Step 2: Generate SHA-256 checksum
-    sha256_hash = hashlib.sha256()
-    with open(resource_path(zip_path), "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
-            sha256_hash.update(byte_block)
-    checksum = sha256_hash.hexdigest()
-    
-    # Step 3: Save checksum to file
-    with open(resource_path(checksum_file), 'w') as f:
-        f.write(checksum)
-    
-    logging.info(f"Zip file created at: {zip_path}")
-    logging.info(f"Checksum saved to: {checksum_file}")
+# --- Global Configuration and UI Setup ---
+#Prioritize external export config if not use packaged export_config
+export_config = load_config("export_config.json") # Call without resource_path
 
+# If load_config returns empty or default, provide sensible defaults for DB properties
+db_properties = export_config.get("db_properties", {})
+DB_HOST = db_properties.get('DB_HOST', 'localhost')
+DB_USER = db_properties.get('DB_USER', 'openmrs')
+DB_PASS = db_properties.get('DB_PASS', '')  # Consider making this empty for security, prompt user
+DB_NAME = db_properties.get('DB_NAME', 'analytics_db')
 
-def read_sql_file(file_path):
-    """ Read and return the content of a SQL file """
-    try:
-        with open(resource_path(file_path), 'r') as file:
-            return file.read().strip()
-    except FileNotFoundError:
-        logging.error(f"SQL file {file_path} not found.")
-        return None
+# SQL queries mapping from config
+QUERY_FILES = export_config.get("queries_path", {})
 
-
-def export_to_csv(db_config, queries, gregorian_start_date, gregorian_end_date, month, year):
-    try:
-        conn = mysql.connector.connect(
-            host=db_config["DB_HOST"],
-            user=db_config["DB_USER"],
-            password=db_config["DB_PASS"],
-            database=db_config["DB_NAME"],
-            auth_plugin='mysql_native_password',
-        )
-        cursor = conn.cursor()
-        
-        if not os.path.exists('exported_data'):
-            os.makedirs('exported_data')
-        
-        cursor.execute(facility_details_query)
-        facility_details = cursor.fetchall()
-        raw_facility_name = facility_details[0][2]
-        raw_woreda = facility_details[0][1]
-        raw_region = facility_details[0][0]
-        facility_name = raw_facility_name.replace(" ", "").replace("_", "")
-        cursor.execute(hmiscode_query)
-        hmiscode = cursor.fetchall()
-        hmiscode = hmiscode[0][0].replace(" ", "").replace("_", "")
-        for query_name, query in queries.items():
-            formatted_query = query.replace("REPORT_END_DATE", f"'{gregorian_end_date}'").replace(
-                "REPORT_START_DATE", f"'{gregorian_start_date}'")
-            cursor.execute(formatted_query)
-            results = cursor.fetchall()
-            
-            modified_results = [row + (
-                raw_region, raw_woreda, raw_facility_name, hmiscode)
-                                for row in results]
-            csv_file_path = os.path.join('exported_data',
-                                         f"{query_name}_{facility_name}{hmiscode}_{month}_{year}.csv")
-            if modified_results:
-                with open(resource_path(csv_file_path), mode='w', newline='') as file:
-                    writer = csv.writer(file)
-                    writer.writerow([i[0] for i in cursor.description] + additional_columns)
-                    writer.writerows(modified_results)
-            else:
-                logging.warning(f"No data returned for {query_name}.")
-        
-        logging.info("Data exported to exported_data folder.")
-        # ZIP generated files
-        output_folder = "exported_data"
-        zip_files_with_checksum(output_folder,
-                                f"{facility_name}{hmiscode}_{month}_{year}")
-        # Delete generated files
-        file_pattern = os.path.join('exported_data',
-                                    f"*{facility_name}{hmiscode}_{month}_{year}.csv")
-        for file_path in glob.glob(file_pattern):
-            try:
-                os.remove(file_path)
-                logging.info(f"Deleted file: {file_path}")
-            except OSError as e:
-                logging.error(f"Error deleting file {file_path}: {e}")
-    except mysql.connector.Error as err:
-        logging.error(f"Error: {err}")
-    finally:
-        if conn.is_connected():
-            cursor.close()
-            conn.close()
-
-
-def run_queries_for_combinations(db_configs, year_month_combinations):
-    """Run queries for a set of database and year/month combinations."""
-    for db_config in db_configs:
-        for year, month in year_month_combinations:
-            month_index = month_mapping.get(month)
-            conv = EthiopianDateConverter.to_gregorian
-            
-            gregorian_end_date = conv(year, month_index, 20)
-            if month_index == 1:
-                gregorian_start_date = conv(year - 1, 12, 21)
-            else:
-                gregorian_start_date = conv(year, month_index - 1, 21)
-            
-            queries = {}
-            for tag, path in export_config['queries_path'].items():
-                query = read_sql_file(resource_path(path))
-                if query:
-                    queries[tag] = query
-            if queries:
-                export_to_csv(db_config, queries, gregorian_start_date, gregorian_end_date, month,
-                              year)
-            else:
-                logging.error("No valid queries found.")
-
-
-# Constants
+start_year = 2013
+end_year = 2022
+years = [str(year) for year in range(start_year, end_year + 1)]
 additional_columns = ['Region', 'Woreda', 'Facility', 'HMISCode']
 months = ["Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miyazia", "Ginbot",
           "Sene", "Hamle", "Nehase", "Puagume"]
 month_mapping = {name: index + 1 for index, name in enumerate(months)}
 
-facility_details_query = """
-select state_province as Region, city_village as Woreda, mamba_dim_location.name as Facility from mamba_fact_location_tag
-join mamba_fact_location_tag_map on mamba_fact_location_tag.location_tag_id=mamba_fact_location_tag_map.location_tag_id
-join mamba_dim_location on mamba_dim_location.location_id = mamba_fact_location_tag_map.location_id where mamba_fact_location_tag.name='Facility Location';
-"""
-hmiscode_query = """
-select value_reference as HMISCode from mamba_fact_location_attribute
-join mamba_fact_location_attribute_type on mamba_fact_location_attribute.attribute_type_id=mamba_fact_location_attribute_type.location_attribute_type_id
-where name='hmiscode';
-"""
+root = tk.Tk()
+root.title("Data Extraction Tool")
+root.geometry("400x200")
+root.eval('tk::PlaceWindow . center')
 
-# Load configuration
-export_config = load_config(resource_path("export_config.json"))
 
-# Define database configurations
-db_configs = [
-    {"DB_HOST": "localhost", "DB_USER": "root", "DB_PASS": "Abcd@1234", "DB_NAME": "analytics_areket"},
-    {"DB_HOST": "localhost", "DB_USER": "root", "DB_PASS": "Abcd@1234", "DB_NAME": "analytics_emdiber"},
-    {"DB_HOST": "localhost", "DB_USER": "root", "DB_PASS": "Abcd@1234", "DB_NAME": "analytics_gunchrie"},
-    {"DB_HOST": "localhost", "DB_USER": "root", "DB_PASS": "Abcd@1234", "DB_NAME": "analytics_lera"}
-]
+# Style for ttk widgets
+style = ttk.Style()
+style.theme_use('alt')  # or 'alt', 'default', 'classic'
+style.configure('TButton', font=('Arial', 10), padding=6)
+style.configure('TLabel', font=('Arial', 10))
+style.configure('TCombobox', font=('Arial', 10), padding=2)
 
-# Define year/month combinations
-year_month_combinations = [
-    (2016, "Meskerem"),
-    (2016, "Tir"),
-    (2015, "Meskerem"),
-    (2015, "Tir"),
-]
 
-# Run queries for all combinations
-run_queries_for_combinations(db_configs, year_month_combinations)
+progress = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate")
+progress.grid(row=6, column=0, columnspan=2, pady=10, sticky="ew", padx=20)
+progress.grid_remove()  # Start hidden
+
+facility_details_query_content = """
+                                 SELECT state_province          AS Region, \
+                                        city_village            AS Woreda, \
+                                        mamba_dim_location.name AS Facility
+                                 FROM mamba_fact_location_tag
+                                          JOIN mamba_fact_location_tag_map ON mamba_fact_location_tag.location_tag_id = \
+                                                                              mamba_fact_location_tag_map.location_tag_id
+                                          JOIN mamba_dim_location ON mamba_dim_location.location_id = \
+                                                                     mamba_fact_location_tag_map.location_id
+                                 WHERE mamba_fact_location_tag.name = 'Facility Location'; \
+                                 """
+hmiscode_query_content = """
+                         SELECT value_reference AS HMISCode
+                         FROM mamba_fact_location_attribute
+                                  JOIN mamba_fact_location_attribute_type \
+                                       ON mamba_fact_location_attribute.attribute_type_id = \
+                                          mamba_fact_location_attribute_type.location_attribute_type_id
+                         WHERE name = 'hmiscode'; \
+                         """
+
+
+
+def zip_files_with_checksum(folder_path, zip_name):
+    """Creates a zip file of all files in folder_path and generates a SHA-256 checksum."""
+    zip_path = os.path.join(folder_path, f"{zip_name}.zip")
+    checksum_file_path = os.path.join(folder_path, f"{zip_name}_checksum.txt")
+
+    # Step 1: Create zip file
+    with zipfile.ZipFile(zip_path, 'w') as zipf:
+        for root_dir, _, files in os.walk(folder_path):
+            for file in files:
+                # Only zip CSV files, exclude the checksum file itself if it exists from a prior run
+                if file.endswith(".csv") and not file.startswith(f"{zip_name}_checksum"):
+                    file_path = os.path.join(root_dir, file)
+                    zipf.write(file_path, arcname=os.path.relpath(file_path, folder_path))
+
+    # Step 2: Generate SHA-256 checksum
+    sha256_hash = hashlib.sha256()
+    # IMPORTANT: Access the zip file directly from its output path, NOT via resource_path
+    with open(zip_path, "rb") as f:
+        for byte_block in iter(lambda: f.read(4096), b""):
+            sha256_hash.update(byte_block)
+    checksum = sha256_hash.hexdigest()
+
+    # Step 3: Save checksum to file
+    # IMPORTANT: Access the checksum file directly from its output path, NOT via resource_path
+    with open(checksum_file_path, 'w') as f:  # Corrected variable name
+        f.write(checksum)
+
+    logging.info(f"Zip file created at: {zip_path}")
+    logging.info(f"Checksum saved to: {checksum_file_path}")
+    messagebox.showinfo("Zip & Checksum", f"Data zipped to:\n{zip_path}\nChecksum saved to:\n{checksum_file_path}")
+
+
+def read_sql_file_content(file_path_relative_to_resources):
+    """ Reads and returns the content of a SQL file using resource_path. """
+    full_path = resource_path(file_path_relative_to_resources)
+    logging.info(f"Attempting to read SQL file: {full_path}")
+    try:
+        with open(full_path, 'r') as file:
+            return file.read().strip()
+    except FileNotFoundError:
+        logging.error(f"SQL file not found: {full_path}")
+        messagebox.showerror("File Error", f"SQL file not found:\n{file_path_relative_to_resources}.")
+        return None
+    except Exception as e:
+        logging.error(f"Error reading SQL file {full_path}: {e}")
+        messagebox.showerror("File Error", f"Error reading SQL file:\n{file_path_relative_to_resources}\n{e}")
+        return None
+
+
+def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
+    try:
+        logging.info("Attempting to connect to MySQL database...")
+        conn = mysql.connector.connect(
+            host=DB_HOST,
+            user=DB_USER,
+            password=DB_PASS,
+            database=DB_NAME,
+        )
+        cursor = conn.cursor()
+        logging.info("Successfully connected to MySQL.")
+
+        output_folder = 'exported_data'
+        # Output folder should be relative to the executable's execution directory
+        # NOT relative to the bundled temp path
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
+            logging.info(f"Created output directory: {output_folder}")
+
+        total_queries = len(queries_to_execute)
+        if total_queries == 0:
+            messagebox.showwarning("No Queries", "No queries to execute based on configuration.")
+            logging.warning("No queries to execute.")
+            return
+
+        progress['maximum'] = total_queries
+        progress['value'] = 0
+        progress.grid()  # Show progress bar
+
+        # Get facility details
+        logging.info("Executing facility details query...")
+        cursor.execute(facility_details_query_content)  # Use the loaded content
+        facility_details = cursor.fetchall()
+
+        if not facility_details:
+            messagebox.showwarning("Warning", "No facility details found. Cannot proceed with export.")
+            logging.warning("No facility details found from database.")
+            return
+
+        raw_facility_name = facility_details[0][2]
+        raw_woreda = facility_details[0][1]
+        raw_region = facility_details[0][0]
+        facility_name_sanitized = raw_facility_name.replace(" ", "").replace("_", "")
+
+        logging.info("Executing HMIS code query...")
+        cursor.execute(hmiscode_query_content)  # Use the loaded content
+        hmiscode_result = cursor.fetchall()
+        if not hmiscode_result:
+            messagebox.showwarning("Warning", "No HMIS code found. Cannot proceed with export.")
+            logging.warning("No HMIS code found from database.")
+            return
+
+        hmiscode_sanitized = hmiscode_result[0][0].replace(" ", "").replace("_", "")
+
+        for idx, (query_name, query_content) in enumerate(queries_to_execute.items(), start=1):
+            logging.info(f"Processing query: {query_name}")
+            formatted_query = query_content.replace("REPORT_END_DATE", f"'{gregorian_end_date}'").replace(
+                "REPORT_START_DATE", f"'{gregorian_start_date}'")
+
+            try:
+                cursor.execute(formatted_query)
+                results = cursor.fetchall()
+            except mysql.connector.Error as query_err:
+                logging.error(f"Error executing query '{query_name}': {query_err}")
+                messagebox.showerror("Query Error", f"Error executing query '{query_name}':\n{query_err}")
+                continue  # Skip to next query
+
+            modified_results = [row + (
+                raw_region, raw_woreda, raw_facility_name, hmiscode_sanitized)
+                                for row in results]
+
+            # The CSV file path should be relative to the *current working directory*
+            # not relative to the bundled temp path.
+            csv_file_name = f"{query_name}_{facility_name_sanitized}{hmiscode_sanitized}_{combo_month.get()}_{entry_year.get()}.csv"
+            csv_file_full_path = os.path.join(output_folder, csv_file_name)
+
+            if modified_results:
+                with open(csv_file_full_path, mode='w', newline='') as file:  # Open directly, no resource_path here
+                    writer = csv.writer(file)
+                    writer.writerow([i[0] for i in cursor.description] + additional_columns)
+                    writer.writerows(modified_results)
+                logging.info(f"Data written to: {csv_file_full_path}")
+            else:
+                logging.warning(f"No data returned for {query_name}. Skipping CSV creation.")
+                # messagebox.showwarning("Warning", f"No data returned for {query_name}.") # Optional: too many popups
+
+            # Update the progress bar
+            progress['value'] = idx
+            root.update_idletasks()
+
+        logging.info("All queries processed. Starting zip and checksum.")
+        zip_files_with_checksum(output_folder,
+                                f"{facility_name_sanitized}{hmiscode_sanitized}_{combo_month.get()}_{entry_year.get()}")
+
+        # Delete generated CSV files after zipping
+        file_pattern = os.path.join(output_folder,
+                                    f"*{facility_name_sanitized}{hmiscode_sanitized}_{combo_month.get()}_{entry_year.get()}.csv")
+        logging.info(f"Attempting to delete CSV files matching pattern: {file_pattern}")
+        for file_path_to_delete in glob.glob(file_pattern):
+            try:
+                os.remove(file_path_to_delete)  # Delete directly, no resource_path here
+                logging.info(f"Deleted temporary CSV file: {file_path_to_delete}")
+            except OSError as e:
+                logging.error(f"Error deleting file {file_path_to_delete}: {e}")
+
+        messagebox.showinfo("Process Complete", "Data export, zipping, and cleanup finished.")
+        logging.info("Full export process completed successfully.")
+
+    except mysql.connector.Error as err:
+        logging.error(f"MySQL connection error: {err}")
+        if err.errno == mysql.connector.errorcode.ER_ACCESS_DENIED_ERROR:
+            messagebox.showerror("Database Error",
+                                 "Access denied for database. Check user/password in export_config.json.")
+        elif err.errno == mysql.connector.errorcode.ER_BAD_DB_ERROR:
+            messagebox.showerror("Database Error", "Database does not exist. Check DB_NAME in export_config.json.")
+        else:
+            messagebox.showerror("Database Error", f"An unexpected database error occurred:\n{err}")
+    except Exception as e:
+        logging.critical(f"An unhandled error occurred during export_to_csv: {e}", exc_info=True)
+        messagebox.showerror("Critical Error",
+                             f"An unexpected error occurred during export:\n{e}\nCheck export_tool.log for details.")
+    finally:
+        if 'conn' in locals() and conn.is_connected():
+            conn.close()
+            logging.info("Database connection closed in finally block.")
+        progress['value'] = 0  # Reset progress bar
+        progress.grid_remove()  # Hide progress bar
+
+
+def run_query():
+    selected_month = combo_month.get()
+    selected_year = entry_year.get()
+
+    if not selected_month or not selected_year:
+        messagebox.showwarning("Input Error", "Please select both a month and a year.")
+        return
+
+    month = month_mapping.get(selected_month)
+    try:
+        year = int(selected_year)
+    except ValueError:
+        messagebox.showerror("Input Error", "Invalid year. Please enter a valid 4-digit year.")
+        return
+
+    conv = EthiopianDateConverter.to_gregorian
+
+    gregorian_end_date = conv(year, month, 20)
+
+    # Calculate Gregorian start date (21st of previous month in Ethiopian calendar)
+    if month == 1:  # If Meskerem (month 1), previous Ethiopian month is Puagume (month 13 of previous year)
+        gregorian_start_date = conv(year - 1, 13, 21)  # Correct for Puagume
+    else:
+        gregorian_start_date = conv(year, month - 1, 21)
+
+    queries_to_execute = {}
+    for tag, path in QUERY_FILES.items():
+        query_content = read_sql_file_content(path)  # Use the corrected function name
+        if query_content:
+            queries_to_execute[tag] = query_content
+
+    if queries_to_execute:
+        export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date)
+    else:
+        messagebox.showerror("Error", "No valid queries found in export_config.json or SQL files are missing.")
+        logging.error("No valid queries found or SQL files are missing.")
+
+
+# --- UI Components Month ---
+tk.Label(root, text="Select Month:").grid(row=0, column=0, pady=5, padx=10, sticky="e")
+combo_month = ttk.Combobox(root, values=months, state="readonly", width=25)
+combo_month.grid(row=0, column=1, padx=10, pady=5, sticky="w")
+combo_month.set(months[0])
+
+# --- UI Components Year ---
+tk.Label(root, text="Year (YYYY):").grid(row=1, column=0, pady=5, padx=10, sticky="e")
+entry_year = ttk.Combobox(root, values=years, state="readonly", width=25)
+entry_year.grid(row=1, column=1, padx=10, pady=5, sticky="w")
+# Set a default year, e.g., the current year or a common reporting year
+if str(EthiopianDateConverter.date_to_ethiopian(datetime.today()).year) in years:
+    entry_year.set(str( EthiopianDateConverter.date_to_ethiopian(datetime.today()).year))
+else:
+    entry_year.set(years[-1])  # Default to the latest available year
+
+# --- Run Button ---
+run_button = ttk.Button(root, text="Run Export", command=run_query)
+run_button.grid(row=2, column=0, columnspan=2, pady=10)
+
+# --- Grid configuration for centering and responsiveness ---
+for i in range(3):  # Rows for Month, Year, Button
+    root.grid_rowconfigure(i, weight=1)
+root.grid_columnconfigure(0, weight=1)
+root.grid_columnconfigure(1, weight=1)
+root.grid_rowconfigure(6, weight=1)  # For the progress bar
+
+
+if __name__ == "__main__":
+    logging.info("Application starting.")
+    root.mainloop()
+    logging.info("Application closed.")

@@ -6,3 +6,325 @@
 2025-06-23 14:35:30,665 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_3.date_of_last_menstrual_period_lmp_' in 'field list'
 2025-06-23 14:35:53,817 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up.regimen' in 'field list'
 2025-06-23 14:36:13,361 - ERROR - Error: 1054 (42S22): Unknown column 'follow_up_1.pregnancy_status' in 'field list'
+2025-06-26 11:20:48,436 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:20:48,436 - INFO - Config file loaded successfully.
+2025-06-26 11:23:38,440 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:23:38,440 - INFO - Config file loaded successfully.
+2025-06-26 11:27:40,459 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:27:40,459 - INFO - Config file loaded successfully.
+2025-06-26 11:30:26,246 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:30:26,246 - INFO - Config file loaded successfully.
+2025-06-26 11:30:26,407 - INFO - Application starting.
+2025-06-26 11:30:29,747 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,747 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_LineList.sql
+2025-06-26 11:30:29,747 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLTestReceived_LineList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_AHD_LineList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_HVL_LineList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_TPT_LineList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_OutComeList.sql
+2025-06-26 11:30:29,748 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,748 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCANew_LineList.sql
+2025-06-26 11:30:29,749 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,749 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCA_LineList.sql
+2025-06-26 11:30:29,749 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:30:29,749 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligible_LineList.sql
+2025-06-26 11:30:29,749 - INFO - Attempting to connect to MySQL database...
+2025-06-26 11:30:29,786 - INFO - Successfully connected to MySQL.
+2025-06-26 11:30:29,786 - INFO - Created output directory: exported_data
+2025-06-26 11:30:29,786 - INFO - Executing facility details query...
+2025-06-26 11:30:29,787 - INFO - Executing HMIS code query...
+2025-06-26 11:30:29,787 - INFO - Processing query: Tx_Curr_LineList
+2025-06-26 11:30:33,114 - INFO - Data written to: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:30:33,117 - INFO - Processing query: Tx_Curr_VLTestReceived_LineList
+2025-06-26 11:30:37,298 - INFO - Data written to: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:30:37,298 - INFO - Processing query: Tx_Curr_AHD_LineList
+2025-06-26 11:31:54,471 - INFO - Data written to: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:31:54,471 - INFO - Processing query: Tx_Curr_HVL_LineList
+2025-06-26 11:32:11,639 - INFO - Data written to: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:11,640 - INFO - Processing query: Tx_Curr_VLEligibleNew_LineList
+2025-06-26 11:32:16,571 - INFO - Data written to: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:16,572 - INFO - Processing query: Tx_Curr_TPT_LineList
+2025-06-26 11:32:22,112 - INFO - Data written to: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:22,112 - INFO - Processing query: Tx_Curr_OutComeList
+2025-06-26 11:32:27,511 - INFO - Data written to: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:27,512 - INFO - Processing query: Tx_Curr_CCANew_LineList
+2025-06-26 11:32:36,112 - INFO - Data written to: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:36,112 - INFO - Processing query: Tx_Curr_CCA_LineList
+2025-06-26 11:32:39,451 - INFO - Data written to: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:39,452 - INFO - Processing query: Tx_Curr_VLEligible_LineList
+2025-06-26 11:32:53,727 - INFO - Data written to: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:32:53,728 - INFO - All queries processed. Starting zip and checksum.
+2025-06-26 11:32:53,739 - INFO - Zip file created at: exported_data/GedaHealthCenter415010023_Meskerem_2017.zip
+2025-06-26 11:32:53,739 - INFO - Checksum saved to: exported_data/GedaHealthCenter415010023_Meskerem_2017_checksum.txt
+2025-06-26 11:33:09,668 - INFO - Attempting to delete CSV files matching pattern: exported_data/*GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,669 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,670 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,670 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:09,670 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:33:13,003 - INFO - Full export process completed successfully.
+2025-06-26 11:33:13,005 - INFO - Database connection closed in finally block.
+2025-06-26 11:33:15,245 - INFO - Application closed.
+2025-06-26 11:38:18,981 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:38:18,981 - INFO - Config file loaded successfully.
+2025-06-26 11:38:19,344 - INFO - Application starting.
+2025-06-26 11:38:21,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_LineList.sql
+2025-06-26 11:38:21,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLTestReceived_LineList.sql
+2025-06-26 11:38:21,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_AHD_LineList.sql
+2025-06-26 11:38:21,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_HVL_LineList.sql
+2025-06-26 11:38:21,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql
+2025-06-26 11:38:21,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_TPT_LineList.sql
+2025-06-26 11:38:21,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_OutComeList.sql
+2025-06-26 11:38:21,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCANew_LineList.sql
+2025-06-26 11:38:21,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCA_LineList.sql
+2025-06-26 11:38:21,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:38:21,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligible_LineList.sql
+2025-06-26 11:38:21,617 - INFO - Attempting to connect to MySQL database...
+2025-06-26 11:38:21,630 - INFO - Successfully connected to MySQL.
+2025-06-26 11:38:21,630 - INFO - Executing facility details query...
+2025-06-26 11:38:21,632 - INFO - Executing HMIS code query...
+2025-06-26 11:38:21,633 - INFO - Processing query: Tx_Curr_LineList
+2025-06-26 11:38:26,538 - INFO - Data written to: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:38:26,543 - INFO - Processing query: Tx_Curr_VLTestReceived_LineList
+2025-06-26 11:38:30,767 - INFO - Data written to: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:38:30,768 - INFO - Processing query: Tx_Curr_AHD_LineList
+2025-06-26 11:39:00,966 - INFO - Data written to: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:00,966 - INFO - Processing query: Tx_Curr_HVL_LineList
+2025-06-26 11:39:12,569 - INFO - Data written to: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:12,570 - INFO - Processing query: Tx_Curr_VLEligibleNew_LineList
+2025-06-26 11:39:14,866 - INFO - Data written to: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:14,866 - INFO - Processing query: Tx_Curr_TPT_LineList
+2025-06-26 11:39:19,611 - INFO - Data written to: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:19,612 - INFO - Processing query: Tx_Curr_OutComeList
+2025-06-26 11:39:26,038 - INFO - Data written to: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:26,038 - INFO - Processing query: Tx_Curr_CCANew_LineList
+2025-06-26 11:39:30,331 - INFO - Data written to: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:30,332 - INFO - Processing query: Tx_Curr_CCA_LineList
+2025-06-26 11:39:33,823 - INFO - Data written to: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:33,824 - INFO - Processing query: Tx_Curr_VLEligible_LineList
+2025-06-26 11:39:43,251 - INFO - Data written to: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:43,252 - INFO - All queries processed. Starting zip and checksum.
+2025-06-26 11:39:43,262 - INFO - Zip file created at: exported_data/GedaHealthCenter415010023_Meskerem_2017.zip
+2025-06-26 11:39:43,262 - INFO - Checksum saved to: exported_data/GedaHealthCenter415010023_Meskerem_2017_checksum.txt
+2025-06-26 11:39:53,850 - INFO - Attempting to delete CSV files matching pattern: exported_data/*GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,850 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,857 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,858 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,858 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,858 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,858 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,858 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,859 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,859 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:53,859 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:39:55,425 - INFO - Full export process completed successfully.
+2025-06-26 11:39:55,428 - INFO - Database connection closed in finally block.
+2025-06-26 11:39:56,540 - INFO - Application closed.
+2025-06-26 11:40:16,267 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:40:16,267 - INFO - Config file loaded successfully.
+2025-06-26 11:40:16,494 - INFO - Application starting.
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLTestReceived_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_AHD_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_HVL_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,616 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_TPT_LineList.sql
+2025-06-26 11:40:19,616 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_OutComeList.sql
+2025-06-26 11:40:19,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCANew_LineList.sql
+2025-06-26 11:40:19,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCA_LineList.sql
+2025-06-26 11:40:19,617 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:40:19,617 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligible_LineList.sql
+2025-06-26 11:40:19,617 - INFO - Attempting to connect to MySQL database...
+2025-06-26 11:40:19,636 - INFO - Successfully connected to MySQL.
+2025-06-26 11:40:19,637 - INFO - Executing facility details query...
+2025-06-26 11:40:19,638 - INFO - Executing HMIS code query...
+2025-06-26 11:40:19,638 - INFO - Processing query: Tx_Curr_LineList
+2025-06-26 11:40:22,547 - INFO - Data written to: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:40:22,549 - INFO - Processing query: Tx_Curr_VLTestReceived_LineList
+2025-06-26 11:40:24,877 - INFO - Data written to: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:40:24,877 - INFO - Processing query: Tx_Curr_AHD_LineList
+2025-06-26 11:40:41,139 - INFO - Data written to: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:40:41,140 - INFO - Processing query: Tx_Curr_HVL_LineList
+2025-06-26 11:40:55,729 - INFO - Data written to: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:40:55,731 - INFO - Processing query: Tx_Curr_VLEligibleNew_LineList
+2025-06-26 11:40:58,884 - INFO - Data written to: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:40:58,886 - INFO - Processing query: Tx_Curr_TPT_LineList
+2025-06-26 11:41:05,081 - INFO - Data written to: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:05,081 - INFO - Processing query: Tx_Curr_OutComeList
+2025-06-26 11:41:09,512 - INFO - Data written to: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:09,512 - INFO - Processing query: Tx_Curr_CCANew_LineList
+2025-06-26 11:41:13,631 - INFO - Data written to: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:13,631 - INFO - Processing query: Tx_Curr_CCA_LineList
+2025-06-26 11:41:15,458 - INFO - Data written to: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:15,458 - INFO - Processing query: Tx_Curr_VLEligible_LineList
+2025-06-26 11:41:24,013 - INFO - Data written to: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,014 - INFO - All queries processed. Starting zip and checksum.
+2025-06-26 11:41:24,025 - INFO - Zip file created at: exported_data/GedaHealthCenter415010023_Meskerem_2017.zip
+2025-06-26 11:41:24,025 - INFO - Checksum saved to: exported_data/GedaHealthCenter415010023_Meskerem_2017_checksum.txt
+2025-06-26 11:41:24,939 - INFO - Attempting to delete CSV files matching pattern: exported_data/*GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,941 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,941 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,941 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligibleNew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,942 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:24,943 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2017.csv
+2025-06-26 11:41:25,817 - INFO - Full export process completed successfully.
+2025-06-26 11:41:25,818 - INFO - Database connection closed in finally block.
+2025-06-26 11:41:29,282 - INFO - Application closed.
+2025-06-26 11:41:31,720 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:41:31,721 - INFO - Config file loaded successfully.
+2025-06-26 11:41:31,990 - INFO - Application starting.
+2025-06-26 11:41:36,535 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,536 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_LineList.sql
+2025-06-26 11:41:36,536 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,536 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLTestReceived_LineList.sql
+2025-06-26 11:41:36,536 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,536 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_AHD_LineList.sql
+2025-06-26 11:41:36,536 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,536 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_HVL_LineList.sql
+2025-06-26 11:41:36,536 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,536 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql
+2025-06-26 11:41:36,537 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,537 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_TPT_LineList.sql
+2025-06-26 11:41:36,537 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,537 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_OutComeList.sql
+2025-06-26 11:41:36,537 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,537 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCANew_LineList.sql
+2025-06-26 11:41:36,537 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,537 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCA_LineList.sql
+2025-06-26 11:41:36,537 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:41:36,537 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligible_LineList.sql
+2025-06-26 11:41:36,537 - INFO - Attempting to connect to MySQL database...
+2025-06-26 11:41:36,569 - INFO - Successfully connected to MySQL.
+2025-06-26 11:41:36,569 - INFO - Executing facility details query...
+2025-06-26 11:41:36,571 - INFO - Executing HMIS code query...
+2025-06-26 11:41:36,572 - INFO - Processing query: Tx_Curr_LineList
+2025-06-26 11:41:38,690 - INFO - Data written to: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:41:38,692 - INFO - Processing query: Tx_Curr_VLTestReceived_LineList
+2025-06-26 11:41:40,847 - INFO - Data written to: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:41:40,848 - INFO - Processing query: Tx_Curr_AHD_LineList
+2025-06-26 11:41:57,847 - INFO - Data written to: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:41:57,847 - INFO - Processing query: Tx_Curr_HVL_LineList
+2025-06-26 11:42:05,762 - INFO - Data written to: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:05,763 - INFO - Processing query: Tx_Curr_VLEligibleNew_LineList
+2025-06-26 11:42:05,820 - WARNING - No data returned for Tx_Curr_VLEligibleNew_LineList. Skipping CSV creation.
+2025-06-26 11:42:05,820 - INFO - Processing query: Tx_Curr_TPT_LineList
+2025-06-26 11:42:11,406 - INFO - Data written to: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:11,407 - INFO - Processing query: Tx_Curr_OutComeList
+2025-06-26 11:42:16,369 - INFO - Data written to: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:16,369 - INFO - Processing query: Tx_Curr_CCANew_LineList
+2025-06-26 11:42:20,733 - INFO - Data written to: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:20,737 - INFO - Processing query: Tx_Curr_CCA_LineList
+2025-06-26 11:42:24,623 - INFO - Data written to: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:24,623 - INFO - Processing query: Tx_Curr_VLEligible_LineList
+2025-06-26 11:42:41,903 - INFO - Data written to: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:41,904 - INFO - All queries processed. Starting zip and checksum.
+2025-06-26 11:42:41,909 - INFO - Zip file created at: exported_data/GedaHealthCenter415010023_Meskerem_2018.zip
+2025-06-26 11:42:41,909 - INFO - Checksum saved to: exported_data/GedaHealthCenter415010023_Meskerem_2018_checksum.txt
+2025-06-26 11:42:43,049 - INFO - Attempting to delete CSV files matching pattern: exported_data/*GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_HVL_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_TPT_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLTestReceived_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,050 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCANew_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,051 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_VLEligible_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,051 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_AHD_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:43,051 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_LineList_GedaHealthCenter415010023_Meskerem_2018.csv
+2025-06-26 11:42:44,002 - INFO - Full export process completed successfully.
+2025-06-26 11:42:44,003 - INFO - Database connection closed in finally block.
+2025-06-26 11:42:47,684 - INFO - Application closed.
+2025-06-26 11:43:02,629 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:43:02,629 - INFO - Config file loaded successfully.
+2025-06-26 11:43:03,010 - INFO - Application starting.
+2025-06-26 11:43:06,300 - INFO - Application closed.
+2025-06-26 11:43:14,513 - INFO - Attempting to load config from: /home/samuel/PycharmProjects/data-export-tool/export_config.json
+2025-06-26 11:43:14,513 - INFO - Config file loaded successfully.
+2025-06-26 11:43:14,774 - INFO - Application starting.
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLTestReceived_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_AHD_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_HVL_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligibleNew_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_TPT_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_OutComeList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCANew_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_CCA_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Detected development environment. Base path for resources: /home/samuel/PycharmProjects/data-export-tool
+2025-06-26 11:43:20,776 - INFO - Attempting to read SQL file: /home/samuel/PycharmProjects/data-export-tool/sql_queries/Tx_Curr_VLEligible_LineList.sql
+2025-06-26 11:43:20,776 - INFO - Attempting to connect to MySQL database...
+2025-06-26 11:43:20,791 - INFO - Successfully connected to MySQL.
+2025-06-26 11:43:20,791 - INFO - Executing facility details query...
+2025-06-26 11:43:20,807 - INFO - Executing HMIS code query...
+2025-06-26 11:43:20,808 - INFO - Processing query: Tx_Curr_LineList
+2025-06-26 11:43:24,434 - WARNING - No data returned for Tx_Curr_LineList. Skipping CSV creation.
+2025-06-26 11:43:24,438 - INFO - Processing query: Tx_Curr_VLTestReceived_LineList
+2025-06-26 11:43:29,720 - WARNING - No data returned for Tx_Curr_VLTestReceived_LineList. Skipping CSV creation.
+2025-06-26 11:43:29,721 - INFO - Processing query: Tx_Curr_AHD_LineList
+2025-06-26 11:43:40,460 - WARNING - No data returned for Tx_Curr_AHD_LineList. Skipping CSV creation.
+2025-06-26 11:43:40,461 - INFO - Processing query: Tx_Curr_HVL_LineList
+2025-06-26 11:43:43,661 - WARNING - No data returned for Tx_Curr_HVL_LineList. Skipping CSV creation.
+2025-06-26 11:43:43,661 - INFO - Processing query: Tx_Curr_VLEligibleNew_LineList
+2025-06-26 11:43:43,826 - WARNING - No data returned for Tx_Curr_VLEligibleNew_LineList. Skipping CSV creation.
+2025-06-26 11:43:43,826 - INFO - Processing query: Tx_Curr_TPT_LineList
+2025-06-26 11:43:47,828 - WARNING - No data returned for Tx_Curr_TPT_LineList. Skipping CSV creation.
+2025-06-26 11:43:47,830 - INFO - Processing query: Tx_Curr_OutComeList
+2025-06-26 11:43:54,584 - INFO - Data written to: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2019.csv
+2025-06-26 11:43:54,584 - INFO - Processing query: Tx_Curr_CCANew_LineList
+2025-06-26 11:43:57,586 - WARNING - No data returned for Tx_Curr_CCANew_LineList. Skipping CSV creation.
+2025-06-26 11:43:57,586 - INFO - Processing query: Tx_Curr_CCA_LineList
+2025-06-26 11:44:01,723 - INFO - Data written to: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2019.csv
+2025-06-26 11:44:01,726 - INFO - Processing query: Tx_Curr_VLEligible_LineList
+2025-06-26 11:44:05,141 - WARNING - No data returned for Tx_Curr_VLEligible_LineList. Skipping CSV creation.
+2025-06-26 11:44:05,142 - INFO - All queries processed. Starting zip and checksum.
+2025-06-26 11:44:05,144 - INFO - Zip file created at: exported_data/GedaHealthCenter415010023_Meskerem_2019.zip
+2025-06-26 11:44:05,144 - INFO - Checksum saved to: exported_data/GedaHealthCenter415010023_Meskerem_2019_checksum.txt
+2025-06-26 11:44:05,955 - INFO - Attempting to delete CSV files matching pattern: exported_data/*GedaHealthCenter415010023_Meskerem_2019.csv
+2025-06-26 11:44:05,955 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_CCA_LineList_GedaHealthCenter415010023_Meskerem_2019.csv
+2025-06-26 11:44:05,955 - INFO - Deleted temporary CSV file: exported_data/Tx_Curr_OutComeList_GedaHealthCenter415010023_Meskerem_2019.csv
+2025-06-26 11:44:06,762 - INFO - Full export process completed successfully.
+2025-06-26 11:44:06,763 - INFO - Database connection closed in finally block.
+2025-06-26 11:44:07,788 - INFO - Application closed.
