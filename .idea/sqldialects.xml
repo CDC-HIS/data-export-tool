@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_AHD_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_CCANew_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_CCA_LineList.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_HVL_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_LineList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_OutComeList.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/sql_queries/Tx_Curr_TPT_LineList.sql" dialect="MySQL" />

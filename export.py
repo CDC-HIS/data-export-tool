@@ -147,42 +147,75 @@ hmiscode_query_content = """
 
 
 def zip_files_with_checksum(folder_path, zip_name):
-    """Creates a zip file of all files in folder_path and generates a SHA-256 checksum."""
-    zip_path = os.path.join(folder_path, f"{zip_name}.zip")
-    checksum_file_path = os.path.join(folder_path, f"{zip_name}_checksum.txt")
 
-    # Step 1: Create zip file
-    with zipfile.ZipFile(zip_path, 'w') as zipf:
-        for root_dir, _, files in os.walk(folder_path):
-            for file in files:
-                # Only zip CSV files, exclude the checksum file itself if it exists from a prior run
-                if file.endswith(".csv") and not file.startswith(f"{zip_name}_checksum"):
-                    file_path = os.path.join(root_dir, file)
-                    zipf.write(file_path, arcname=os.path.relpath(file_path, folder_path))
+    csv_archive_name = f"{zip_name}.zip"
+    csv_archive_path = os.path.join(folder_path, csv_archive_name)
 
-    # Step 2: Generate SHA-256 checksum
-    sha256_hash = hashlib.sha256()
-    # IMPORTANT: Access the zip file directly from its output path, NOT via resource_path
-    with open(zip_path, "rb") as f:
-        for byte_block in iter(lambda: f.read(4096), b""):
-            sha256_hash.update(byte_block)
-    checksum = sha256_hash.hexdigest()
+    checksum_name = f"{zip_name}_checksum.txt"
+    checksum_file_path = os.path.join(folder_path, checksum_name)
 
-    # Step 3: Save checksum to file
-    # IMPORTANT: Access the checksum file directly from its output path, NOT via resource_path
-    with open(checksum_file_path, 'w') as f:  # Corrected variable name
-        f.write(checksum)
+    final_zip_path = os.path.join(folder_path, f"{zip_name}_packaged.zip")
 
-    logging.info(f"Zip file created at: {zip_path}")
-    logging.info(f"Checksum saved to: {checksum_file_path}")
-    message_content = (
-        "Operation Complete!\n\n"
-        f"Zip file created successfully:\n"
-        f"  {zip_path}\n\n"  # Added indentation and newlines
-        f"Checksum file generated:\n"
-        f"  {checksum_file_path}"  # Added indentation
-    )
-    messagebox.showinfo("Zip & Checksum", message_content)
+    try:
+        logging.info(f"Step 1: Creating temporary CSV archive at: {csv_archive_path}")
+        with zipfile.ZipFile(csv_archive_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for root_dir, _, files in os.walk(folder_path):
+                for file in files:
+                    if file.endswith(".csv"):
+                        file_path = os.path.join(root_dir, file)
+                        arcname = os.path.relpath(file_path, folder_path)
+                        zipf.write(file_path, arcname=arcname)
+        logging.info(f"Temporary CSV archive successfully created: {csv_archive_path}")
+
+        logging.info(f"Step 2: Generating SHA-256 checksum for {zip_name}")
+        sha256_hash = hashlib.sha256()
+        with open(csv_archive_path, "rb") as f:
+            for byte_block in iter(lambda: f.read(4096), b""):
+                sha256_hash.update(byte_block)
+        checksum_value = sha256_hash.hexdigest()
+        logging.info(f"Checksum generated: {checksum_value}")
+
+        logging.info(f"Step 3: Saving checksum to temporary file: {checksum_file_path}")
+        with open(checksum_file_path, 'w') as f:
+            f.write(checksum_value)
+        logging.info(f"Checksum successfully saved to: {checksum_file_path}")
+
+        logging.info(f"Step 4: Creating final zip file: {final_zip_path}")
+        with zipfile.ZipFile(final_zip_path, 'w', zipfile.ZIP_DEFLATED) as final_zipf:
+            final_zipf.write(csv_archive_path, arcname=f"{csv_archive_name}")
+            logging.info(f"Added '{os.path.basename(csv_archive_path)}' to '{final_zip_path}'")
+
+            final_zipf.write(checksum_file_path, arcname=f"{checksum_name}")
+            logging.info(f"Added '{os.path.basename(checksum_file_path)}' to '{final_zip_path}'")
+
+        logging.info(f"Final zip file created successfully at: {final_zip_path}")
+
+        # Display success message to the user
+        message_content = (
+            "Operation Complete!\n\n"
+            f"A final zip file has been created:\n"
+            f"  '{final_zip_path}'\n\n"
+            f"Containing zip file and checksum\n"
+        )
+        # Initialize Tkinter root window (needed for messagebox on some systems)
+        root = tk.Tk()
+        root.withdraw() # Hide the main window
+        messagebox.showinfo("Zip & Checksum Operation", message_content)
+
+    except Exception as e:
+        logging.error(f"An error occurred during zip and checksum creation: {e}", exc_info=True)
+        # Display error message to the user
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showerror("Error", f"An error occurred during zip and checksum creation: {e}")
+    finally:
+        # Step 5: Clean up temporary files regardless of success or failure
+        if os.path.exists(csv_archive_path):
+            os.remove(csv_archive_path)
+            logging.info(f"Cleaned up temporary file: {csv_archive_path}")
+        if os.path.exists(checksum_file_path):
+            os.remove(checksum_file_path)
+            logging.info(f"Cleaned up temporary file: {checksum_file_path}")
 
 
 def read_sql_file_content(file_path_relative_to_resources):
@@ -273,7 +306,6 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
                 raw_region, raw_woreda, raw_facility_name, hmiscode_sanitized)
                                 for row in results]
 
-            # The CSV file path should be relative to the *current working directory*
             # not relative to the bundled temp path.
             csv_file_name = f"{query_name}_{facility_name_sanitized}{hmiscode_sanitized}_{combo_month.get()}_{entry_year.get()}.csv"
             csv_file_full_path = os.path.join(output_folder, csv_file_name)

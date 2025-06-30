@@ -9,17 +9,17 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          viral_load_test_status,
                          hiv_viral_load                                    as viral_load_count,
                          COALESCE(
-                                 at_3436_weeks_of_gestation,
                                 -- viral_load_after_eac_confirmatory_viral_load_where_initial_v,
-                                 viral_load_after_eac_repeat_viral_load_where_initial_viral_l,
-                                 every_six_months_until_mtct_ends,
-                                 six_months_after_the_first_viral_load_test_at_postnatal_peri,
-                                 three_months_after_delivery,
-                                 at_the_first_antenatal_care_visit,
-                                 annual_viral_load_test,
-                                 second_viral_load_test_at_12_months_post_art,
+                                -- viral_load_after_eac_repeat_viral_load_where_initial_viral_l,
                                  first_viral_load_test_at_6_months_or_longer_post_art,
-                                 first_viral_load_test_at_3_months_or_longer_post_art
+                                 six_months_after_the_first_viral_load_test_at_postnatal_peri,
+                                 second_viral_load_test_at_12_months_post_art,
+                                 annual_viral_load_test,
+                                 first_viral_load_test_at_3_months_or_longer_post_art,
+                                 at_the_first_antenatal_care_visit,
+                                 at_3436_weeks_of_gestation,
+                                 every_six_months_until_mtct_ends,
+                                 three_months_after_delivery
                          )                                                 AS routine_viral_load_test_indication,
                          COALESCE(
                                  -- repeat_or_confirmatory_vl_initial_viral_load_greater_than_10,
@@ -71,7 +71,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                  FROM FollowUp
                                  where
-                                    follow_up_date <= REPORT_END_DATE),
+                                    viral_load_performed_date <= REPORT_END_DATE),
      tmp_vl_performed_date_1_dedup AS (select * from tmp_vl_performed_date_1 where row_num = 1) ,
 
      tmp_vl_sent_date AS (SELECT FollowUp.client_id,
@@ -81,8 +81,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                    Inner Join tmp_vl_performed_date_1_dedup
                                               ON tmp_vl_performed_date_1_dedup.client_id = FollowUp.client_id
                         AND (tmp_vl_performed_date_1_dedup.viral_load_performed_date=FollowUp.viral_load_performed_date)
-                          WHERE FollowUp.follow_up_date <= REPORT_END_DATE
-                            and viral_load_sent_date is not null),
+                          WHERE FollowUp.viral_load_sent_date <= REPORT_END_DATE),
      vl_sent_date AS (select *
                       from tmp_vl_sent_date
                       where row_num = 1),
@@ -112,7 +111,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                   FROM FollowUp
                                   where follow_up_status Is Not Null
                                     And targeted_viral_load_test_indication Is Not Null
-                                    AND follow_up_date <= REPORT_END_DATE),
+                                    AND viral_load_performed_date <= REPORT_END_DATE),
     tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
 
      tmp_vl_sent_date_cf AS (SELECT FollowUp.client_id,
@@ -122,8 +121,8 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                       Inner Join tmp_vl_performed_date_cf_2
                                                  ON tmp_vl_performed_date_cf_2.client_id = FollowUp.client_id
                               AND (tmp_vl_performed_date_cf_2.viral_load_perform_date=FollowUp.viral_load_performed_date)
-                             WHERE FollowUp.follow_up_date <= REPORT_END_DATE
-                               and viral_load_sent_date is not null),
+                             WHERE FollowUp.viral_load_sent_date <= REPORT_END_DATE
+                             ),
      vl_sent_date_cf AS (select *
                          from tmp_vl_sent_date_cf
                          where row_num = 1),
