@@ -13,7 +13,7 @@ packages = ["pytds", "os", "json", "csv", "glob", "shutil", "hashlib", "zipfile"
 setup(
     name="ExportTool",
     version="1.0",
-    description="Data extraction",
+    description="Data extraction Tool",
     options={
         "build_exe": {
             "packages": packages,
