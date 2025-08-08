@@ -24,8 +24,8 @@ logging.basicConfig(
 
 def resource_path(relative_path):
 
-    if hasattr(sys, 'frozen'):  # Check if the script is running inside a frozen (bundled) application
-        if hasattr(sys, '_MEIPASS'):  # This is typically set by PyInstaller
+    if hasattr(sys, 'frozen'):
+        if hasattr(sys, '_MEIPASS'):
             base_path = sys._MEIPASS
             logging.info(f"Detected PyInstaller environment. Base path for resources: {base_path}")
         else:
@@ -41,11 +41,7 @@ def resource_path(relative_path):
 
 
 def load_config(config_file_name="export_config.json"):
-    """
-    Load JSON configuration file, prioritizing an external file.
-    If not found externally, it will look for a bundled default.
-    """
-    # 1. Try to load from the external path (next to the executable)
+
     external_config_path = os.path.join(os.path.dirname(os.path.abspath(sys.argv[0])), config_file_name)
     logging.info(f"Attempting to load config from external path: {external_config_path}")
     try:
@@ -56,8 +52,7 @@ def load_config(config_file_name="export_config.json"):
     except FileNotFoundError:
         logging.warning(f"External config file not found at {external_config_path}. Looking for bundled default.")
 
-        # 2. If not found externally, try to load a bundled default config
-        # Use resource_path ONLY for a bundled default config
+        # If not found externally, try to load a bundled default config
         bundled_config_path = resource_path(config_file_name)
         logging.info(f"Attempting to load config from bundled path: {bundled_config_path}")
         try:
@@ -86,13 +81,12 @@ def load_config(config_file_name="export_config.json"):
 
 # --- Global Configuration and UI Setup ---
 #Prioritize external export config if not use packaged export_config
-export_config = load_config("export_config.json") # Call without resource_path
+export_config = load_config("export_config.json")
 
-# If load_config returns empty or default, provide sensible defaults for DB properties
 db_properties = export_config.get("db_properties", {})
 DB_HOST = db_properties.get('DB_HOST', 'localhost')
 DB_USER = db_properties.get('DB_USER', 'openmrs')
-DB_PASS = db_properties.get('DB_PASS', '')  # Consider making this empty for security, prompt user
+DB_PASS = db_properties.get('DB_PASS', '')
 DB_NAME = db_properties.get('DB_NAME', 'analytics_db')
 
 # SQL queries mapping from config
@@ -112,9 +106,8 @@ root.geometry("400x200")
 root.eval('tk::PlaceWindow . center')
 
 
-# Style for ttk widgets
 style = ttk.Style()
-style.theme_use('alt')  # or 'alt', 'default', 'classic'
+style.theme_use('alt')
 style.configure('TButton', font=('Arial', 10), padding=6)
 style.configure('TLabel', font=('Arial', 10))
 style.configure('TCombobox', font=('Arial', 10), padding=2)
@@ -122,7 +115,7 @@ style.configure('TCombobox', font=('Arial', 10), padding=2)
 
 progress = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate")
 progress.grid(row=6, column=0, columnspan=2, pady=10, sticky="ew", padx=20)
-progress.grid_remove()  # Start hidden
+progress.grid_remove()
 
 facility_details_query_content = """
                                  SELECT state_province          AS Region, \
@@ -190,26 +183,22 @@ def zip_files_with_checksum(folder_path, zip_name):
 
         logging.info(f"Final zip file created successfully at: {final_zip_path}")
 
-        # Display success message to the user
         message_content = (
             "Operation Complete!\n\n"
             f"A final zip file has been created:\n"
             f"  '{final_zip_path}'\n\n"
             f"Containing zip file and checksum\n"
         )
-        # Initialize Tkinter root window (needed for messagebox on some systems)
         root = tk.Tk()
-        root.withdraw() # Hide the main window
+        root.withdraw()
         messagebox.showinfo("Zip & Checksum Operation", message_content)
 
     except Exception as e:
         logging.error(f"An error occurred during zip and checksum creation: {e}", exc_info=True)
-        # Display error message to the user
         root = tk.Tk()
         root.withdraw()
         messagebox.showerror("Error", f"An error occurred during zip and checksum creation: {e}")
     finally:
-        # Step 5: Clean up temporary files regardless of success or failure
         if os.path.exists(csv_archive_path):
             os.remove(csv_archive_path)
             logging.info(f"Cleaned up temporary file: {csv_archive_path}")
@@ -219,7 +208,6 @@ def zip_files_with_checksum(folder_path, zip_name):
 
 
 def read_sql_file_content(file_path_relative_to_resources):
-    """ Reads and returns the content of a SQL file using resource_path. """
     full_path = resource_path(file_path_relative_to_resources)
     logging.info(f"Attempting to read SQL file: {full_path}")
     try:
@@ -248,8 +236,7 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
         logging.info("Successfully connected to MySQL.")
 
         output_folder = 'exported_data'
-        # Output folder should be relative to the executable's execution directory
-        # NOT relative to the bundled temp path
+
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
             logging.info(f"Created output directory: {output_folder}")
@@ -262,11 +249,10 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
 
         progress['maximum'] = total_queries
         progress['value'] = 0
-        progress.grid()  # Show progress bar
+        progress.grid()
 
-        # Get facility details
         logging.info("Executing facility details query...")
-        cursor.execute(facility_details_query_content)  # Use the loaded content
+        cursor.execute(facility_details_query_content)
         facility_details = cursor.fetchall()
 
         if not facility_details:
@@ -280,7 +266,7 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
         facility_name_sanitized = raw_facility_name.replace(" ", "").replace("_", "")
 
         logging.info("Executing HMIS code query...")
-        cursor.execute(hmiscode_query_content)  # Use the loaded content
+        cursor.execute(hmiscode_query_content)
         hmiscode_result = cursor.fetchall()
         if not hmiscode_result:
             messagebox.showwarning("Warning", "No HMIS code found. Cannot proceed with export.")
@@ -300,27 +286,24 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
             except mysql.connector.Error as query_err:
                 logging.error(f"Error executing query '{query_name}': {query_err}")
                 messagebox.showerror("Query Error", f"Error executing query '{query_name}':\n{query_err}")
-                continue  # Skip to next query
+                continue
 
             modified_results = [row + (
                 raw_region, raw_woreda, raw_facility_name, hmiscode_sanitized)
                                 for row in results]
 
-            # not relative to the bundled temp path.
             csv_file_name = f"{query_name}_{facility_name_sanitized}{hmiscode_sanitized}_{combo_month.get()}_{entry_year.get()}.csv"
             csv_file_full_path = os.path.join(output_folder, csv_file_name)
 
             if modified_results:
-                with open(csv_file_full_path, mode='w', newline='') as file:  # Open directly, no resource_path here
+                with open(csv_file_full_path, mode='w', newline='') as file:
                     writer = csv.writer(file)
                     writer.writerow([i[0] for i in cursor.description] + additional_columns)
                     writer.writerows(modified_results)
                 logging.info(f"Data written to: {csv_file_full_path}")
             else:
                 logging.warning(f"No data returned for {query_name}. Skipping CSV creation.")
-                # messagebox.showwarning("Warning", f"No data returned for {query_name}.") # Optional: too many popups
 
-            # Update the progress bar
             progress['value'] = idx
             root.update_idletasks()
 
@@ -334,7 +317,7 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
         logging.info(f"Attempting to delete CSV files matching pattern: {file_pattern}")
         for file_path_to_delete in glob.glob(file_pattern):
             try:
-                os.remove(file_path_to_delete)  # Delete directly, no resource_path here
+                os.remove(file_path_to_delete)
                 logging.info(f"Deleted temporary CSV file: {file_path_to_delete}")
             except OSError as e:
                 logging.error(f"Error deleting file {file_path_to_delete}: {e}")
@@ -359,8 +342,8 @@ def export_to_csv(queries_to_execute, gregorian_start_date, gregorian_end_date):
         if 'conn' in locals() and conn.is_connected():
             conn.close()
             logging.info("Database connection closed in finally block.")
-        progress['value'] = 0  # Reset progress bar
-        progress.grid_remove()  # Hide progress bar
+        progress['value'] = 0
+        progress.grid_remove()
 
 
 def run_query():
@@ -390,7 +373,7 @@ def run_query():
 
     queries_to_execute = {}
     for tag, path in QUERY_FILES.items():
-        query_content = read_sql_file_content(path)  # Use the corrected function name
+        query_content = read_sql_file_content(path)
         if query_content:
             queries_to_execute[tag] = query_content
 
@@ -411,22 +394,20 @@ combo_month.set(months[0])
 tk.Label(root, text="Year (YYYY):").grid(row=1, column=0, pady=5, padx=10, sticky="e")
 entry_year = ttk.Combobox(root, values=years, state="readonly", width=25)
 entry_year.grid(row=1, column=1, padx=10, pady=5, sticky="w")
-# Set a default year, e.g., the current year or a common reporting year
+# Set a default year
 if str(EthiopianDateConverter.date_to_ethiopian(datetime.today()).year) in years:
     entry_year.set(str( EthiopianDateConverter.date_to_ethiopian(datetime.today()).year))
 else:
-    entry_year.set(years[-1])  # Default to the latest available year
+    entry_year.set(years[-1])
 
-# --- Run Button ---
 run_button = ttk.Button(root, text="Run Export", command=run_query)
 run_button.grid(row=2, column=0, columnspan=2, pady=10)
 
-# --- Grid configuration for centering and responsiveness ---
-for i in range(3):  # Rows for Month, Year, Button
+for i in range(3):
     root.grid_rowconfigure(i, weight=1)
 root.grid_columnconfigure(0, weight=1)
 root.grid_columnconfigure(1, weight=1)
-root.grid_rowconfigure(6, weight=1)  # For the progress bar
+root.grid_rowconfigure(6, weight=1)
 
 
 if __name__ == "__main__":
