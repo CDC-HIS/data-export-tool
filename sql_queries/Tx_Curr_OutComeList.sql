@@ -5,7 +5,8 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                          art_antiretroviral_start_date                       AS art_start_date,
                          treatment_end_date                                  AS art_dose_end,
                          next_visit_date,
-                         TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as age
+                         TIMESTAMPDIFF(YEAR, date_of_birth, REPORT_END_DATE) as age,
+                         date_of_birth
                   FROM mamba_flat_encounter_follow_up follow_up
                            LEFT JOIN mamba_flat_encounter_follow_up_1 follow_up_1
                                      ON follow_up.encounter_id = follow_up_1.encounter_id
@@ -34,6 +35,7 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                             follow_up_status,
                             art_start_date,
                             art_dose_end,
+                            date_of_birth,
                             age,
                             ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) AS row_num
                      FROM FollowUp
@@ -243,10 +245,15 @@ WITH FollowUp AS (SELECT follow_up.encounter_id,
                                                   LEFT JOIN latest_follow_up latest ON previous.client_id = latest.client_id
                                          WHERE latest.encounter_id IS NULL) AS n
                                             INNER JOIN latest_follow_up_2 fb ON fb.client_id = n.client_id
-                                   GROUP BY fb.follow_up_status) as to_be_deducted)
+                                   GROUP BY fb.follow_up_status) as to_be_deducted),
+age_out AS (select COUNT(*) as AgeOut
+                 from latest_follow_up
+                          join previous_follow_up on latest_follow_up.client_id = previous_follow_up.client_id
+                 where (DATE_ADD(latest_follow_up.date_of_birth, INTERVAL 15 YEAR) between REPORT_START_DATE AND REPORT_END_DATE))
 
 select *
 from to_be_added,
      to_be_deducted,
      to_be_added_pedi,
-     to_be_deducted_pedi;
+     to_be_deducted_pedi,
+     age_out;
