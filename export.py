@@ -6,7 +6,7 @@ import csv
 import os
 import sys
 import json
-from ethiopian_date import EthiopianDateConverter  # Assuming this library is installed
+from ethiopian_date_converter.ethiopian_date_convertor import to_ethiopian, to_gregorian, EthDate
 import hashlib
 import zipfile
 import glob
@@ -361,15 +361,15 @@ def run_query():
         messagebox.showerror("Input Error", "Invalid year. Please enter a valid 4-digit year.")
         return
 
-    conv = EthiopianDateConverter.to_gregorian
+    ethiopian_date = EthDate(20, month, year)
 
-    gregorian_end_date = conv(year, month, 20)
+    gregorian_end_date = to_gregorian(ethiopian_date)
 
     # Calculate Gregorian start date (21st of previous month in Ethiopian calendar)
     if month == 1:  # If Meskerem (month 1), previous Ethiopian month is Puagume (month 13 of previous year)
-        gregorian_start_date = conv(year - 1, 13, 21)  # Correct for Puagume
+        gregorian_start_date = to_gregorian(EthDate(21,13,year-1))  # Correct for Puagume
     else:
-        gregorian_start_date = conv(year, month - 1, 21)
+        gregorian_start_date = to_gregorian(EthDate(21,month-1,year))
 
     queries_to_execute = {}
     for tag, path in QUERY_FILES.items():
@@ -394,9 +394,11 @@ combo_month.set(months[0])
 tk.Label(root, text="Year (YYYY):").grid(row=1, column=0, pady=5, padx=10, sticky="e")
 entry_year = ttk.Combobox(root, values=years, state="readonly", width=25)
 entry_year.grid(row=1, column=1, padx=10, pady=5, sticky="w")
+print("Date time today",datetime.today())
+print("Ethiopian Date ",to_ethiopian(datetime.today()))
 # Set a default year
-if str(EthiopianDateConverter.date_to_ethiopian(datetime.today()).year) in years:
-    entry_year.set(str( EthiopianDateConverter.date_to_ethiopian(datetime.today()).year))
+if str(to_ethiopian(datetime.today()).year) in years:
+    entry_year.set(str( to_ethiopian(datetime.today()).year))
 else:
     entry_year.set(years[-1])
 
