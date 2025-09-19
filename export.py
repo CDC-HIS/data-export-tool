@@ -96,8 +96,8 @@ start_year = 2013
 end_year = 2022
 years = [str(year) for year in range(start_year, end_year + 1)]
 additional_columns = ['Region', 'Woreda', 'Facility', 'HMISCode']
-months = ["Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miyazia", "Ginbot",
-          "Sene", "Hamle", "Nehase", "Puagume"]
+months = ["Meskerem", "Tikimt", "Hidar", "Tahsas", "Tir", "Yekatit", "Megabit", "Miazia", "Ginbot",
+          "Sene", "Hamle", "Nehassie", "Puagume"]
 month_mapping = {name: index + 1 for index, name in enumerate(months)}
 
 root = tk.Tk()
