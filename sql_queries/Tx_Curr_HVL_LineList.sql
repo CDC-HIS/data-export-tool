@@ -8,9 +8,11 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          date_viral_load_results_received                     viral_load_performed_date,
                          viral_load_test_status,
                          hiv_viral_load                                    as viral_load_count,
+                         viral_load_test_indication,
+                         hiv_viral_load_status,
                          COALESCE(
                                  at_3436_weeks_of_gestation,
-                                -- viral_load_after_eac_confirmatory_viral_load_where_initial_v,
+                                 viral_load_after_eac_confirmatory_viral_load_where_initial_v,
                                  viral_load_after_eac_repeat_viral_load_where_initial_viral_l,
                                  every_six_months_until_mtct_ends,
                                  six_months_after_the_first_viral_load_test_at_postnatal_peri,
@@ -22,8 +24,8 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                  first_viral_load_test_at_3_months_or_longer_post_art
                          )                                                 AS routine_viral_load_test_indication,
                          COALESCE(
-                                 -- repeat_or_confirmatory_vl_initial_viral_load_greater_than_10,
-                                  suspected_antiretroviral_failure
+                                 repeat_or_confirmatory_vl_initial_viral_load_greater_than_10,
+                                 suspected_antiretroviral_failure
                          )                                                 AS targeted_viral_load_test_indication,
                          date_third_enhanced_adherence_counseling_provided as eac_3,
                          date_second_enhanced_adherence_counseling_provided   eac_2,
@@ -53,7 +55,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                            LEFT JOIN mamba_flat_encounter_follow_up_8 follow_up_8
                                      ON follow_up.encounter_id = follow_up_8.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_9 follow_up_9
-                                     ON follow_up.encounter_id = follow_up_9.encounter_id),
+                                     ON follow_up.encounter_id = follow_up_9.encounter_id
+                           LEFT JOIN mamba_flat_encounter_follow_up_10 follow_up_10
+                                     ON follow_up.encounter_id = follow_up_10.encounter_id),
 
 
      tmp_switch_sub_date AS (SELECT encounter_id,
@@ -70,9 +74,8 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                         viral_load_performed_date,
                                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                  FROM FollowUp
-                                 where
-                                    follow_up_date <= REPORT_END_DATE),
-     tmp_vl_performed_date_1_dedup AS (select * from tmp_vl_performed_date_1 where row_num = 1) ,
+                                 where follow_up_date <= REPORT_END_DATE),
+     tmp_vl_performed_date_1_dedup AS (select * from tmp_vl_performed_date_1 where row_num = 1),
 
      tmp_vl_sent_date AS (SELECT FollowUp.client_id,
                                  viral_load_sent_date                                                                                                          AS VL_Sent_Date,
@@ -80,7 +83,8 @@ WITH FollowUp AS (select follow_up.encounter_id,
                           FROM FollowUp
                                    Inner Join tmp_vl_performed_date_1_dedup
                                               ON tmp_vl_performed_date_1_dedup.client_id = FollowUp.client_id
-                        AND (tmp_vl_performed_date_1_dedup.viral_load_performed_date=FollowUp.viral_load_performed_date)
+                                                  AND (tmp_vl_performed_date_1_dedup.viral_load_performed_date =
+                                                       FollowUp.viral_load_performed_date)
                           WHERE FollowUp.follow_up_date <= REPORT_END_DATE
                             and viral_load_sent_date is not null),
      vl_sent_date AS (select *
@@ -104,16 +108,31 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                     INNER JOIN tmp_vl_performed_date_1_dedup
                                                ON FollowUp.encounter_id = tmp_vl_performed_date_1_dedup.encounter_id
                                     LEFT JOIN vl_sent_date ON FollowUp.client_id = vl_sent_date.client_id)
-     ,
+        ,
      tmp_vl_performed_date_cf AS (SELECT encounter_id,
                                          client_id,
                                          viral_load_performed_date                                                                                                          AS viral_load_perform_date,
                                          ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                   FROM FollowUp
-                                  where follow_up_status Is Not Null
-                                    And targeted_viral_load_test_indication Is Not Null
-                                    AND follow_up_date <= REPORT_END_DATE),
-    tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
+                                  where FollowUp.hiv_viral_load_status = 'Completed'
+                                        and (
+                                          (FollowUp.viral_load_test_indication = 'Routine viral load test indication'
+                                              and FollowUp.routine_viral_load_test_indication in
+                                                  ('Viral load after EAC: repeat viral load where initial viral load greater than 50 and less than 1000 copies per ml',
+                                                   'Viral load after EAC: confirmatory viral load where initial viral load greater than 1000 copies per ml'
+                                                      ))
+                                              OR
+                                          (FollowUp.viral_load_test_indication = 'Targeted viral load test indication'
+                                              and FollowUp.targeted_viral_load_test_indication in
+                                                  ('Repeat or confirmatory VL: initial viral load greater than 1000')
+                                              )
+                                          )
+                                        and FollowUp.viral_load_performed_date >=
+                                            vl_performed_date.viral_load_performed_date
+                                        and FollowUp.viral_load_performed_date <= COALESCE(REPORT_END_DATE, CURDATE())
+
+                                  ),
+     tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
 
      tmp_vl_sent_date_cf AS (SELECT FollowUp.client_id,
                                     viral_load_sent_date                                                                                                          AS VL_Sent_Date,
@@ -121,13 +140,13 @@ WITH FollowUp AS (select follow_up.encounter_id,
                              FROM FollowUp
                                       Inner Join tmp_vl_performed_date_cf_2
                                                  ON tmp_vl_performed_date_cf_2.client_id = FollowUp.client_id
-                              AND (tmp_vl_performed_date_cf_2.viral_load_perform_date=FollowUp.viral_load_performed_date)
+                                                     AND (tmp_vl_performed_date_cf_2.viral_load_perform_date =
+                                                          FollowUp.viral_load_performed_date)
                              WHERE FollowUp.follow_up_date <= REPORT_END_DATE
                                and viral_load_sent_date is not null),
      vl_sent_date_cf AS (select *
                          from tmp_vl_sent_date_cf
                          where row_num = 1),
-
 
 
      tmp_vl_performed_date_cf_3 AS (SELECT FollowUp.encounter_id,
@@ -182,37 +201,37 @@ WITH FollowUp AS (select follow_up.encounter_id,
                               where follow_up_status Is Not Null
                                 AND follow_up_date <= REPORT_END_DATE),
      latest_follow_up as (select * from tmp_latest_follow_up where row_num = 1),
-     hvl as (SELECT client.patient_uuid                     as PatientGUID,
-                    TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE)                      AS age,
+     hvl as (SELECT client.patient_uuid                                        as PatientGUID,
+                    TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) AS age,
                     CASE Sex
                         WHEN 'FEMALE' THEN 'F'
                         WHEN 'MALE' THEN 'M'
-                        end                                 as Sex,
-                    f_case.encounter_id                     as Id,
-                    f_case.client_id                        as PatientId,
+                        end                                                    as Sex,
+                    f_case.encounter_id                                        as Id,
+                    f_case.client_id                                           as PatientId,
                     f_case.weight,
-                    f_case.hiv_confirmed_date               as date_hiv_confirmed,
+                    f_case.hiv_confirmed_date                                  as date_hiv_confirmed,
                     f_case.art_start_date,
-                    f_case.follow_up_date                   as FollowUpDate,
-                    f_case.pregnancy_status                 as IsPregnant,
-                    f_case.dispensed_dose                   as ARVDispendsedDose,
-                    f_case.regimen                          as art_dose,
+                    f_case.follow_up_date                                      as FollowUpDate,
+                    f_case.pregnancy_status                                    as IsPregnant,
+                    f_case.dispensed_dose                                      as ARVDispendsedDose,
+                    f_case.regimen                                             as art_dose,
                     f_case.next_visit_date,
                     f_case.follow_up_status,
-                    f_case.art_dose_end_date                as art_dose_End,
-                    vlperfdate.viral_load_performed_date    as viral_load_perform_date,
-                    vlperfdate.viral_load_test_status       as viral_load_status,
+                    f_case.art_dose_end_date                                   as art_dose_End,
+                    vlperfdate.viral_load_performed_date                       as viral_load_perform_date,
+                    vlperfdate.viral_load_test_status                          as viral_load_status,
                     vlperfdate.viral_load_count,
                     vlsentdate.VL_Sent_Date,
                     vlperfdate.viral_load_ref_date,
-                    sub_switch_date.switch_date             as SwitchDate,
-                    date_eac1.Date_EAC_Provided             as date_eac_provided_1,
-                    date_eac2.Date_EAC_Provided             as date_eac_provided_2,
-                    date_eac3.Date_EAC_Provided             as date_eac_provided_3,
-                    vlsentdate_cf.VL_Sent_Date              as viral_load_sent_date_cf,
-                    vlperfdate_cf.viral_load_performed_date as viral_load_perform_date_cf,
-                    vlperfdate_cf.viral_load_test_status    as viral_load_status_cf,
-                    vlperfdate_cf.viral_load_count          as viral_load_count_cf,
+                    sub_switch_date.switch_date                                as SwitchDate,
+                    date_eac1.Date_EAC_Provided                                as date_eac_provided_1,
+                    date_eac2.Date_EAC_Provided                                as date_eac_provided_2,
+                    date_eac3.Date_EAC_Provided                                as date_eac_provided_3,
+                    vlsentdate_cf.VL_Sent_Date                                 as viral_load_sent_date_cf,
+                    vlperfdate_cf.viral_load_performed_date                    as viral_load_perform_date_cf,
+                    vlperfdate_cf.viral_load_test_status                       as viral_load_status_cf,
+                    vlperfdate_cf.viral_load_count                             as viral_load_count_cf,
                     vlperfdate.routine_viral_load,
                     vlperfdate.target,
                     vlperfdate_cf.routine_viral_load_cf,
@@ -229,15 +248,15 @@ WITH FollowUp AS (select follow_up.encounter_id,
                       Left join vl_perf_date_eac_2 as date_eac2 ON date_eac2.client_id = f_case.client_id
                       Left join vl_perf_date_eac_3 as date_eac3 ON date_eac3.client_id = f_case.client_id
                       Left join switch_sub_date as sub_switch_date ON sub_switch_date.client_id = f_case.client_id)
-select Sex as Sex,
-       Weight as Weight,
-       Age as Age,
+select Sex              as Sex,
+       Weight           as Weight,
+       Age              as Age,
        date_hiv_confirmed,
        art_start_date,
        FollowUpDate,
        IsPregnant,
        ARVDispendsedDose,
-       art_dose as art_dose,
+       art_dose         as art_dose,
        next_visit_date,
        follow_up_status,
        art_dose_End,
@@ -262,4 +281,5 @@ select Sex as Sex,
 from hvl
 where hvl.follow_up_status in ('Alive', 'Restart medication')
   and hvl.art_dose_End >= REPORT_END_DATE
-  AND art_start_date <= REPORT_END_DATE and  TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >=0;
+  AND art_start_date <= REPORT_END_DATE
+  and TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >= 0;
