@@ -69,7 +69,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          nutritional_screening_result,
                          dsd_category,
                          other_medications_med_1                Med1,
-                         other_medications_med2                 Med2
+                         other_medications_med2                 Med2,
+                         visitect_cd4_result,
+                         visitect_cd4_test_date
                   FROM mamba_flat_encounter_follow_up follow_up
                            LEFT JOIN mamba_flat_encounter_follow_up_1 follow_up_1
                                      ON follow_up.encounter_id = follow_up_1.encounter_id
@@ -104,6 +106,14 @@ WITH FollowUp AS (select follow_up.encounter_id,
      tpt_completed as (select *
                        from tmp_tpt_completed
                        where row_num = 1),
+     tmp_visitect as (select PatientId,
+                             visitect_cd4_test_date,
+                             visitect_cd4_result,
+                             ROW_NUMBER() OVER (PARTITION BY PatientId ORDER BY visitect_cd4_test_date DESC, encounter_id DESC) AS row_num
+                      from FollowUp
+                      where visitect_cd4_test_date is not null
+                        and visitect_cd4_test_date <= COALESCE(REPORT_END_DATE, CURDATE())),
+     visitect as (select * from tmp_visitect where row_num = 1),
 
      tmp_tpt_type AS (SELECT patientid,
                              TB_ProphylaxisType                                                                         AS TB_ProphylaxisType,
@@ -290,6 +300,8 @@ SELECT DISTINCT CASE client.sex
                 f_case.follow_up_date                                      as FollowUpDate,
                 f_case.current_who_hiv_stage                               as WHOStage,
                 f_case.cd4_count                                           as CD4Count,
+                visitect.visitect_cd4_result                               as VISITECT_CD4_Test_Result,
+                visitect.visitect_cd4_test_date                            as VISITECT_CD4_Test_Date,
                 f_case.art_dose_days                                       as ARTDoseDays,
                 f_case.regimen                                             as ARVRegimen,
                 f_case.follow_up_status                                    as FollowupStatus,
@@ -370,16 +382,17 @@ SELECT DISTINCT CASE client.sex
                 cca_screened.CCA_Screened                                  as CCA_Screened,
                 f_case.dsd_category                                        as DSD_Category,
                 CASE
-                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) < 5 THEN 'Yes'
-                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
-                         f_case.cd4_count IS NOT NULL AND
-                         f_case.cd4_count < 200 THEN 'Yes'
-                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, COALESCE(REPORT_END_DATE, CURDATE())) < 5 THEN 'Yes'
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, COALESCE(REPORT_END_DATE, CURDATE())) >= 5 AND
+                         ((visitect.visitect_cd4_result is null and f_case.cd4_count IS NOT NULL AND
+                           f_case.cd4_count < 200) or (visitect.visitect_cd4_result = 'VISITECT <200 copies/ml'))
+                        THEN 'Yes'
+                    WHEN TIMESTAMPDIFF(YEAR, client.date_of_birth, COALESCE(REPORT_END_DATE, CURDATE())) >= 5 AND
                          f_case.current_who_hiv_stage IS NOT NULL AND
                          (f_case.current_who_hiv_stage = 'WHO stage 3 adult' Or
                           f_case.current_who_hiv_stage = 'WHO stage 3 peds' Or
                           f_case.current_who_hiv_stage = 'WHO stage 4 peds') THEN 'Yes'
-                    WHEN (TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) >= 5 AND
+                    WHEN (TIMESTAMPDIFF(YEAR, client.date_of_birth, COALESCE(REPORT_END_DATE, CURDATE())) >= 5 AND
                           f_case.current_who_hiv_stage IS NOT NULL AND
                           f_case.current_who_hiv_stage = 'WHO stage 4 adult') THEN 'Yes'
                     ELSE 'No' END                                          as AHD,
@@ -389,6 +402,7 @@ FROM FollowUp AS f_case
          INNER JOIN tx_curr on latest_follow_up.PatientId = tx_curr.PatientId
          LEFT JOIN mamba_dim_client client on tx_curr.PatientId = client_id
          LEFT JOIN vl_performed_date AS vlperfdate ON vlperfdate.PatientId = f_case.PatientId
+         LEFT JOIN visitect ON visitect.PatientId = f_case.PatientId
          LEFT JOIN vl_sent_date AS vlsentdate ON vlsentdate.PatientId = f_case.PatientId
          LEFT JOIN tpt_start ON tpt_start.patientid = f_case.PatientId
          LEFT JOIN tpt_completed ON tpt_completed.patientid = f_case.PatientId
