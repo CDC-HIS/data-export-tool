@@ -300,7 +300,10 @@ SELECT DISTINCT CASE client.sex
                 f_case.follow_up_date                                      as FollowUpDate,
                 f_case.current_who_hiv_stage                               as WHOStage,
                 f_case.cd4_count                                           as CD4Count,
-                visitect.visitect_cd4_result                               as VISITECT_CD4_Test_Result,
+                CASE visitect.visitect_cd4_result
+                    WHEN 'VISITECT <200 copies/ml' THEN '<200 copies/ml'
+                    WHEN 'VISITECT <=200 copies/ml' OR 'VISITECT >200 copies/ml' THEN '>200 copies/ml' END
+                                                                           as VISITECT_CD4_Test_Result,
                 visitect.visitect_cd4_test_date                            as VISITECT_CD4_Test_Date,
                 f_case.art_dose_days                                       as ARTDoseDays,
                 f_case.regimen                                             as ARVRegimen,
