@@ -60,14 +60,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                      ON follow_up.encounter_id = follow_up_10.encounter_id),
 
 
-     tmp_switch_sub_date AS (SELECT encounter_id,
-                                    client_id,
-                                    follow_up_date                                                                            as switch_date,
-                                    ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date, FollowUp.encounter_id) AS row_num
-                             FROM FollowUp
-                             WHERE follow_up_date <= REPORT_END_DATE
-                               and switch is not null),
-     switch_sub_date AS (select * from tmp_switch_sub_date where row_num = 1),
+
 
      tmp_vl_performed_date_1 AS (SELECT encounter_id,
                                         client_id,
@@ -133,6 +126,15 @@ WITH FollowUp AS (select follow_up.encounter_id,
 
                                   ),
      tmp_vl_performed_date_cf_2 AS (select * from tmp_vl_performed_date_cf where row_num = 1),
+     tmp_switch_sub_date AS (SELECT FollowUp.encounter_id,
+                                    FollowUp.client_id,
+                                    follow_up_date                                                                            as switch_date,
+                                    ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY follow_up_date, FollowUp.encounter_id) AS row_num
+                             FROM FollowUp
+                             JOIN tmp_vl_performed_date_cf_2 cf on FollowUp.client_id = cf.client_id
+                             WHERE FollowUp.follow_up_date BETWEEN cf.viral_load_perform_date AND REPORT_END_DATE
+                               and switch is not null),
+     switch_sub_date AS (select * from tmp_switch_sub_date where row_num = 1),
 
      tmp_vl_sent_date_cf AS (SELECT FollowUp.client_id,
                                     viral_load_sent_date                                                                                                          AS VL_Sent_Date,
