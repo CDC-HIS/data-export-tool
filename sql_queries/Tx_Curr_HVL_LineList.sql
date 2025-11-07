@@ -128,7 +128,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                               )
                                           )
                                         and FollowUp.viral_load_performed_date >=
-                                            vl_performed_date.viral_load_performed_date
+                                            FollowUp.viral_load_performed_date
                                         and FollowUp.viral_load_performed_date <= COALESCE(REPORT_END_DATE, CURDATE())
 
                                   ),

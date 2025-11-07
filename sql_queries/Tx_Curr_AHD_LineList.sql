@@ -422,4 +422,4 @@ FROM FollowUp AS f_case
          LEFT JOIN TBTreatmentCompleted ON TBTreatmentCompleted.patientid = f_case.PatientId
          LEFT JOIN TBTreatmentDiscontinued ON TBTreatmentDiscontinued.patientid = f_case.PatientId
          LEFT JOIN cca_screened ON cca_screened.patientid = f_case.PatientId
-where f_case.follow_up_status != 'Dead'
+where f_case.follow_up_status != 'Dead';
