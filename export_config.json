@@ -9,7 +9,8 @@
     "Tx_Curr_OutComeList": "sql_queries/Tx_Curr_OutComeList.sql",
     "Tx_Curr_CCANew_LineList": "sql_queries/Tx_Curr_CCANew_LineList.sql",
     "Tx_Curr_CCA_LineList": "sql_queries/Tx_Curr_CCA_LineList.sql",
-    "Tx_Curr_VLEligible_LineList": "sql_queries/Tx_Curr_VLEligible_LineList.sql"
+    "Tx_Curr_VLEligible_LineList": "sql_queries/Tx_Curr_VLEligible_LineList.sql",
+    "PMTCT_Maternal_LineList": "sql_queries/PMTCT_Maternal_LineList.sql"
   },
   "db_properties": {
     "DB_HOST" : "localhost",
