@@ -11,12 +11,14 @@ WITH Enrollment AS (SELECT client_id,
                            date_referred_to_pmtct,
                            ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY date_of_enrollment_or_booking , encounter_id ) as row_num
                     FROM mamba_flat_encounter_pmtct_enrollment
-                    WHERE date_of_enrollment_or_booking BETWEEN REPORT_START_DATE AND REPORT_END_DATE),
+    --   WHERE date_of_enrollment_or_booking BETWEEN REPORT_START_DATE AND REPORT_END_DATE
+),
 
      Discharge AS (SELECT *,
                           ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY discharge_date , encounter_id ) as row_num
                    FROM mamba_flat_encounter_pmtct_discharge
-                   WHERE discharge_date > REPORT_START_DATE),
+         -- WHERE discharge_date > REPORT_START_DATE
+     ),
 
      Episode_Window AS (SELECT e.client_id,
                                e.encounter_id                              as enrollment_id,
@@ -107,26 +109,21 @@ WITH Enrollment AS (SELECT client_id,
                                                ELSE NULL
                                       END DESC,
                                       f.encounter_id DESC
-                                  ) as rn_latest_visit,
-
-                              ROW_NUMBER() OVER (
+                                  ) as rn_latest_visit, ROW_NUMBER() OVER (
                                   PARTITION BY ew.enrollment_id
                                   ORDER BY CASE
                                                WHEN f.viral_load_sent_date BETWEEN ew.start_date AND ew.effective_end_date
                                                    THEN f.viral_load_sent_date
                                                ELSE NULL
                                       END DESC
-                                  ) as rn_latest_vl_sent,
-
-                              ROW_NUMBER() OVER (
+                                  ) as rn_latest_vl_sent, ROW_NUMBER() OVER (
                                   PARTITION BY ew.enrollment_id
                                   ORDER BY CASE
                                                WHEN f.viral_load_perform_date BETWEEN ew.start_date AND ew.effective_end_date
                                                    THEN f.viral_load_perform_date
                                                ELSE NULL
                                       END DESC
-                                  ) as rn_latest_vl_res,
-                              ROW_NUMBER() OVER (
+                                  ) as rn_latest_vl_res, ROW_NUMBER() OVER (
                                   PARTITION BY ew.enrollment_id
                                   ORDER BY CASE
                                                WHEN f.dsd_category IS NOT NULL
@@ -139,34 +136,34 @@ WITH Enrollment AS (SELECT client_id,
                        FROM Episode_Window ew
                                 LEFT JOIN FollowUp f
                                           ON ew.client_id = f.PatientId)
-SELECT client.patient_uuid PatientGUID,
+SELECT client.patient_uuid                                           PatientGUID,
        client.Sex,
-      TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) as `Age`,
-       visit.weight_text_ as Weight,
-       ew.start_date as  BookingDate,
-       visit.art_start_date                                            AS ArtStartDate,
-       ew.start_date as BookingDate,
+       TIMESTAMPDIFF(YEAR, client.date_of_birth, REPORT_END_DATE) as `Age`,
+       visit.weight_text_                                         as Weight,
+       ew.start_date                                              as BookingDate,
+       visit.art_start_date                                       AS ArtStartDate,
+       ew.start_date                                              as BookingDate,
        COALESCE(ew.art_clinic, ew.antenatal_care_provider, ew.ld_client,
-                     ew.post_natal_care) as  StatusatEnrollment,
-       ew.date_referred_to_pmtct                        AS DateReferredtoPMTCT,
-       ew.pregnancy_status                                            AS IsPregnant,
-       ew.currently_breastfeeding_child                                           AS IsBreastfeeding,
-       ew.discharge_date                             AS DateofDischarge,
-       ew.reason_for_discharge_from_pmtct ReasonforDischarge,
-       ew.discharge_outcome                                              AS MaternalPMTCTFinalOutcome,
-       visit.follow_up_date                             AS LatestFollowupDate,
-       visit.follow_up_status         AS LatestFollowupStatus,
-       visit.regimen                 as Regimen,
-       visit.ARTDoseDays                                           as Dose,
-       visit.nutritional_status_of_adult                                            As NutritionalStatus,
-       visit.AdherenceLevel                                            AS Adherence,
-       vl_s.viral_load_sent_date                                             AS Viral_Load_Sent_Date,
-      COALESCE(vl_s.routine_viral_load_test_indication,
-                    vl_s.targeted_viral_load_test_indication)                                          AS Viral_Load_Indication,
-       vl_r.viral_load_perform_date                                  as Viral_Load_Received_Date,
-       vl_r.viral_load_test_status                                        AS LatestVLStatus,
-       vl_s.cd4_count as CD4Count,
-       visit.next_visit_date                             AS NextVisitDate
+                ew.post_natal_care)                               as StatusatEnrollment,
+       ew.date_referred_to_pmtct                                  AS DateReferredtoPMTCT,
+       ew.pregnancy_status                                        AS IsPregnant,
+       ew.currently_breastfeeding_child                           AS IsBreastfeeding,
+       ew.discharge_date                                          AS DateofDischarge,
+       ew.reason_for_discharge_from_pmtct                            ReasonforDischarge,
+       ew.discharge_outcome                                       AS MaternalPMTCTFinalOutcome,
+       visit.follow_up_date                                       AS LatestFollowupDate,
+       visit.follow_up_status                                     AS LatestFollowupStatus,
+       visit.regimen                                              as Regimen,
+       visit.ARTDoseDays                                          as Dose,
+       visit.nutritional_status_of_adult                          As NutritionalStatus,
+       visit.AdherenceLevel                                       AS Adherence,
+       vl_s.viral_load_sent_date                                  AS Viral_Load_Sent_Date,
+       COALESCE(vl_s.routine_viral_load_test_indication,
+                vl_s.targeted_viral_load_test_indication)         AS Viral_Load_Indication,
+       vl_r.viral_load_perform_date                               as Viral_Load_Received_Date,
+       vl_r.viral_load_test_status                                AS LatestVLStatus,
+       vl_s.cd4_count                                             as CD4Count,
+       visit.next_visit_date                                      AS NextVisitDate
 FROM Episode_Window ew
          LEFT JOIN mamba_dim_client client ON ew.client_id = client.client_id
          LEFT JOIN Events_Ranked visit
