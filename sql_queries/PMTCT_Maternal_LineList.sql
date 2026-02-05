@@ -11,14 +11,15 @@ WITH Enrollment AS (SELECT client_id,
                            date_referred_to_pmtct,
                            ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY date_of_enrollment_or_booking , encounter_id ) as row_num
                     FROM mamba_flat_encounter_pmtct_enrollment
-    --   WHERE date_of_enrollment_or_booking BETWEEN REPORT_START_DATE AND REPORT_END_DATE
-),
+                   -- WHERE date_of_enrollment_or_booking BETWEEN REPORT_START_DATE AND REPORT_END_DATE
+
+                    ),
 
      Discharge AS (SELECT *,
                           ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY discharge_date , encounter_id ) as row_num
                    FROM mamba_flat_encounter_pmtct_discharge
-         -- WHERE discharge_date > REPORT_START_DATE
-     ),
+                  -- WHERE discharge_date > REPORT_START_DATE
+                   ),
 
      Episode_Window AS (SELECT e.client_id,
                                e.encounter_id                              as enrollment_id,
