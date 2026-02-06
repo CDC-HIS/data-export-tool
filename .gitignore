@@ -3,3 +3,7 @@ exported_data
 export_distributable.zip
 .venv
 exported_data.7z
+build
+dist
+create_shortcut.sh
+*.log
