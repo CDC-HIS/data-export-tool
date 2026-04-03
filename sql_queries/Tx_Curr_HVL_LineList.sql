@@ -35,7 +35,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                          pregnancy_status,
                          antiretroviral_art_dispensed_dose_i                  dispensed_dose,
                          regimen,
-                         arv_adherence                                     as adherence,
+                         adherence                                     as adherence,
                          next_visit_date,
                          treatment_end_date                                   art_dose_end_date
                   FROM mamba_flat_encounter_follow_up follow_up
