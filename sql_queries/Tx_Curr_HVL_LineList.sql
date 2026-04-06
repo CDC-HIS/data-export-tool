@@ -68,7 +68,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                         viral_load_performed_date,
                                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                  FROM FollowUp
-                                 WHERE follow_up_date <= REPORT_END_DATE
+                                 WHERE viral_load_performed_date BETWEEN DATE_ADD(REPORT_END_DATE, INTERVAL -12 MONTH ) AND DATE_ADD(REPORT_END_DATE, INTERVAL -6 MONTH )
                                    -- AND routine_viral_load_test_indication IS NOT NULL
                                    AND routine_viral_load_test_indication NOT IN (
                                        'Viral load after EAC: repeat viral load where initial viral load greater than 50 and less than 1000 copies per ml',
