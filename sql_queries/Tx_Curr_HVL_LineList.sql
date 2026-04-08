@@ -193,7 +193,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_1 is not null
-                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
+                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.eac_1
                                   AND eac_1 <= REPORT_END_DATE),
      tmp_vl_perf_date_eac_2 AS (SELECT FollowUp.client_id,
                                        eac_2                                                                                                          AS Date_EAC_Provided,
@@ -201,7 +201,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_2 is not null
-                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
+                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.eac_2
                                   AND eac_2 <= REPORT_END_DATE),
      tmp_vl_perf_date_eac_3 AS (SELECT FollowUp.client_id,
                                        eac_3                                                                                                          AS Date_EAC_Provided,
@@ -209,7 +209,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                 FROM FollowUp
                                          INNER JOIN vl_performed_date ON vl_performed_date.client_id = FollowUp.client_id
                                 WHERE FollowUp.eac_3 is not null
-                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.follow_up_date
+                                  AND vl_performed_date.viral_load_performed_date <= FollowUp.eac_3
                                   AND eac_3 <= REPORT_END_DATE),
      vl_perf_date_eac_1 AS (select * from tmp_vl_perf_date_eac_1 where row_num = 1),
      vl_perf_date_eac_2 AS (select * from tmp_vl_perf_date_eac_2 where row_num = 1),
@@ -308,7 +308,17 @@ select Sex              as Sex,
        PatientGUID,
        hvl.hvl_regimen  AS hvl_Regimen,
        hvl.art_dose     AS current_regimen,
-       hvl.adherence    AS Adherance
+       hvl.adherence    AS Adherance,
+       CASE 
+           WHEN viral_load_count IS NOT NULL THEN
+               CASE 
+                   WHEN viral_load_count BETWEEN 50 AND 1000 THEN 'Low Level Viremia'
+                   WHEN viral_load_count > 1000 THEN 'High VL'
+               END
+           WHEN viral_load_status LIKE 'Low Level Viremia%' THEN 'Low Level Viremia'
+           WHEN viral_load_status LIKE 'Det%' OR viral_load_status LIKE 'Uns%' OR viral_load_status LIKE 'High VL%' THEN 'High VL'
+           ELSE NULL
+       END AS ViralLoadStatusNew
 from hvl
 where hvl.follow_up_status in ('Alive', 'Restart medication')
   and hvl.art_dose_End >= REPORT_END_DATE
