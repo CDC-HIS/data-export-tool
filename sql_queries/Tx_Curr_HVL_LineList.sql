@@ -118,9 +118,9 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                                ON FollowUp.encounter_id = tmp_vl_performed_date_1_dedup.encounter_id
                                     LEFT JOIN vl_sent_date ON FollowUp.client_id = vl_sent_date.client_id)
         ,
-     tmp_vl_performed_date_cf AS (SELECT encounter_id,
-                                         client_id,
-                                         viral_load_performed_date                                                                                                          AS viral_load_perform_date,
+     tmp_vl_performed_date_cf AS (SELECT FollowUp.encounter_id,
+                                         FollowUp.client_id,
+                                         FollowUp.viral_load_performed_date                                                                                                          AS viral_load_perform_date,
                                          ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                   FROM FollowUp
                                   join vl_performed_date on FollowUp.client_id = vl_performed_date.client_id
@@ -323,4 +323,7 @@ from hvl
 where hvl.follow_up_status in ('Alive', 'Restart medication')
   and hvl.art_dose_End >= REPORT_END_DATE
   AND art_start_date <= REPORT_END_DATE
+  AND ((viral_load_count BETWEEN 50 AND 1000 OR viral_load_count > 1000)
+       OR 
+       (viral_load_status LIKE 'Low Level Viremia%' OR viral_load_status LIKE 'Det%' OR viral_load_status LIKE 'Uns%' OR viral_load_status LIKE 'High VL%'))
   and TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >= 0;

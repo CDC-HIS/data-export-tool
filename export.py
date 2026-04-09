@@ -147,7 +147,7 @@ def zip_files_with_checksum(folder_path, zip_name):
     checksum_name = f"{zip_name}_checksum.txt"
     checksum_file_path = os.path.join(folder_path, checksum_name)
 
-    final_zip_path = os.path.join(folder_path, f"{zip_name}_packaged.zip")
+    final_zip_path = os.path.join(folder_path, f"{zip_name}_packaged18.zip")
 
     try:
         logging.info(f"Step 1: Creating temporary CSV archive at: {csv_archive_path}")
