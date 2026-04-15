@@ -68,7 +68,7 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                         viral_load_performed_date,
                                         ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY viral_load_performed_date DESC , FollowUp.encounter_id DESC ) AS row_num
                                  FROM FollowUp
-                                 WHERE viral_load_performed_date BETWEEN DATE_ADD(REPORT_END_DATE, INTERVAL -12 MONTH ) AND DATE_ADD(REPORT_END_DATE, INTERVAL -6 MONTH )
+                                 WHERE viral_load_performed_date <= DATE_ADD(REPORT_END_DATE, INTERVAL -6 MONTH )
                                    -- AND routine_viral_load_test_indication IS NOT NULL
                                    AND routine_viral_load_test_indication NOT IN (
                                        'Viral load after EAC: repeat viral load where initial viral load greater than 50 and less than 1000 copies per ml',
@@ -286,7 +286,16 @@ select Sex              as Sex,
        follow_up_status,
        art_dose_End,
        viral_load_perform_date,
-       viral_load_status,
+        CASE
+           WHEN viral_load_count IS NOT NULL THEN
+               CASE
+                   WHEN viral_load_count BETWEEN 51 AND 1000 THEN 'Low Level Viremia'
+                   WHEN viral_load_count > 1000 THEN 'High VL'
+               END
+           WHEN viral_load_status LIKE 'Low Level Viremia%' THEN 'Low Level Viremia'
+           WHEN viral_load_status LIKE 'Det%' OR viral_load_status LIKE 'Uns%' OR viral_load_status LIKE 'High VL%' THEN 'High VL'
+           ELSE NULL
+       END AS viral_load_status,
        viral_load_count,
        hvl.VL_Sent_Date as viral_load_sent_date,
        viral_load_ref_date,
@@ -301,6 +310,16 @@ select Sex              as Sex,
        NULL AS date_eac_provided_6,
        viral_load_sent_date_cf,
        viral_load_perform_date_cf,
+       CASE
+           WHEN viral_load_count_cf IS NOT NULL THEN
+               CASE
+                   WHEN viral_load_count_cf BETWEEN 51 AND 1000 THEN 'Low Level Viremia'
+                   WHEN viral_load_count_cf > 1000 THEN 'High VL'
+               END
+           WHEN viral_load_status_cf LIKE 'Low Level Viremia%' THEN 'Low Level Viremia'
+           WHEN viral_load_status_cf LIKE 'Det%' OR viral_load_status_cf LIKE 'Uns%' OR viral_load_status_cf LIKE 'High VL%' THEN 'High VL'
+           ELSE NULL
+       END AS
        viral_load_status_cf,
        viral_load_count_cf,
        routine_viral_load_cf,
@@ -312,7 +331,7 @@ select Sex              as Sex,
        CASE 
            WHEN viral_load_count IS NOT NULL THEN
                CASE 
-                   WHEN viral_load_count BETWEEN 50 AND 1000 THEN 'Low Level Viremia'
+                   WHEN viral_load_count BETWEEN 51 AND 1000 THEN 'Low Level Viremia'
                    WHEN viral_load_count > 1000 THEN 'High VL'
                END
            WHEN viral_load_status LIKE 'Low Level Viremia%' THEN 'Low Level Viremia'
@@ -320,10 +339,7 @@ select Sex              as Sex,
            ELSE NULL
        END AS ViralLoadStatusNew
 from hvl
-where hvl.follow_up_status in ('Alive', 'Restart medication')
-  and hvl.art_dose_End >= REPORT_END_DATE
-  AND art_start_date <= REPORT_END_DATE
-  AND ((viral_load_count BETWEEN 50 AND 1000 OR viral_load_count > 1000)
+where ((viral_load_count BETWEEN 51 AND 1000 OR viral_load_count > 1000)
        OR 
        (viral_load_status LIKE 'Low Level Viremia%' OR viral_load_status LIKE 'Det%' OR viral_load_status LIKE 'Uns%' OR viral_load_status LIKE 'High VL%'))
   and TIMESTAMPDIFF(DAY, art_start_date, REPORT_END_DATE) >= 0;
