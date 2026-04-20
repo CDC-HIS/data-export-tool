@@ -217,11 +217,11 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                      FollowUp.encounter_id,
                                      ROW_NUMBER() OVER (PARTITION BY FollowUp.client_id ORDER BY FollowUp.follow_up_date DESC , FollowUp.encounter_id DESC ) as row_num
                               FROM FollowUp
-                                       left join tmp_vl_performed_date_cf_2 cf on FollowUp.client_id = cf.client_id
+                                    --   left join tmp_vl_performed_date_cf_2 cf on FollowUp.client_id = cf.client_id
                               where follow_up_status Is Not Null
                                 AND follow_up_date <= REPORT_END_DATE
-                                AND (cf.viral_load_perform_date IS NULL OR
-                                     follow_up_date >= cf.viral_load_perform_date)),
+                           --     AND (cf.viral_load_perform_date IS NULL OR follow_up_date >= cf.viral_load_perform_date)
+                              ),
      tmp_latest_alive_restart AS (SELECT client_id,
                                          regimen,
                                          ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY follow_up_date DESC, encounter_id DESC) as row_num
