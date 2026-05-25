@@ -45,8 +45,15 @@ WITH FollowUp AS (select follow_up.encounter_id,
                                      ON follow_up.encounter_id = follow_up_8.encounter_id
                            LEFT JOIN mamba_flat_encounter_follow_up_9 follow_up_9
                                      ON follow_up.encounter_id = follow_up_9.encounter_id
-                           LEFT join mamba_flat_encounter_intake_b intake_b
-                                     on follow_up.client_id = intake_b.client_id),
+                           LEFT JOIN (SELECT client_id,
+                                             inh_start_date,
+                                             inh_date_completed
+                                      FROM (SELECT client_id,
+                                                   inh_start_date,
+                                                   inh_date_completed,
+                                                   ROW_NUMBER() OVER (PARTITION BY client_id ORDER BY encounter_id DESC) as intake_rn
+                                            FROM mamba_flat_encounter_intake_b) t
+                                      WHERE intake_rn = 1) intake_b ON follow_up.client_id = intake_b.client_id),
      -- TX curr
      tx_curr_all AS (SELECT PatientId,
                             follow_up_date                                                                             AS FollowupDate,
