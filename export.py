@@ -24,10 +24,13 @@ logging.basicConfig(
 
 def resource_path(relative_path):
 
-    if hasattr(sys, 'frozen'):
+    if getattr(sys, 'frozen', False):
         if hasattr(sys, '_MEIPASS'):
             base_path = sys._MEIPASS
             logging.info(f"Detected PyInstaller environment. Base path for resources: {base_path}")
+        elif getattr(sys, 'cx_Freeze', False) or hasattr(sys, 'frozen'):
+            base_path = os.path.dirname(os.path.abspath(sys.executable))
+            logging.info(f"Detected cx_Freeze frozen environment. Base path for resources: {base_path}")
         else:
             base_path = os.path.dirname(os.path.abspath(sys.argv[0]))
             logging.info(f"Detected Nuitka --onefile environment. Base path for resources: {base_path}")
